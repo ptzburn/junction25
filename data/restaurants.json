@@ -124,47 +124,5 @@
       "burger-lane-hot-honey-crunch",
       "burger-lane-plant-powered-smash"
     ]
-  },
-  {
-    "slug": "nordic-kitchen",
-    "name": "Nordic Kitchen",
-    "description": "Seasonal tasting plates paying homage to Finnish forests with wild fish, open-fire veg, and cultured butter.",
-    "tags": ["Modern", "Nordic"],
-    "rating": 4.9,
-    "eta": "35–45 min",
-    "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=60",
-    "location": "Tikkurila, Vantaa",
-    "address": "Vernissakatu 1",
-    "hours": "15:00–23:30",
-    "deliveryFee": "€4.20",
-    "minOrder": "€25.00",
-    "promoTag": "Chef's table",
-    "highlights": ["Foraged herbs", "Smoked in-house", "Natural wines"],
-    "featuredDishIds": [
-      "nordic-kitchen-grilled-salmon-rye",
-      "nordic-kitchen-charred-cabbage",
-      "nordic-kitchen-sea-buckthorn-tart"
-    ]
-  },
-  {
-    "slug": "bao-street",
-    "name": "Bao Street",
-    "description": "Steamed-to-order bao buns packed with sticky pork, crispy tofu, and crunchy pickles inspired by Taipei night markets.",
-    "tags": ["Asian", "Street food"],
-    "rating": 4.5,
-    "eta": "25–35 min",
-    "image": "https://images.pexels.com/photos/4819834/pexels-photo-4819834.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "location": "Punavuori, Helsinki",
-    "address": "Iso Roobertinkatu 18",
-    "hours": "11:30–00:30",
-    "deliveryFee": "€2.40",
-    "minOrder": "€10.00",
-    "promoTag": "Bao fiesta",
-    "highlights": ["House chili oil", "48h pork belly", "Vegan bao options"],
-    "featuredDishIds": [
-      "bao-street-short-rib-bao",
-      "bao-street-miso-aubergine-bao",
-      "bao-street-five-spice-fries"
-    ]
   }
 ]

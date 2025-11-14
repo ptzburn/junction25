@@ -102,7 +102,7 @@
       "name": "Smoky Pepperoni",
       "description": "Cup-and-char pepperoni, roasted garlic crema, basil oil.",
       "price": "€14.90",
-  "image": "https://images.unsplash.com/photo-1548365328-860dbb194f57?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://pitbarrelcooker.com/cdn/shop/articles/Pepperoni-Pizza_936x.png?v=1598630636",
       "ingredients": ["Sourdough base", "San Marzano sauce", "Pepperoni", "Fior di latte", "Chili honey"],
       "badge": "Most ordered"
     },
@@ -112,7 +112,7 @@
       "name": "Midnight Truffle",
       "description": "Black truffle paste, fior di latte, confit mushrooms, arugula.",
       "price": "€16.40",
-  "image": "https://images.unsplash.com/photo-1506355683710-bd071c0a582f?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://giadzy.com/cdn/shop/articles/IMG_7208_copy.jpg?v=1658468222auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Truffle paste", "Fior di latte", "Confit mushrooms", "Arugula", "Sea salt"]
     },
     {
@@ -160,7 +160,7 @@
       "name": "Pho brisket deluxe",
       "description": "Bone marrow broth, flame-torched brisket, fresh herbs.",
       "price": "€15.20",
-  "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://www.recipetineats.com/uploads/2019/04/Beef-Pho_6.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Beef broth", "Rice noodles", "Brisket", "Bean sprouts", "Herb mix"],
       "badge": "Top rated"
     },
@@ -170,7 +170,7 @@
       "name": "Lemongrass tofu banh mi",
       "description": "Crispy tofu, pickled carrot, vegan mayo, bird's eye chili.",
       "price": "€13.10",
-  "image": "https://images.unsplash.com/photo-1508737804141-04adfca472ba?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://www.goodfoodstories.com/wp-content/uploads/2018/08/lemongrass-tofu-banh-mi-1-Photograph-%C2%A9-Good-Food-Stories-LLC.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Baguette", "Lemongrass tofu", "Pickled carrot", "Cucumber", "Herbs"],
       "vegan": true
     },
@@ -180,7 +180,7 @@
       "name": "Crispy prawn rolls",
       "description": "Nuoc cham, lettuce wraps, toasted peanuts.",
       "price": "€8.90",
-  "image": "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://natashaskitchen.com/wp-content/uploads/2018/07/Shrimp-Lettuce-Wraps-600x900.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Prawns", "Spring roll wrapper", "Glass noodles", "Nuoc cham", "Peanuts"]
     },
     {
@@ -189,7 +189,7 @@
       "name": "Salmon lover set",
       "description": "8-piece nigiri & maki, yuzu kosho mayo, ikura.",
       "price": "€24.90",
-  "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://globalseafoods.com/cdn/shop/articles/dreamstime_s_11648441_011a88f1-f7a0-4565-95bc-66a5e699b9b9_2048x.jpg?v=1740367721?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Salmon nigiri", "Salmon maki", "Ikura", "Yuzu kosho", "Shiso"]
     },
     {
@@ -198,7 +198,7 @@
       "name": "Truffled tuna temaki",
       "description": "Hand roll, bluefin akami, truffle ponzu, shiso.",
       "price": "€12.50",
-  "image": "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://steaks.lv/cache/images/original/ALWN6BTbjHLGMhR7RNngsaqTGjzHtdOuNDgpbV85.png?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Nori", "Sushi rice", "Tuna akami", "Truffle ponzu", "Shiso"],
       "badge": "Limited"
     },
@@ -208,7 +208,7 @@
       "name": "Garden maki",
       "description": "Cucumber, oshinko, avocado, black sesame.",
       "price": "€11.60",
-  "image": "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://www.yummymummykitchen.com/wp-content/uploads/2021/07/oshinko-04.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Nori", "Sushi rice", "Cucumber", "Pickled radish", "Avocado"],
       "vegetarian": true
     },
