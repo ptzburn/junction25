@@ -8,9 +8,12 @@ import { useEffect, useState } from "react";
 import type { Order } from "@/hooks/use-orders";
 
 import { OrderDetailView } from "@/components/order-detail-view";
+import Link from "next/link";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import type { Restaurant } from "@/types/restaurant";
 import {
   Card,
   CardContent,
@@ -59,6 +62,24 @@ type Restaurant = {
   eta: string;
   image: string;
 };
+type OrderStatus = "preparing" | "delivering" | "delivered";
+
+type Order = {
+  id: string;
+  restaurant: string;
+  category: string;
+  status: OrderStatus;
+  city: string;
+  neighborhood: string;
+  etaMinutes: [number, number];
+  courier: string;
+  courierEta: number;
+  items: { name: string; quantity: number }[];
+  image: string;
+  total: number;
+  placedAt: string;
+};
+
 const dishesData = dishesJson as DishesData;
 const restaurantsData = restaurantsJson as Restaurant[];
 const ORDER_STATUS_UI: Record<
@@ -465,30 +486,37 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {restaurantsData.map(restaurant => (
-              <Card key={restaurant.name} className="overflow-hidden">
-                <div
-                  className="h-40 w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${restaurant.image})` }}
-                  aria-hidden
-                />
-                <CardContent className="flex flex-col gap-3 p-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-semibold">{restaurant.name}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {restaurant.tags.join(" • ")}
-                      </p>
+              <Link
+                key={restaurant.slug}
+                href={`/restaurants/${restaurant.slug}`}
+                className="group block focus-visible:outline-none"
+                aria-label={`View ${restaurant.name}`}
+              >
+                <Card className="overflow-hidden transition duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-visible:ring-2 group-focus-visible:ring-primary">
+                  <div
+                    className="h-40 w-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${restaurant.image})` }}
+                    aria-hidden
+                  />
+                  <CardContent className="flex flex-col gap-3 p-5">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-semibold">{restaurant.name}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {restaurant.tags.join(" • ")}
+                        </p>
+                      </div>
+                      <Badge variant="secondary">{`★ ${restaurant.rating}`}</Badge>
                     </div>
-                    <Badge variant="secondary">{`★ ${restaurant.rating}`}</Badge>
-                  </div>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>{restaurant.eta}</span>
-                    <Button variant="outline" size="sm">
-                      See menu
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <span>{restaurant.eta}</span>
+                      <Button variant="outline" size="sm">
+                        See menu
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </section>
