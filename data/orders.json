@@ -10,8 +10,7 @@
     "courier": "Aino Virtanen",
     "courierEta": 6,
     "items": [
-      { "name": "Smoky Pepperoni", "quantity": 1 },
-      { "name": "Truffle Fries", "quantity": 1 }
+      { "name": "Smoky Pepperoni", "quantity": 1 }
     ],
     "image": "https://images.unsplash.com/photo-1548365328-8b849e6a485c?auto=format&fit=crop&w=800&q=60",
     "total": 28.5,
@@ -28,8 +27,7 @@
     "courier": "Mikko Kuosmanen",
     "courierEta": 3,
     "items": [
-      { "name": "Nordic Harvest Bowl", "quantity": 1 },
-      { "name": "Birch Water", "quantity": 1 }
+      { "name": "Nordic Harvest Bowl", "quantity": 1 }
     ],
     "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=60",
     "total": 19.8,
@@ -46,8 +44,7 @@
     "courier": "Ravi Patel",
     "courierEta": 0,
     "items": [
-      { "name": "Salmon Lover Set", "quantity": 1 },
-      { "name": "Miso Soup", "quantity": 2 }
+      { "name": "Salmon Lover Set", "quantity": 1 }
     ],
     "image": "https://images.unsplash.com/photo-1562158070-622a2b46a67e?auto=format&fit=crop&w=800&q=60",
     "total": 34.2,
@@ -64,8 +61,7 @@
     "courier": "Sofia Eklund",
     "courierEta": 10,
     "items": [
-      { "name": "Short Rib Bao", "quantity": 2 },
-      { "name": "Gochujang Cauliflower", "quantity": 1 }
+      { "name": "Short Rib Bao", "quantity": 1 }
     ],
     "image": "https://images.unsplash.com/photo-1528830992743-5bb5781525d0?auto=format&fit=crop&w=800&q=60",
     "total": 31.4,
@@ -82,8 +78,7 @@
     "courier": "Oskar Laine",
     "courierEta": 0,
     "items": [
-      { "name": "Grilled Salmon Rye", "quantity": 1 },
-      { "name": "Lingonberry Kombucha", "quantity": 1 }
+      { "name": "Grilled Salmon Rye", "quantity": 1 }
     ],
     "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=800&q=60",
     "total": 29.1,
@@ -100,8 +95,7 @@
     "courier": "Henri Ojala",
     "courierEta": 0,
     "items": [
-      { "name": "Smash Burger Duo", "quantity": 1 },
-      { "name": "Sea Salt Fries", "quantity": 1 }
+      { "name": "Smash Burger Duo", "quantity": 1 }
     ],
     "image": "https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?auto=format&fit=crop&w=800&q=60",
     "total": 24.5,

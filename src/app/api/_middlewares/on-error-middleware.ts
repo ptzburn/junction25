@@ -13,7 +13,7 @@ const onError: ErrorHandler = (error, c) => {
   const environment = env.NODE_ENV;
 
   if (error instanceof HTTPException) {
-    c.var.logger.error("HTTPException: ", error);
+    console.error("HTTPException: ", error);
     if (error.status === 422) {
       return c.json({
         success: false,
@@ -31,7 +31,7 @@ const onError: ErrorHandler = (error, c) => {
   }
 
   if (error instanceof Error) {
-    c.var.logger.error(error);
+    console.error(error);
     return c.json({
       success: false,
       message: error.message,
