@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 
 import dishesJson from "../../data/dishes.json";
 import ordersJson from "../../data/orders.json";
+import restaurantsJson from "../../data/restaurants.json";
 
 type HeroActionVariant = "default" | "secondary" | "outline" | "ghost";
 
@@ -30,13 +31,6 @@ type DishesData = {
     title: string;
     badge: string;
     description: string;
-    image: string;
-  }[];
-  restaurants: {
-    name: string;
-    tags: string[];
-    rating: number;
-    eta: string;
     image: string;
   }[];
   shortcuts: { label: string; eta: string }[];
@@ -66,8 +60,16 @@ type Order = {
   placedAt: string;
 };
 
+type Restaurant = {
+  name: string;
+  tags: string[];
+  rating: number;
+  eta: string;
+  image: string;
+};
 const dishesData = dishesJson as DishesData;
 const ordersData = ordersJson as Order[];
+const restaurantsData = restaurantsJson as Restaurant[];
 
 function formatItems(items: Order["items"]) {
   return items.map(item => `${item.quantity}× ${item.name}`).join(", ");
@@ -289,7 +291,7 @@ export default function Home() {
             </Button>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {dishesData.restaurants.map(restaurant => (
+            {restaurantsData.map(restaurant => (
               <Card key={restaurant.name} className="overflow-hidden">
                 <div
                   className="h-40 w-full bg-cover bg-center"
