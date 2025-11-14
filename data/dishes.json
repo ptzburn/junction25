@@ -218,7 +218,7 @@
       "name": "Nordic harvest bowl",
       "description": "Roasted roots, kale, lemon-dill tahini, crunchy seeds.",
       "price": "€13.20",
-  "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://www.forkinthekitchen.com/wp-content/uploads/2020/01/200110.root_.veggie.bowls-5530-7.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Roasted roots", "Kale", "Tahini", "Seeds", "Pickled onion"],
       "vegan": true,
       "badge": "Vegan hit"
@@ -229,7 +229,7 @@
       "name": "Smoked oat falafel",
       "description": "Beet hummus, red cabbage slaw, herb oil.",
       "price": "€12.50",
-  "image": "https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://images.immediate.co.uk/production/volatile/sites/2/2018/04/Falafel-Beetroot-and-Hummus-Grain-Bowl-ad32e58.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Oat falafel", "Beet hummus", "Red cabbage", "Herb oil"],
       "vegan": true
     },
@@ -239,7 +239,7 @@
       "name": "Birch water refresher",
       "description": "Birch sap, sea buckthorn, lime.",
       "price": "€4.80",
-  "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://m.media-amazon.com/images/I/71ZJ2xS6fkL._AC_UF894%2C1000_QL80_.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Birch sap", "Sea buckthorn", "Lime", "Honey"],
       "vegetarian": true
     },
@@ -259,7 +259,7 @@
       "name": "Hot honey crunch",
       "description": "Fried chicken thigh, chili honey, pickled jalapeño.",
       "price": "€14.80",
-  "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://fireandsmokesociety.com/cdn/shop/articles/Hot-Honey-Fried-Chicken-Sandwich-Fire-and-Smoke-Society.jpg?v=1679321486?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Fried chicken", "Hot honey", "Jalapeño", "Lettuce", "Toasted bun"]
     },
     {
@@ -268,7 +268,7 @@
       "name": "Plant-powered smash",
       "description": "Beyond patty, vegan cheddar, miso mayo.",
       "price": "€15.20",
-  "image": "https://images.unsplash.com/photo-1528736235302-52922df5c122?auto=format&fit=crop&w=1200&q=60",
+  "image": "https://schoolnightvegan.com/wp-content/uploads/2024/07/vegan-smash-burgers-11.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Plant-based patty", "Vegan cheddar", "Miso mayo", "Pickles"],
       "vegan": true
     },
