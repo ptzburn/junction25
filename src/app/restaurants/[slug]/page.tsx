@@ -15,6 +15,7 @@ import type { Dish, Restaurant } from "@/types/restaurant";
 
 import dishesJson from "../../../../data/dishes.json";
 import restaurantsJson from "../../../../data/restaurants.json";
+import OrderIngredientsButton from "@/components/order/OrderIngredientsButton";
 
 type RestaurantDishData = {
   restaurantDishes: Dish[];
@@ -218,6 +219,8 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
                           {dish.badge}
                         </Badge>
                       ) : null}
+                      {/* Order ingredients uses a client component to analyze the dish then navigate */}
+                      <OrderIngredientsButton dishId={dish.id} dishName={dish.name} imageUrl={dish.image} />
                     </div>
                   </div>
                 ))}
