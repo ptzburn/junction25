@@ -30,13 +30,14 @@ export function generateStaticParams() {
 }
 
 type RestaurantPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export default function RestaurantPage({ params }: RestaurantPageProps) {
-  const restaurant = restaurantsData.find(entry => entry.slug === params.slug);
+export default async function RestaurantPage({ params }: RestaurantPageProps) {
+  const { slug } = await params;
+  const restaurant = restaurantsData.find(entry => entry.slug === slug);
   if (!restaurant) {
     notFound();
   }
