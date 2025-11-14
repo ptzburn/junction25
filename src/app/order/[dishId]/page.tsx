@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import dishesJson from "../../../../data/dishes.json";
+import restaurantsJson from "../../../../data/restaurants.json";
 
 type Props = {
   params: { dishId: string };
@@ -34,7 +36,21 @@ export default function OrderDishPage({ params }: Props) {
     }
   }, [dishId]);
 
+  // Temporarily hardcode the store name to simplify testing / UI
+  const storeName = "Lidl";
+
+
   const ingredients = analysis?.ingredients ?? [];
+
+  const dishName = useMemo(() => {
+    try {
+      const dishes = (dishesJson as any).restaurantDishes as any[];
+      const dish = dishes.find((d) => d.id === dishId);
+      return dish ? dish.name : null;
+    } catch (e) {
+      return null;
+    }
+  }, [dishId]);
 
   const prices = useMemo(() => {
     if (!ingredients.length) return [] as number[];
@@ -114,21 +130,18 @@ export default function OrderDishPage({ params }: Props) {
   return (
     <main className="bg-background text-foreground min-h-screen p-8">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-2xl font-semibold">Order ingredients</h1>
-          <Button asChild>
-            <Link href="/">Back</Link>
-          </Button>
-        </div>
+        {/* top heading removed; using centered Order summary inside the card */}
 
         <Card>
           <CardHeader>
-            <CardTitle>Order summary</CardTitle>
+            <CardTitle className="text-3xl text-center font-bold">Order summary</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="mb-4">
-              <div className="text-sm text-muted-foreground">Ingredients for</div>
-              <div className="font-medium text-lg">{dishId}</div>
+            <div className="mb-4 text-center">
+              <div className="text-sm text-muted-foreground">Ordering from</div>
+              <div className="font-medium text-lg">{storeName ?? dishId}</div>
+              <div className="mt-2 text-sm text-muted-foreground">Ingredients for</div>
+              <div className="font-medium">{dishName ?? dishId}</div>
             </div>
 
             {analysis ? (
