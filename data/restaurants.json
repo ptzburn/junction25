@@ -1,58 +1,282 @@
 [
   {
+    "slug": "downtown-pizza-co",
     "name": "Downtown Pizza Co.",
+    "description": "Neighborhood pizzaiolos firing naturally leavened pies in a 450°C oven with market toppings and house-made chili honey.",
     "tags": ["Italian", "Pizza"],
     "rating": 4.8,
     "eta": "25–35 min",
-    "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=60"
+    "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=60",
+    "location": "Kamppi, Helsinki",
+    "address": "Urho Kekkosen katu 7",
+    "hours": "10:30–23:00",
+    "deliveryFee": "€2.90",
+    "minOrder": "€12.00",
+    "promoTag": "Sourdough specialist",
+    "highlights": ["Organic Finnish flour", "72h fermented dough", "Local burrata add-on"],
+    "featuredDishes": [
+      {
+        "name": "Smoky Pepperoni",
+        "description": "Cup-and-char pepperoni, roasted garlic crema, basil oil.",
+        "price": "€14.90",
+        "badge": "Most ordered"
+      },
+      {
+        "name": "Midnight Truffle",
+        "description": "Black truffle paste, fior di latte, confit mushrooms, arugula.",
+        "price": "€16.40"
+      },
+      {
+        "name": "Green Olli",
+        "description": "Pesto bianco, grilled zucchini, ricotta salata, lemon zest.",
+        "price": "€13.50"
+      }
+    ]
   },
   {
+    "slug": "bombay-spice-kitchen",
     "name": "Bombay Spice Kitchen",
+    "description": "Family-run spot layering smoky tandoor, creamy curries, and regionally inspired chaats from Mumbai streets.",
     "tags": ["Indian", "Tandoor"],
     "rating": 4.7,
     "eta": "30–40 min",
-    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=60"
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=60",
+    "location": "Punavuori, Helsinki",
+    "address": "Pursimiehenkatu 21",
+    "hours": "11:00–22:30",
+    "deliveryFee": "€3.20",
+    "minOrder": "€15.00",
+    "promoTag": "Tandoor favorite",
+    "highlights": ["Hand-ground garam masala", "Fresh naan all day", "Mango lassi add-on"],
+    "featuredDishes": [
+      {
+        "name": "Butter chicken deluxe",
+        "description": "Fenugreek tomato gravy, charred chicken thigh, cashew cream.",
+        "price": "€16.90",
+        "badge": "Chef's pick"
+      },
+      {
+        "name": "Paneer tikka skewers",
+        "description": "Smoked paneer, peppers, mint chutney, charred lime.",
+        "price": "€14.50",
+        "vegetarian": true
+      },
+      {
+        "name": "Goan fish curry",
+        "description": "Coconut, kokum, coriander seed oil.",
+        "price": "€17.40"
+      }
+    ]
   },
   {
+    "slug": "saigon-street-eats",
     "name": "Saigon Street Eats",
+    "description": "Broth-obsessed crew simmering pho for 18 hours and stacking banh mi with herbs flown from Saigon markets.",
     "tags": ["Vietnamese", "Pho"],
     "rating": 4.6,
     "eta": "25–35 min",
-    "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60"
+    "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60",
+    "location": "Kallio, Helsinki",
+    "address": "Hämeentie 22",
+    "hours": "11:00–00:00",
+    "deliveryFee": "€2.50",
+    "minOrder": "€10.00",
+    "promoTag": "Late-night pho",
+    "highlights": ["Herb-packed broths", "Pickled daikon in-house", "Vegan pho option"],
+    "featuredDishes": [
+      {
+        "name": "Pho brisket deluxe",
+        "description": "Bone marrow broth, flame-torched brisket, fresh herbs.",
+        "price": "€15.20",
+        "badge": "Top rated"
+      },
+      {
+        "name": "Lemongrass tofu banh mi",
+        "description": "Crispy tofu, pickled carrot, vegan mayo, bird's eye chili.",
+        "price": "€13.10",
+        "vegan": true
+      },
+      {
+        "name": "Crispy prawn rolls",
+        "description": "Nuoc cham, lettuce wraps, toasted peanuts.",
+        "price": "€8.90"
+      }
+    ]
   },
   {
+    "slug": "sushi-house",
     "name": "Sushi House",
+    "description": "Precision-cut sashimi, chef's omakase sets, and miso-glazed nigiri from a minimalist counter.",
     "tags": ["Sushi", "Japanese"],
     "rating": 4.9,
     "eta": "30–40 min",
-    "image": "https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    "image": "https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "location": "Tapiola, Espoo",
+    "address": "Sinihelmenkuja 4",
+    "hours": "12:00–22:00",
+    "deliveryFee": "€3.50",
+    "minOrder": "€20.00",
+    "promoTag": "Omakase at home",
+    "highlights": ["Daily fish deliveries", "House soy blend", "Gluten-free tamari"],
+    "featuredDishes": [
+      {
+        "name": "Salmon lover set",
+        "description": "8-piece nigiri & maki, yuzu kosho mayo, ikura.",
+        "price": "€24.90",
+        "badge": "Crowd pleaser"
+      },
+      {
+        "name": "Truffled tuna temaki",
+        "description": "Hand roll, bluefin akami, truffle ponzu, shiso.",
+        "price": "€12.50"
+      },
+      {
+        "name": "Garden maki",
+        "description": "Cucumber, oshinko, avocado, black sesame.",
+        "price": "€11.60",
+        "vegetarian": true
+      }
+    ]
   },
   {
+    "slug": "green-bowl",
     "name": "Green Bowl",
+    "description": "Modern veggie canteen layering roasted Nordic produce with zippy dressings and ferments.",
     "tags": ["Vegan", "Healthy"],
     "rating": 4.7,
     "eta": "20–30 min",
-    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60"
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60",
+    "location": "Kallio, Helsinki",
+    "address": "Fleminginkatu 12",
+    "hours": "10:00–21:30",
+    "deliveryFee": "€1.90",
+    "minOrder": "€9.00",
+    "promoTag": "Powered by plants",
+    "highlights": ["Wholegrain bases", "House pickles", "Protein add-ons"],
+    "featuredDishes": [
+      {
+        "name": "Nordic harvest bowl",
+        "description": "Roasted roots, kale, lemon-dill tahini, crunchy seeds.",
+        "price": "€13.20",
+        "badge": "Vegan hit",
+        "vegan": true
+      },
+      {
+        "name": "Smoked oat falafel",
+        "description": "Beet hummus, red cabbage slaw, herb oil.",
+        "price": "€12.50",
+        "vegan": true
+      },
+      {
+        "name": "Birch water refresher",
+        "description": "Birch sap, sea buckthorn, lime.",
+        "price": "€4.80"
+      }
+    ]
   },
   {
+    "slug": "burger-lane",
     "name": "Burger Lane",
+    "description": "Griddle-smashed patties with caramelized edges, secret umami sauce, and double-cooked fries.",
     "tags": ["Smash", "Comfort"],
     "rating": 4.6,
     "eta": "20–30 min",
-    "image": "https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?auto=format&fit=crop&w=1200&q=60"
+    "image": "https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?auto=format&fit=crop&w=1200&q=60",
+    "location": "Leppävaara, Espoo",
+    "address": "Selloaukio 5",
+    "hours": "11:00–01:00",
+    "deliveryFee": "€2.20",
+    "minOrder": "€11.00",
+    "promoTag": "Late-night smash",
+    "highlights": ["Aged Finnish beef", "Potato buns", "House pickles"],
+    "featuredDishes": [
+      {
+        "name": "Smash burger duo",
+        "description": "Two 90g patties, cheddar, charred onion, smash sauce.",
+        "price": "€15.90",
+        "badge": "Combo deal"
+      },
+      {
+        "name": "Hot honey crunch",
+        "description": "Fried chicken thigh, chili honey, pickled jalapeño.",
+        "price": "€14.80"
+      },
+      {
+        "name": "Plant-powered smash",
+        "description": "Beyond patty, vegan cheddar, miso mayo.",
+        "price": "€15.20",
+        "vegan": true
+      }
+    ]
   },
   {
+    "slug": "nordic-kitchen",
     "name": "Nordic Kitchen",
+    "description": "Seasonal tasting plates paying homage to Finnish forests with wild fish, open-fire veg, and cultured butter.",
     "tags": ["Modern", "Nordic"],
     "rating": 4.9,
     "eta": "35–45 min",
-    "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=60"
+    "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=60",
+    "location": "Tikkurila, Vantaa",
+    "address": "Vernissakatu 1",
+    "hours": "15:00–23:30",
+    "deliveryFee": "€4.20",
+    "minOrder": "€25.00",
+    "promoTag": "Chef's table",
+    "highlights": ["Foraged herbs", "Smoked in-house", "Natural wines"],
+    "featuredDishes": [
+      {
+        "name": "Grilled salmon rye",
+        "description": "Charred salmon, rye crumble, dill butter sauce.",
+        "price": "€22.50",
+        "badge": "Seasonal"
+      },
+      {
+        "name": "Charred cabbage",
+        "description": "Hazelnut crumb, cultured cream, spruce oil.",
+        "price": "€14.80",
+        "vegetarian": true
+      },
+      {
+        "name": "Sea buckthorn tart",
+        "description": "Toasted meringue, spruce oil.",
+        "price": "€9.50"
+      }
+    ]
   },
   {
+    "slug": "bao-street",
     "name": "Bao Street",
+    "description": "Steamed-to-order bao buns packed with sticky pork, crispy tofu, and crunchy pickles inspired by Taipei night markets.",
     "tags": ["Asian", "Street food"],
     "rating": 4.5,
     "eta": "25–35 min",
-    "image": "https://images.pexels.com/photos/4819834/pexels-photo-4819834.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    "image": "https://images.pexels.com/photos/4819834/pexels-photo-4819834.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "location": "Punavuori, Helsinki",
+    "address": "Iso Roobertinkatu 18",
+    "hours": "11:30–00:30",
+    "deliveryFee": "€2.40",
+    "minOrder": "€10.00",
+    "promoTag": "Bao fiesta",
+    "highlights": ["House chili oil", "48h pork belly", "Vegan bao options"],
+    "featuredDishes": [
+      {
+        "name": "Short rib bao",
+        "description": "Soy glazed beef, pickled daikon, coriander.",
+        "price": "€12.90",
+        "badge": "Street icon"
+      },
+      {
+        "name": "Miso aubergine bao",
+        "description": "Smoked eggplant, crispy garlic, shiso.",
+        "price": "€10.40",
+        "vegan": true
+      },
+      {
+        "name": "Five-spice fries",
+        "description": "Chili mayo, toasted sesame, scallion.",
+        "price": "€6.40"
+      }
+    ]
   }
 ]
