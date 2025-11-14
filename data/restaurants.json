@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Downtown Pizza Co.",
+    "tags": ["Italian", "Pizza"],
+    "rating": 4.8,
+    "eta": "25–35 min",
+    "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Bombay Spice Kitchen",
+    "tags": ["Indian", "Tandoor"],
+    "rating": 4.7,
+    "eta": "30–40 min",
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Saigon Street Eats",
+    "tags": ["Vietnamese", "Pho"],
+    "rating": 4.6,
+    "eta": "25–35 min",
+    "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Sushi House",
+    "tags": ["Sushi", "Japanese"],
+    "rating": 4.9,
+    "eta": "30–40 min",
+    "image": "https://images.unsplash.com/photo-1562158070-622a2b46a67e?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Green Bowl",
+    "tags": ["Vegan", "Healthy"],
+    "rating": 4.7,
+    "eta": "20–30 min",
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Burger Lane",
+    "tags": ["Smash", "Comfort"],
+    "rating": 4.6,
+    "eta": "20–30 min",
+    "image": "https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Nordic Kitchen",
+    "tags": ["Modern", "Nordic"],
+    "rating": 4.9,
+    "eta": "35–45 min",
+    "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=60"
+  },
+  {
+    "name": "Bao Street",
+    "tags": ["Asian", "Street food"],
+    "rating": 4.5,
+    "eta": "25–35 min",
+    "image": "https://images.unsplash.com/photo-1528830992743-5bb5781525d0?auto=format&fit=crop&w=1200&q=60"
+  }
+]
