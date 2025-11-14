@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import type { Order } from "@/hooks/use-orders";
-import type { Restaurant } from "@/types/restaurant";
+import type { Dish, Restaurant } from "@/types/restaurant";
 
 import { OrderDetailView } from "@/components/order-detail-view";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -52,31 +52,7 @@ type DishesData = {
     initials: string;
     avatar: string;
   }[];
-};
-
-type Restaurant = {
-  name: string;
-  tags: string[];
-  rating: number;
-  eta: string;
-  image: string;
-};
-type OrderStatus = "preparing" | "delivering" | "delivered";
-
-type Order = {
-  id: string;
-  restaurant: string;
-  category: string;
-  status: OrderStatus;
-  city: string;
-  neighborhood: string;
-  etaMinutes: [number, number];
-  courier: string;
-  courierEta: number;
-  items: { name: string; quantity: number }[];
-  image: string;
-  total: number;
-  placedAt: string;
+  restaurantDishes: Dish[];
 };
 
 const dishesData = dishesJson as DishesData;

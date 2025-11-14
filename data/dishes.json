@@ -94,5 +94,243 @@
       "initials": "RP",
       "avatar": "https://images.unsplash.com/photo-1545996124-0501ebae84d0?auto=format&fit=crop&w=600&q=60"
     }
+  ],
+  "restaurantDishes": [
+    {
+      "id": "downtown-pizza-co-smoky-pepperoni",
+      "restaurantSlug": "downtown-pizza-co",
+      "name": "Smoky Pepperoni",
+      "description": "Cup-and-char pepperoni, roasted garlic crema, basil oil.",
+      "price": "€14.90",
+      "image": "https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Sourdough base", "San Marzano sauce", "Pepperoni", "Fior di latte", "Chili honey"],
+      "badge": "Most ordered"
+    },
+    {
+      "id": "downtown-pizza-co-midnight-truffle",
+      "restaurantSlug": "downtown-pizza-co",
+      "name": "Midnight Truffle",
+      "description": "Black truffle paste, fior di latte, confit mushrooms, arugula.",
+      "price": "€16.40",
+      "image": "https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Truffle paste", "Fior di latte", "Confit mushrooms", "Arugula", "Sea salt"]
+    },
+    {
+      "id": "downtown-pizza-co-green-olli",
+      "restaurantSlug": "downtown-pizza-co",
+      "name": "Green Olli",
+      "description": "Pesto bianco, grilled zucchini, ricotta salata, lemon zest.",
+      "price": "€13.50",
+      "image": "https://images.pexels.com/photos/4109083/pexels-photo-4109083.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Pesto bianco", "Grilled zucchini", "Ricotta salata", "Lemon zest"],
+      "vegetarian": true
+    },
+    {
+      "id": "bombay-spice-kitchen-butter-chicken-deluxe",
+      "restaurantSlug": "bombay-spice-kitchen",
+      "name": "Butter chicken deluxe",
+      "description": "Fenugreek tomato gravy, charred chicken thigh, cashew cream.",
+      "price": "€16.90",
+      "image": "https://images.pexels.com/photos/844832/pexels-photo-844832.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Chicken thigh", "Tomato gravy", "Fenugreek", "Cashew cream", "Ghee"],
+      "badge": "Chef's pick"
+    },
+    {
+      "id": "bombay-spice-kitchen-paneer-tikka-skewers",
+      "restaurantSlug": "bombay-spice-kitchen",
+      "name": "Paneer tikka skewers",
+      "description": "Smoked paneer, peppers, mint chutney, charred lime.",
+      "price": "€14.50",
+      "image": "https://images.pexels.com/photos/1294671/pexels-photo-1294671.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Paneer", "Bell peppers", "Mint chutney", "Yogurt marinade", "Charred lime"],
+      "vegetarian": true
+    },
+    {
+      "id": "bombay-spice-kitchen-goan-fish-curry",
+      "restaurantSlug": "bombay-spice-kitchen",
+      "name": "Goan fish curry",
+      "description": "Coconut, kokum, coriander seed oil.",
+      "price": "€17.40",
+      "image": "https://images.pexels.com/photos/628776/pexels-photo-628776.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["White fish", "Coconut milk", "Kokum", "Mustard seeds", "Coriander oil"]
+    },
+    {
+      "id": "saigon-street-eats-pho-brisket-deluxe",
+      "restaurantSlug": "saigon-street-eats",
+      "name": "Pho brisket deluxe",
+      "description": "Bone marrow broth, flame-torched brisket, fresh herbs.",
+      "price": "€15.20",
+      "image": "https://images.pexels.com/photos/616401/pexels-photo-616401.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Beef broth", "Rice noodles", "Brisket", "Bean sprouts", "Herb mix"],
+      "badge": "Top rated"
+    },
+    {
+      "id": "saigon-street-eats-lemongrass-tofu-banh-mi",
+      "restaurantSlug": "saigon-street-eats",
+      "name": "Lemongrass tofu banh mi",
+      "description": "Crispy tofu, pickled carrot, vegan mayo, bird's eye chili.",
+      "price": "€13.10",
+      "image": "https://images.pexels.com/photos/2516025/pexels-photo-2516025.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Baguette", "Lemongrass tofu", "Pickled carrot", "Cucumber", "Herbs"],
+      "vegan": true
+    },
+    {
+      "id": "saigon-street-eats-crispy-prawn-rolls",
+      "restaurantSlug": "saigon-street-eats",
+      "name": "Crispy prawn rolls",
+      "description": "Nuoc cham, lettuce wraps, toasted peanuts.",
+      "price": "€8.90",
+      "image": "https://images.pexels.com/photos/693745/pexels-photo-693745.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Prawns", "Spring roll wrapper", "Glass noodles", "Nuoc cham", "Peanuts"]
+    },
+    {
+      "id": "sushi-house-salmon-lover-set",
+      "restaurantSlug": "sushi-house",
+      "name": "Salmon lover set",
+      "description": "8-piece nigiri & maki, yuzu kosho mayo, ikura.",
+      "price": "€24.90",
+      "image": "https://images.pexels.com/photos/329818/pexels-photo-329818.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Salmon nigiri", "Salmon maki", "Ikura", "Yuzu kosho", "Shiso"]
+    },
+    {
+      "id": "sushi-house-truffled-tuna-temaki",
+      "restaurantSlug": "sushi-house",
+      "name": "Truffled tuna temaki",
+      "description": "Hand roll, bluefin akami, truffle ponzu, shiso.",
+      "price": "€12.50",
+      "image": "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Nori", "Sushi rice", "Tuna akami", "Truffle ponzu", "Shiso"],
+      "badge": "Limited"
+    },
+    {
+      "id": "sushi-house-garden-maki",
+      "restaurantSlug": "sushi-house",
+      "name": "Garden maki",
+      "description": "Cucumber, oshinko, avocado, black sesame.",
+      "price": "€11.60",
+      "image": "https://images.pexels.com/photos/3577565/pexels-photo-3577565.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Nori", "Sushi rice", "Cucumber", "Pickled radish", "Avocado"],
+      "vegetarian": true
+    },
+    {
+      "id": "green-bowl-nordic-harvest-bowl",
+      "restaurantSlug": "green-bowl",
+      "name": "Nordic harvest bowl",
+      "description": "Roasted roots, kale, lemon-dill tahini, crunchy seeds.",
+      "price": "€13.20",
+      "image": "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Roasted roots", "Kale", "Tahini", "Seeds", "Pickled onion"],
+      "vegan": true,
+      "badge": "Vegan hit"
+    },
+    {
+      "id": "green-bowl-smoked-oat-falafel",
+      "restaurantSlug": "green-bowl",
+      "name": "Smoked oat falafel",
+      "description": "Beet hummus, red cabbage slaw, herb oil.",
+      "price": "€12.50",
+      "image": "https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Oat falafel", "Beet hummus", "Red cabbage", "Herb oil"],
+      "vegan": true
+    },
+    {
+      "id": "green-bowl-birch-water-refresher",
+      "restaurantSlug": "green-bowl",
+      "name": "Birch water refresher",
+      "description": "Birch sap, sea buckthorn, lime.",
+      "price": "€4.80",
+      "image": "https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Birch sap", "Sea buckthorn", "Lime", "Honey"],
+      "vegetarian": true
+    },
+    {
+      "id": "burger-lane-smash-burger-duo",
+      "restaurantSlug": "burger-lane",
+      "name": "Smash burger duo",
+      "description": "Two 90g patties, cheddar, charred onion, smash sauce.",
+      "price": "€15.90",
+      "image": "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Beef patties", "Cheddar", "Onion", "Smash sauce", "Potato bun"],
+      "badge": "Combo deal"
+    },
+    {
+      "id": "burger-lane-hot-honey-crunch",
+      "restaurantSlug": "burger-lane",
+      "name": "Hot honey crunch",
+      "description": "Fried chicken thigh, chili honey, pickled jalapeño.",
+      "price": "€14.80",
+      "image": "https://images.pexels.com/photos/4109138/pexels-photo-4109138.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Fried chicken", "Hot honey", "Jalapeño", "Lettuce", "Toasted bun"]
+    },
+    {
+      "id": "burger-lane-plant-powered-smash",
+      "restaurantSlug": "burger-lane",
+      "name": "Plant-powered smash",
+      "description": "Beyond patty, vegan cheddar, miso mayo.",
+      "price": "€15.20",
+      "image": "https://images.pexels.com/photos/2909096/pexels-photo-2909096.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Plant-based patty", "Vegan cheddar", "Miso mayo", "Pickles"],
+      "vegan": true
+    },
+    {
+      "id": "nordic-kitchen-grilled-salmon-rye",
+      "restaurantSlug": "nordic-kitchen",
+      "name": "Grilled salmon rye",
+      "description": "Charred salmon, rye crumble, dill butter sauce.",
+      "price": "€22.50",
+      "image": "https://images.pexels.com/photos/857689/pexels-photo-857689.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Salmon", "Rye crumble", "Dill butter", "Lemon"],
+      "badge": "Seasonal"
+    },
+    {
+      "id": "nordic-kitchen-charred-cabbage",
+      "restaurantSlug": "nordic-kitchen",
+      "name": "Charred cabbage",
+      "description": "Hazelnut crumb, cultured cream, spruce oil.",
+      "price": "€14.80",
+      "image": "https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Charred cabbage", "Hazelnut crumb", "Cultured cream", "Spruce oil"],
+      "vegetarian": true
+    },
+    {
+      "id": "nordic-kitchen-sea-buckthorn-tart",
+      "restaurantSlug": "nordic-kitchen",
+      "name": "Sea buckthorn tart",
+      "description": "Toasted meringue, spruce oil.",
+      "price": "€9.50",
+      "image": "https://images.pexels.com/photos/3026806/pexels-photo-3026806.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Sea buckthorn curd", "Shortcrust", "Meringue", "Spruce oil"],
+      "vegetarian": true
+    },
+    {
+      "id": "bao-street-short-rib-bao",
+      "restaurantSlug": "bao-street",
+      "name": "Short rib bao",
+      "description": "Soy glazed beef, pickled daikon, coriander.",
+      "price": "€12.90",
+      "image": "https://images.pexels.com/photos/1927383/pexels-photo-1927383.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Bao bun", "Short rib", "Pickled daikon", "Coriander"],
+      "badge": "Street icon"
+    },
+    {
+      "id": "bao-street-miso-aubergine-bao",
+      "restaurantSlug": "bao-street",
+      "name": "Miso aubergine bao",
+      "description": "Smoked eggplant, crispy garlic, shiso.",
+      "price": "€10.40",
+      "image": "https://images.pexels.com/photos/8951494/pexels-photo-8951494.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Bao bun", "Miso eggplant", "Crispy garlic", "Shiso"],
+      "vegan": true
+    },
+    {
+      "id": "bao-street-five-spice-fries",
+      "restaurantSlug": "bao-street",
+      "name": "Five-spice fries",
+      "description": "Chili mayo, toasted sesame, scallion.",
+      "price": "€6.40",
+      "image": "https://images.pexels.com/photos/4109223/pexels-photo-4109223.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "ingredients": ["Hand-cut fries", "Five-spice salt", "Chili mayo", "Sesame", "Scallion"],
+      "vegetarian": true
+    }
   ]
 }

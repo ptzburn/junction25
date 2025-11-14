@@ -13,9 +13,16 @@ import {
 import { Separator } from "@/components/ui/separator";
 import type { Dish, Restaurant } from "@/types/restaurant";
 
+import dishesJson from "../../../../data/dishes.json";
 import restaurantsJson from "../../../../data/restaurants.json";
 
+type RestaurantDishData = {
+  restaurantDishes: Dish[];
+};
+
 const restaurantsData = restaurantsJson as Restaurant[];
+const dishesData = dishesJson as RestaurantDishData;
+const dishCatalog = dishesData.restaurantDishes;
 
 
 export function generateStaticParams() {
@@ -34,8 +41,12 @@ export default function RestaurantPage({ params }: RestaurantPageProps) {
     notFound();
   }
 
-  const heroDishes = restaurant.featuredDishes.slice(0, 2);
-  const menuDishes = restaurant.featuredDishes;
+  const restaurantDishes = dishCatalog.filter(dish => dish.restaurantSlug === restaurant.slug);
+  const featuredDishes = restaurant.featuredDishIds
+    .map(id => restaurantDishes.find(dish => dish.id === id))
+    .filter((dish): dish is Dish => Boolean(dish));
+  const heroDishes = (featuredDishes.length ? featuredDishes : restaurantDishes).slice(0, 2);
+  const menuDishes = restaurantDishes;
 
   return (
     <main className="bg-background text-foreground min-h-screen">
@@ -131,7 +142,12 @@ export default function RestaurantPage({ params }: RestaurantPageProps) {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {heroDishes.map(dish => (
-              <Card key={dish.name} className="flex h-full flex-col justify-between">
+              <Card key={dish.id} className="flex h-full flex-col overflow-hidden">
+                <div
+                  className="h-40 w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${dish.image})` }}
+                  aria-hidden
+                />
                 <CardHeader>
                   <div className="flex items-center justify-between gap-4">
                     <CardTitle className="text-lg">{dish.name}</CardTitle>
@@ -140,6 +156,9 @@ export default function RestaurantPage({ params }: RestaurantPageProps) {
                     ) : null}
                   </div>
                   <CardDescription>{dish.description}</CardDescription>
+                  <p className="text-xs text-muted-foreground">
+                    {dish.ingredients.join(", ")}
+                  </p>
                 </CardHeader>
                 <CardContent className="flex items-center justify-between border-t pt-4 text-sm text-muted-foreground">
                   <span>{dish.price}</span>
@@ -164,12 +183,24 @@ export default function RestaurantPage({ params }: RestaurantPageProps) {
               </CardHeader>
               <CardContent className="flex flex-col divide-y">
                 {menuDishes.map(dish => (
-                  <div key={dish.name} className="flex flex-col gap-2 py-4 first:pt-0 last:pb-0">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="font-medium">{dish.name}</p>
-                      <span className="text-sm text-muted-foreground">{dish.price}</span>
+                  <div key={dish.id} className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0">
+                    <div className="flex gap-4">
+                      <div
+                        className="h-20 w-20 flex-none rounded-2xl bg-cover bg-center"
+                        style={{ backgroundImage: `url(${dish.image})` }}
+                        aria-hidden
+                      />
+                      <div className="flex flex-1 flex-col gap-1">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <p className="font-medium">{dish.name}</p>
+                          <span className="text-sm text-muted-foreground">{dish.price}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{dish.description}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {dish.ingredients.join(", ")}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">{dish.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {dish.vegetarian ? (
                         <Badge variant="outline" className="text-xs">

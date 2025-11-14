@@ -1,7 +1,11 @@
 export type Dish = {
+  id: string;
+  restaurantSlug: string;
   name: string;
   description: string;
   price: string;
+  image: string;
+  ingredients: string[];
   badge?: string;
   vegetarian?: boolean;
   vegan?: boolean;
@@ -22,5 +26,5 @@ export type Restaurant = {
   minOrder: string;
   promoTag: string;
   highlights: string[];
-  featuredDishes: Dish[];
+  featuredDishIds: string[];
 };

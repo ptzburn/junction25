@@ -14,23 +14,10 @@
     "minOrder": "€12.00",
     "promoTag": "Sourdough specialist",
     "highlights": ["Organic Finnish flour", "72h fermented dough", "Local burrata add-on"],
-    "featuredDishes": [
-      {
-        "name": "Smoky Pepperoni",
-        "description": "Cup-and-char pepperoni, roasted garlic crema, basil oil.",
-        "price": "€14.90",
-        "badge": "Most ordered"
-      },
-      {
-        "name": "Midnight Truffle",
-        "description": "Black truffle paste, fior di latte, confit mushrooms, arugula.",
-        "price": "€16.40"
-      },
-      {
-        "name": "Green Olli",
-        "description": "Pesto bianco, grilled zucchini, ricotta salata, lemon zest.",
-        "price": "€13.50"
-      }
+    "featuredDishIds": [
+      "downtown-pizza-co-smoky-pepperoni",
+      "downtown-pizza-co-midnight-truffle",
+      "downtown-pizza-co-green-olli"
     ]
   },
   {
@@ -48,24 +35,10 @@
     "minOrder": "€15.00",
     "promoTag": "Tandoor favorite",
     "highlights": ["Hand-ground garam masala", "Fresh naan all day", "Mango lassi add-on"],
-    "featuredDishes": [
-      {
-        "name": "Butter chicken deluxe",
-        "description": "Fenugreek tomato gravy, charred chicken thigh, cashew cream.",
-        "price": "€16.90",
-        "badge": "Chef's pick"
-      },
-      {
-        "name": "Paneer tikka skewers",
-        "description": "Smoked paneer, peppers, mint chutney, charred lime.",
-        "price": "€14.50",
-        "vegetarian": true
-      },
-      {
-        "name": "Goan fish curry",
-        "description": "Coconut, kokum, coriander seed oil.",
-        "price": "€17.40"
-      }
+    "featuredDishIds": [
+      "bombay-spice-kitchen-butter-chicken-deluxe",
+      "bombay-spice-kitchen-paneer-tikka-skewers",
+      "bombay-spice-kitchen-goan-fish-curry"
     ]
   },
   {
@@ -83,24 +56,10 @@
     "minOrder": "€10.00",
     "promoTag": "Late-night pho",
     "highlights": ["Herb-packed broths", "Pickled daikon in-house", "Vegan pho option"],
-    "featuredDishes": [
-      {
-        "name": "Pho brisket deluxe",
-        "description": "Bone marrow broth, flame-torched brisket, fresh herbs.",
-        "price": "€15.20",
-        "badge": "Top rated"
-      },
-      {
-        "name": "Lemongrass tofu banh mi",
-        "description": "Crispy tofu, pickled carrot, vegan mayo, bird's eye chili.",
-        "price": "€13.10",
-        "vegan": true
-      },
-      {
-        "name": "Crispy prawn rolls",
-        "description": "Nuoc cham, lettuce wraps, toasted peanuts.",
-        "price": "€8.90"
-      }
+    "featuredDishIds": [
+      "saigon-street-eats-pho-brisket-deluxe",
+      "saigon-street-eats-lemongrass-tofu-banh-mi",
+      "saigon-street-eats-crispy-prawn-rolls"
     ]
   },
   {
@@ -118,24 +77,10 @@
     "minOrder": "€20.00",
     "promoTag": "Omakase at home",
     "highlights": ["Daily fish deliveries", "House soy blend", "Gluten-free tamari"],
-    "featuredDishes": [
-      {
-        "name": "Salmon lover set",
-        "description": "8-piece nigiri & maki, yuzu kosho mayo, ikura.",
-        "price": "€24.90",
-        "badge": "Crowd pleaser"
-      },
-      {
-        "name": "Truffled tuna temaki",
-        "description": "Hand roll, bluefin akami, truffle ponzu, shiso.",
-        "price": "€12.50"
-      },
-      {
-        "name": "Garden maki",
-        "description": "Cucumber, oshinko, avocado, black sesame.",
-        "price": "€11.60",
-        "vegetarian": true
-      }
+    "featuredDishIds": [
+      "sushi-house-salmon-lover-set",
+      "sushi-house-truffled-tuna-temaki",
+      "sushi-house-garden-maki"
     ]
   },
   {
@@ -153,25 +98,10 @@
     "minOrder": "€9.00",
     "promoTag": "Powered by plants",
     "highlights": ["Wholegrain bases", "House pickles", "Protein add-ons"],
-    "featuredDishes": [
-      {
-        "name": "Nordic harvest bowl",
-        "description": "Roasted roots, kale, lemon-dill tahini, crunchy seeds.",
-        "price": "€13.20",
-        "badge": "Vegan hit",
-        "vegan": true
-      },
-      {
-        "name": "Smoked oat falafel",
-        "description": "Beet hummus, red cabbage slaw, herb oil.",
-        "price": "€12.50",
-        "vegan": true
-      },
-      {
-        "name": "Birch water refresher",
-        "description": "Birch sap, sea buckthorn, lime.",
-        "price": "€4.80"
-      }
+    "featuredDishIds": [
+      "green-bowl-nordic-harvest-bowl",
+      "green-bowl-smoked-oat-falafel",
+      "green-bowl-birch-water-refresher"
     ]
   },
   {
@@ -189,24 +119,10 @@
     "minOrder": "€11.00",
     "promoTag": "Late-night smash",
     "highlights": ["Aged Finnish beef", "Potato buns", "House pickles"],
-    "featuredDishes": [
-      {
-        "name": "Smash burger duo",
-        "description": "Two 90g patties, cheddar, charred onion, smash sauce.",
-        "price": "€15.90",
-        "badge": "Combo deal"
-      },
-      {
-        "name": "Hot honey crunch",
-        "description": "Fried chicken thigh, chili honey, pickled jalapeño.",
-        "price": "€14.80"
-      },
-      {
-        "name": "Plant-powered smash",
-        "description": "Beyond patty, vegan cheddar, miso mayo.",
-        "price": "€15.20",
-        "vegan": true
-      }
+    "featuredDishIds": [
+      "burger-lane-smash-burger-duo",
+      "burger-lane-hot-honey-crunch",
+      "burger-lane-plant-powered-smash"
     ]
   },
   {
@@ -224,24 +140,10 @@
     "minOrder": "€25.00",
     "promoTag": "Chef's table",
     "highlights": ["Foraged herbs", "Smoked in-house", "Natural wines"],
-    "featuredDishes": [
-      {
-        "name": "Grilled salmon rye",
-        "description": "Charred salmon, rye crumble, dill butter sauce.",
-        "price": "€22.50",
-        "badge": "Seasonal"
-      },
-      {
-        "name": "Charred cabbage",
-        "description": "Hazelnut crumb, cultured cream, spruce oil.",
-        "price": "€14.80",
-        "vegetarian": true
-      },
-      {
-        "name": "Sea buckthorn tart",
-        "description": "Toasted meringue, spruce oil.",
-        "price": "€9.50"
-      }
+    "featuredDishIds": [
+      "nordic-kitchen-grilled-salmon-rye",
+      "nordic-kitchen-charred-cabbage",
+      "nordic-kitchen-sea-buckthorn-tart"
     ]
   },
   {
@@ -259,24 +161,10 @@
     "minOrder": "€10.00",
     "promoTag": "Bao fiesta",
     "highlights": ["House chili oil", "48h pork belly", "Vegan bao options"],
-    "featuredDishes": [
-      {
-        "name": "Short rib bao",
-        "description": "Soy glazed beef, pickled daikon, coriander.",
-        "price": "€12.90",
-        "badge": "Street icon"
-      },
-      {
-        "name": "Miso aubergine bao",
-        "description": "Smoked eggplant, crispy garlic, shiso.",
-        "price": "€10.40",
-        "vegan": true
-      },
-      {
-        "name": "Five-spice fries",
-        "description": "Chili mayo, toasted sesame, scallion.",
-        "price": "€6.40"
-      }
+    "featuredDishIds": [
+      "bao-street-short-rib-bao",
+      "bao-street-miso-aubergine-bao",
+      "bao-street-five-spice-fries"
     ]
   }
 ]
