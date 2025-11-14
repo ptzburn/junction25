@@ -38,6 +38,16 @@ app.get("/hello", (c) => {
 
 app.get("/orders", c => c.json({ orders }));
 
+app.get("/orders/:id", (c) => {
+  const orderId = c.req.param("id");
+  const order = orders.find(order => order.id === orderId);
+
+  if (!order)
+    throw new HTTPException(404, { message: "Order not found" });
+
+  return c.json(order);
+});
+
 app.post("/analyze-dish", async (c) => {
   const apiKey = env.GEMINI_API_KEY;
   if (!apiKey)

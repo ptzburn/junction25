@@ -1,3 +1,13 @@
+"use client";
+
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import type { Order } from "@/hooks/use-orders";
+
+import { OrderDetailView } from "@/components/order-detail-view";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,9 +20,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useOrder, useOrders } from "@/hooks/use-orders";
 
 import dishesJson from "../../data/dishes.json";
-import ordersJson from "../../data/orders.json";
 import restaurantsJson from "../../data/restaurants.json";
 
 type HeroActionVariant = "default" | "secondary" | "outline" | "ghost";
@@ -42,24 +52,6 @@ type DishesData = {
   }[];
 };
 
-type OrderStatus = "preparing" | "delivering" | "delivered";
-
-type Order = {
-  id: string;
-  restaurant: string;
-  category: string;
-  status: OrderStatus;
-  city: string;
-  neighborhood: string;
-  etaMinutes: [number, number];
-  courier: string;
-  courierEta: number;
-  items: { name: string; quantity: number }[];
-  image: string;
-  total: number;
-  placedAt: string;
-};
-
 type Restaurant = {
   name: string;
   tags: string[];
@@ -68,16 +60,84 @@ type Restaurant = {
   image: string;
 };
 const dishesData = dishesJson as DishesData;
-const ordersData = ordersJson as Order[];
 const restaurantsData = restaurantsJson as Restaurant[];
+const ORDER_STATUS_UI: Record<
+  Order["status"],
+  { label: string; ringClass: string; pillClass: string }
+> = {
+  preparing: {
+    label: "Being prepared",
+    ringClass: "ring-amber-100 bg-amber-50/60 dark:ring-amber-300/50 dark:bg-amber-500/10",
+    pillClass: "bg-amber-100 text-amber-800 dark:bg-amber-500/30 dark:text-amber-100",
+  },
+  delivering: {
+    label: "Courier en route",
+    ringClass:
+      "ring-emerald-100 bg-emerald-50/60 dark:ring-emerald-400/40 dark:bg-emerald-500/10",
+    pillClass: "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/30 dark:text-emerald-100",
+  },
+  delivered: {
+    label: "Delivered",
+    ringClass: "ring-slate-200 bg-slate-50/70 dark:ring-slate-500/40 dark:bg-slate-500/10",
+    pillClass: "bg-slate-200 text-slate-800 dark:bg-slate-600/40 dark:text-slate-50",
+  },
+};
 
 function formatItems(items: Order["items"]) {
   return items.map(item => `${item.quantity}× ${item.name}`).join(", ");
 }
 
+function ThemeSwitcher() {
+  const { resolvedTheme = "system", setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks-extra/no-direct-set-state-in-use-effect
+    setMounted(true);
+  }, []);
+
+  const isDark = resolvedTheme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => setTheme(nextTheme)}
+      aria-label="Toggle theme"
+      title={`Switch to ${nextTheme} mode`}
+      className="rounded-full border-dashed"
+    >
+      {mounted
+        ? (
+            isDark ? <Sun className="size-4" /> : <Moon className="size-4" />
+          )
+        : (
+            <div className="size-4 animate-pulse rounded-full bg-muted" />
+          )}
+    </Button>
+  );
+}
+
 export default function Home() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const selectedOrderId = searchParams.get("order");
+  const isOrderDetailOpen = Boolean(selectedOrderId);
+
+  const {
+    data: ordersData,
+    isLoading: ordersLoading,
+    error: ordersError,
+  } = useOrders();
+  const {
+    data: selectedOrder,
+    isLoading: selectedOrderLoading,
+    error: selectedOrderError,
+  } = useOrder(selectedOrderId ?? "");
+  const selectedOrderStatusUi = selectedOrder ? ORDER_STATUS_UI[selectedOrder.status] : undefined;
+  const orders = ordersData ?? [];
   const hero = dishesData.hero;
-  const liveOrders = ordersData.filter(order => order.status !== "delivered");
+  const liveOrders = orders.filter(order => order.status !== "delivered");
   const liveOrdersCount = liveOrders.length;
   const neighborhoods = Array.from(new Set(liveOrders.map(order => order.neighborhood)));
   const fastestEta = liveOrders.length
@@ -86,14 +146,45 @@ export default function Home() {
   const nextCourierEta = liveOrders.length
     ? Math.min(...liveOrders.map(order => order.courierEta))
     : null;
-  const recentOrders = [...ordersData]
+  const recentOrders = [...orders]
     .sort((a, b) => new Date(b.placedAt).getTime() - new Date(a.placedAt).getTime())
     .slice(0, 3);
-  const primaryCity = ordersData[0]?.city ?? "Helsinki";
+  const primaryCity = orders[0]?.city ?? "Helsinki";
+  const ordersBadgeLabel = ordersLoading
+    ? "Loading orders..."
+    : `${orders.length} active${orders.length === 1 ? " order" : " orders"}`;
+
+  const handleOpenOrder = (orderId: string) => {
+    const params = new URLSearchParams(searchParams?.toString());
+    params.set("order", orderId);
+    const query = params.toString();
+    router.push(query ? `/?${query}` : "/");
+  };
+
+  const handleCloseOrderPage = () => {
+    const params = new URLSearchParams(searchParams?.toString());
+    params.delete("order");
+    const query = params.toString();
+    router.push(query ? `/?${query}` : "/");
+  };
+
+  if (isOrderDetailOpen) {
+    return (
+      <OrderDetailView
+        orderId={selectedOrderId}
+        order={selectedOrder}
+        isLoading={selectedOrderLoading}
+        error={selectedOrderError}
+        statusUi={selectedOrderStatusUi}
+        formatItems={formatItems}
+        onClose={handleCloseOrderPage}
+      />
+    );
+  }
 
   return (
     <main className="bg-background text-foreground min-h-screen">
-      <header className="border-b bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+      <header className="border-b bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/70">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
           <div className="flex items-center gap-3">
             <div className="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-full text-lg font-semibold">
@@ -107,6 +198,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden items-center gap-2 md:flex">
+            <ThemeSwitcher />
             <Button variant="ghost" size="sm">
               Log in
             </Button>
@@ -158,7 +250,7 @@ export default function Home() {
             </div>
           </div>
 
-          <Card className="overflow-hidden rounded-3xl border-none bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/20 shadow-lg">
+          <Card className="overflow-hidden rounded-3xl border-none bg-linear-to-br from-primary/10 via-primary/5 to-secondary/20 shadow-lg">
             <CardHeader>
               <CardTitle>Trending delivery areas</CardTitle>
               <CardDescription>Fastest drop-offs right now.</CardDescription>
@@ -186,6 +278,87 @@ export default function Home() {
         <section className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
+              <h2 className="text-xl font-semibold">Live order spotlight</h2>
+              <p className="text-sm text-muted-foreground">
+                Real-time pulse straight from the latest drops.
+              </p>
+            </div>
+            <Badge variant="secondary" className="rounded-md">
+              {ordersBadgeLabel}
+            </Badge>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {ordersError && (
+              <div className="rounded-xl border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive md:col-span-2">
+                {`Unable to load orders: ${ordersError.message}`}
+              </div>
+            )}
+            {ordersLoading && !ordersError && (
+              <div className="rounded-xl border border-muted p-4 text-sm text-muted-foreground md:col-span-2">
+                Loading latest orders...
+              </div>
+            )}
+            {!ordersLoading && !ordersError && orders.length === 0 && (
+              <div className="rounded-xl border border-dashed p-4 text-sm text-muted-foreground md:col-span-2">
+                No active orders yet. Create your first one to see it here.
+              </div>
+            )}
+            {orders.map((order) => {
+              const statusUi = ORDER_STATUS_UI[order.status];
+              return (
+                <Card
+                  key={order.id}
+                  className={`flex cursor-pointer flex-col gap-4 overflow-hidden border-none ring-1 transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${statusUi.ringClass}`}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleOpenOrder(order.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      handleOpenOrder(order.id);
+                    }
+                  }}
+                >
+                  <div className="flex gap-4 p-5">
+                    <div
+                      className="hidden h-24 w-24 shrink-0 rounded-2xl bg-cover bg-center sm:block"
+                      style={{ backgroundImage: `url(${order.image})` }}
+                      aria-hidden
+                    />
+                    <div className="flex flex-1 flex-col gap-2">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold">{order.restaurant}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {order.neighborhood}
+                            {" "}
+                            ·
+                            {order.category}
+                          </p>
+                        </div>
+                        <Badge className={statusUi.pillClass}>{statusUi.label}</Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{formatItems(order.items)}</p>
+                    </div>
+                  </div>
+                  <CardFooter className="flex flex-wrap items-center gap-4 border-t border-primary/5 px-5 py-4 text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">
+                      {`${order.etaMinutes[0]}–${order.etaMinutes[1]} min`}
+                    </span>
+                    <span>{`Courier ${order.courier}${order.courierEta ? ` · ${order.courierEta} min away` : ""}`}</span>
+                    <span className="ml-auto font-medium text-foreground">{`${order.total.toFixed(2)} €`}</span>
+                  </CardFooter>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+
+        <Separator />
+
+        <section className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
               <h2 className="text-xl font-semibold">Continue from your latest orders</h2>
               <p className="text-sm text-muted-foreground">
                 Quick reorders from Kamppi, Kallio, and beyond.
@@ -197,7 +370,7 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {recentOrders.map(order => (
-              <Card key={order.id} className="overflow-hidden">
+              <Card key={order.id} className="overflow-hidden ">
                 <div
                   className="h-32 w-full bg-cover bg-center"
                   style={{ backgroundImage: `url(${order.image})` }}
