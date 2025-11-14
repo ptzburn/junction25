@@ -2,7 +2,7 @@
   "name": "junction25",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001 --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
