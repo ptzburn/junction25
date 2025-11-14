@@ -2,18 +2,17 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import type { Order } from "@/hooks/use-orders";
+import type { Restaurant } from "@/types/restaurant";
 
 import { OrderDetailView } from "@/components/order-detail-view";
-import Link from "next/link";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { Restaurant } from "@/types/restaurant";
 import {
   Card,
   CardContent,
