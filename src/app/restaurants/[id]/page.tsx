@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { CookYourselfDialog } from "@/app/orders/[orderId]/_components/cook-yourself-dialog";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +19,7 @@ import { useRestaurant } from "@/hooks/use-restaurants";
 
 export default function RestaurantPage() {
   const { id } = useParams<{ id: string }>();
+  const router = useRouter();
   const { data: restaurant, isLoading: isRestaurantLoading, error: restaurantError } = useRestaurant(id);
   const { data: dishes, isLoading: isDishesLoading, error: dishesError } = useRestaurantDishes(id);
 
@@ -132,11 +133,13 @@ export default function RestaurantPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {dishes.dishes.map(dish => (
               <Card key={dish.id} className="flex h-full flex-col overflow-hidden">
-                <div
-                  className="h-40 w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${dish.image})` }}
-                  aria-hidden
-                />
+                <div className="h-40 w-full rounded-2xl overflow-hidden px-3 bg-card">
+                  <div
+                    className="h-full w-full bg-cover bg-center rounded-lg"
+                    style={{ backgroundImage: `url(${dish.image})` }}
+                    aria-hidden
+                  />
+                </div>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-4">
                     <CardTitle className="text-lg">{dish.name}</CardTitle>
@@ -148,7 +151,24 @@ export default function RestaurantPage() {
                 </CardHeader>
                 <CardContent className="flex items-center justify-between border-t pt-4 text-sm text-muted-foreground">
                   <span>{dish.price}</span>
-                  <Button size="sm">Add</Button>
+                  <Button
+                    size="sm"
+                    variant="default"
+                    onClick={() => {
+                      try {
+                        const analysis = {
+                          dishName: dish.name,
+                          dishImage: dish.image ?? null,
+                        };
+                        if (typeof window !== "undefined") {
+                          sessionStorage.setItem(`analysis:${dish.id}`, JSON.stringify(analysis));
+                        }
+                      } catch {}
+                      router.push(`/placedOrder/${dish.id}`);
+                    }}
+                  >
+                    Place order
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -187,8 +207,30 @@ export default function RestaurantPage() {
                         </p>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
-                      <CookYourselfDialog dish={dish} />
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <CookYourselfDialog dish={dish} />
+                      </div>
+                      <div>
+                        <Button
+                          size="sm"
+                          variant="default"
+                          onClick={() => {
+                            try {
+                              const analysis = {
+                                dishName: dish.name,
+                                dishImage: dish.image ?? null,
+                              };
+                              if (typeof window !== "undefined") {
+                                sessionStorage.setItem(`analysis:${dish.id}`, JSON.stringify(analysis));
+                              }
+                            } catch {}
+                            router.push(`/placedOrder/${dish.id}`);
+                          }}
+                        >
+                          Place order
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))}

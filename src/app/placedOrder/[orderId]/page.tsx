@@ -179,7 +179,7 @@ export default function PlacedOrderPage() {
             <Card className="mb-4">
               <CardContent className="flex items-center gap-4">
                 <div className="flex-1">
-                  <div className="font-semibold">{dishName} Ingridients</div>
+                  <div className="font-semibold">{dishName}</div>
                   <div className="text-xs text-muted-foreground">Distance 2.7 km</div>
                 </div>
                 <div className="text-sm text-muted-foreground">📞 📍</div>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
@@ -72,14 +71,13 @@ export function OrderCard({ orderId }: { orderId: string }) {
         }
       }}
     >
-      <Image
-        src={dish?.image}
-        alt={`Preview of ${order.id}`}
-        width={400}
-        height={200}
-        className="h-32 w-full object-cover"
-        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-      />
+      <div className="h-32 w-full rounded-2xl overflow-hidden px-3 bg-card">
+        <div
+          className="h-full w-full bg-cover bg-center rounded-lg"
+          style={{ backgroundImage: `url(${dish?.image})` }}
+          aria-hidden
+        />
+      </div>
       <CardContent className="flex flex-col gap-3 p-5">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -100,7 +98,19 @@ export function OrderCard({ orderId }: { orderId: string }) {
           <Button
             variant="outline"
             size="sm"
-            onClick={event => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation();
+              try {
+                const analysis = {
+                  dishName: dish?.name ?? null,
+                  dishImage: dish?.image ?? null,
+                };
+                if (typeof window !== "undefined") {
+                  sessionStorage.setItem(`analysis:${order.id}`, JSON.stringify(analysis));
+                }
+              } catch {}
+              router.push(`/placedOrder/${order.id}`);
+            }}
           >
             Reorder
           </Button>

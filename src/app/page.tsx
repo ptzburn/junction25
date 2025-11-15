@@ -19,6 +19,7 @@ import { useOrders } from "@/hooks/use-orders";
 import { useRestaurants } from "@/hooks/use-restaurants";
 
 import randomJson from "../../data/random.json";
+import { MacroSetting } from "@/components/macro-setting";
 
 export default function Home() {
   const router = useRouter();
@@ -59,6 +60,7 @@ export default function Home() {
               {liveOrdersCount ? `Live orders · ${liveOrdersCount}` : "Create first order"}
             </Badge>
             <ThemeToggle />
+            <MacroSetting />
           </div>
         </div>
       </header>
@@ -125,11 +127,13 @@ export default function Home() {
             <CardContent className="flex flex-col gap-4">
               {randomJson.featuredCities.map(city => (
                 <div key={city.name} className="flex items-center gap-4 rounded-2xl bg-background/70 p-3">
-                  <div
-                    className="h-14 w-14 rounded-2xl bg-cover bg-center"
-                    style={{ backgroundImage: `url(${city.image})` }}
-                    aria-hidden
-                  />
+                  <div className="p-1 rounded-xl bg-card">
+                    <div
+                      className="h-14 w-14 rounded-lg bg-cover bg-center"
+                      style={{ backgroundImage: `url(${city.image})` }}
+                      aria-hidden
+                    />
+                  </div>
                   <div className="flex flex-col">
                     <span className="font-semibold">{city.name}</span>
                     <span className="text-sm text-muted-foreground">{city.eta}</span>
@@ -200,11 +204,15 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
-              <div
-                className="min-h-[180px] flex-1 bg-cover bg-center"
-                style={{ backgroundImage: `url(${collection.image})` }}
-                aria-hidden
-              />
+              <div className="min-h-[180px] flex-1">
+                <div className="h-full w-full rounded-2xl overflow-hidden px-3 bg-card">
+                  <div
+                    className="min-h-[180px] w-full bg-cover bg-center rounded-lg"
+                    style={{ backgroundImage: `url(${collection.image})` }}
+                    aria-hidden
+                  />
+                </div>
+              </div>
             </Card>
           ))}
         </section>
@@ -228,11 +236,15 @@ export default function Home() {
                 aria-label={`View ${restaurant.name}`}
               >
                 <Card className="overflow-hidden transition duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg group-focus-visible:ring-2 group-focus-visible:ring-primary">
-                  <div
-                    className="h-40 w-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${restaurant.image})` }}
-                    aria-hidden
-                  />
+                  <div className="w-full">
+                    <div className="h-40 w-full rounded-2xl overflow-hidden px-3 bg-card">
+                      <div
+                        className="h-full w-full bg-cover bg-center rounded-lg"
+                        style={{ backgroundImage: `url(${restaurant.image})` }}
+                        aria-hidden
+                      />
+                    </div>
+                  </div>
                   <CardContent className="flex flex-col gap-3 p-5">
                     <div className="flex items-start justify-between gap-3">
                       <div>
