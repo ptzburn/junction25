@@ -12,7 +12,7 @@ import { searchStock } from "./stock-search";
 import orders from "../../data/orders.json" assert { type: "json" };
 import dishesFile from "../../data/dishes.json" assert { type: "json" };
 
-const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
+export const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 
 export async function generateEmbeddings(texts: string[]): Promise<Float32Array[]> {
   if (texts.length === 0) {
@@ -141,8 +141,6 @@ Respond ONLY with valid JSON. No extra text.`,
   }
 
   const { ingredients, instructions } = validation.data;
-
-  console.log("ingredients", ingredients);
 
   const queryEmbeddings = await generateEmbeddings(ingredients); // ← live Gemini (or cache later)
 

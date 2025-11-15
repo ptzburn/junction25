@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-    "embed:stock": "tsx ./src/scripts/generate-stock-embeddings.ts"
+    "embed:stock": "tsx ./src/scripts/generate-stock-embeddings.ts",
+    "embed:dish-image": "tsx ./src/scripts/generate-dish-image-embeddings.ts"
   },
   "dependencies": {
     "@google/genai": "^1.29.1",

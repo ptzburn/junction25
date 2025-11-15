@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { routesClient } from "@/lib/rpc-client";
 
@@ -32,5 +32,14 @@ export function useRestaurantDishes(restaurantId: string) {
       return response.json();
     },
     enabled: !!restaurantId,
+  });
+}
+
+export function useDishImageSearch() {
+  return useMutation({
+    mutationFn: async (formData: FormData) => {
+      const response = await routesClient.dishes["search-by-image"].$post({ form: { image: formData.get("image") as File } });
+      return response.json();
+    },
   });
 }

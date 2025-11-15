@@ -77,7 +77,7 @@ export default function Home() {
             <p className="text-muted-foreground text-base">{hero.description}</p>
             <div className="flex flex-wrap gap-3">
               <Button variant="default" size="lg" asChild>
-                <Link href="/image_text_order">Image or text AI order</Link>
+                <Link href="/image-order">Image or text AI order</Link>
               </Button>
               <Button variant="default" size="lg" asChild>
                 <Link href="/googlecalendar">"I'm busy" order</Link>
