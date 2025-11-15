@@ -4,10 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import type { Order } from "@/hooks/use-orders";
-import type { Dish, Restaurant } from "@/types/restaurant";
 import type { Order } from "@/app/api/_schemas/orders";
-import type { Restaurant } from "@/types/restaurant";
+import type { Dish, Restaurant } from "@/types/restaurant";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
