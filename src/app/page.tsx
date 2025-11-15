@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-import type { Order } from "@/app/api/_schemas/orders";
 
 import { OrderCard } from "@/_components/order-card";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -78,7 +75,7 @@ export default function Home() {
             <p className="text-muted-foreground text-base">{hero.description}</p>
             <div className="flex flex-wrap gap-3">
               <Button variant="default" size="lg" asChild>
-                <Link href="/image_text_order">Image or text AI order</Link>
+                <Link href="/image-order">Image or text AI order</Link>
               </Button>
               {hero.actions.map(action => (
                 <Button key={action.label} variant="outline" size="lg">

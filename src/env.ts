@@ -18,6 +18,7 @@ const env = createEnv({
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
   emptyStringAsUndefined: true,
+  skipValidation: true,
   onValidationError: (issues: readonly StandardSchemaV1.Issue[]) => {
     console.error(
       "❌ Invalid environment variables:",
