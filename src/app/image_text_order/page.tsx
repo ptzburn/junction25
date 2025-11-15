@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Minus, Plus } from "lucide-react";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import { IngredientsCard, type MatchedStockItem } from "@/app/orders/[orderId]/_components/ingridient-card";
 import { PriceSummaryCard } from "@/app/orders/[orderId]/_components/price-card";
-import type { Order } from "@/app/api/_schemas/orders";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,10 +25,8 @@ import { Spinner } from "@/components/ui/spinner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useBuyIngredients, useImageDishOrder, useTextDishOrder } from "@/hooks/use-orders";
+import { getOrderIdForDish } from "@/lib/order-routing";
 import type { Dish, Restaurant } from "@/types/restaurant";
-
-import ordersJson from "../../../data/orders.json" assert { type: "json" };
-import restaurantsJson from "../../../data/restaurants.json" assert { type: "json" };
 
 type DishAnalysis = {
   ingredients: string[];
@@ -60,13 +58,6 @@ const euroFormatter = new Intl.NumberFormat("fi-FI", {
   currency: "EUR",
 });
 
-const restaurantSlugToName = new Map(
-  (restaurantsJson as Restaurant[]).map(restaurant => [restaurant.slug, restaurant.name] as const),
-);
-
-const restaurantNameToOrderId = new Map(
-  (ordersJson as Order[]).map(order => [order.restaurant, order.id] as const),
-);
 
 export default function ImageTextOrderPage() {
   const router = useRouter();
@@ -89,11 +80,34 @@ export default function ImageTextOrderPage() {
   const buyIngredientsMutation = useBuyIngredients();
   const partySize = useMemo(() => extractPartySize(notes), [notes]);
   const showGroupOrder = partySize !== null && partySize > 1 && textSuggestions.length > 0;
-  const groupPlan = useMemo(
+  const baseGroupPlan = useMemo(
     () => (showGroupOrder && partySize
       ? buildGroupPlan(textSuggestions, partySize)
       : []),
     [showGroupOrder, textSuggestions, partySize],
+  );
+  const [groupPlanQuantities, setGroupPlanQuantities] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    if (!showGroupOrder) {
+      setGroupPlanQuantities({});
+      return;
+    }
+
+    const initialQuantities = Object.fromEntries(
+      baseGroupPlan.map(entry => [entry.dish.id, entry.quantity]),
+    );
+    setGroupPlanQuantities(initialQuantities);
+  }, [showGroupOrder, baseGroupPlan]);
+
+  const groupPlan = useMemo(
+    () => baseGroupPlan
+      .map(entry => ({
+        ...entry,
+        quantity: groupPlanQuantities[entry.dish.id] ?? entry.quantity,
+      }))
+      .filter(entry => entry.quantity > 0),
+    [baseGroupPlan, groupPlanQuantities],
   );
 
   useEffect(() => {
@@ -191,15 +205,38 @@ export default function ImageTextOrderPage() {
     }
   };
 
+  const handleAdjustGroupQuantity = (dishId: string, delta: number) => {
+    if (!showGroupOrder) {
+      return;
+    }
+
+    setGroupPlanQuantities(prev => {
+      const fallback = baseGroupPlan.find(entry => entry.dish.id === dishId)?.quantity ?? 0;
+      const current = prev[dishId] ?? fallback;
+      const next = Math.max(0, current + delta);
+      return { ...prev, [dishId]: next };
+    });
+  };
+
   const handleOrderGroup = () => {
     if (!groupPlan.length) return;
+    const targetDish = groupPlan[0]?.dish;
+    const resolvedOrderId = targetDish ? getOrderIdForDish(targetDish) : null;
+    const destinationOrderId = resolvedOrderId ?? "group-plan";
     try {
       sessionStorage.setItem("group-order-plan", JSON.stringify({ plan: groupPlan, partySize }));
+      sessionStorage.setItem(
+        `analysis:${destinationOrderId}`,
+        JSON.stringify({
+          dishName: `${groupPlan.length} dish${groupPlan.length === 1 ? "" : "es"} planned`,
+          title: "Group order",
+        }),
+      );
     }
     catch {
       // ignore storage errors
     }
-    handleOrderDish(groupPlan[0]!.dish);
+    router.push(`/placedOrder/${destinationOrderId}`);
   };
 
   const handleToggleTextKit = async (dish: Dish) => {
@@ -427,7 +464,9 @@ export default function ImageTextOrderPage() {
               loadingDishId={loadingDishId}
               onToggleKit={handleToggleTextKit}
               onOrderDish={handleOrderDish}
+              onAdjustQuantity={handleAdjustGroupQuantity}
               onOrderGroup={handleOrderGroup}
+              orderDisabled={!groupPlan.length}
             />
           ) : (
             <section className="space-y-6">
@@ -739,14 +778,6 @@ function buildGroupPlan(suggestions: TextSuggestion[], partySize: number): Group
   return Array.from(allocations.values());
 }
 
-function getOrderIdForDish(dish: Dish): string | null {
-  const restaurantName = restaurantSlugToName.get(dish.restaurantSlug);
-  if (!restaurantName) {
-    return null;
-  }
-  return restaurantNameToOrderId.get(restaurantName) ?? null;
-}
-
 type GroupPlanEntry = {
   dish: Dish;
   restaurant: Restaurant | null;
@@ -762,7 +793,9 @@ type GroupOrderCardProps = {
   loadingDishId: string | null;
   onToggleKit: (dish: Dish) => void;
   onOrderDish: (dish: Dish) => void;
+  onAdjustQuantity: (dishId: string, delta: number) => void;
   onOrderGroup: () => void;
+  orderDisabled?: boolean;
 };
 
 function GroupOrderCard({
@@ -773,8 +806,11 @@ function GroupOrderCard({
   loadingDishId,
   onToggleKit,
   onOrderDish,
+  onAdjustQuantity,
   onOrderGroup,
+  orderDisabled,
 }: GroupOrderCardProps) {
+  const totalServings = plan.reduce((sum, entry) => sum + entry.quantity, 0);
   return (
     <Card>
       <CardHeader>
@@ -782,7 +818,18 @@ function GroupOrderCard({
           <div>
             <p className="text-sm text-muted-foreground">Text search</p>
             <CardTitle>Group order plan</CardTitle>
-            <CardDescription>Serving approximately {partySize} people</CardDescription>
+            <CardDescription>
+              Serving approximately
+              {" "}
+              {partySize}
+              {" "}
+              people ·
+              {" "}
+              {totalServings}
+              {" "}
+              portion
+              {totalServings === 1 ? "" : "s"}
+            </CardDescription>
           </div>
           <Badge variant="outline">{plan.length} dish{plan.length > 1 ? "es" : ""}</Badge>
         </div>
@@ -809,19 +856,41 @@ function GroupOrderCard({
                     Match confidence {Math.round(Math.min(Math.max(entry.matchScore, 0), 1) * 100)}%
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  <Button size="sm" onClick={() => onOrderDish(entry.dish)}>
-                    Order dish
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => onToggleKit(entry.dish)}
-                    disabled={isLoadingKit}
-                  >
-                    {isLoadingKit && <Spinner className="mr-2 h-4 w-4" />}
-                    {expanded ? "Hide ingredient kit" : "Buy ingredients instead"}
-                  </Button>
+                <div className="flex flex-col items-start gap-3 md:items-end">
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="h-8 w-8"
+                      onClick={() => onAdjustQuantity(dishId, -1)}
+                      disabled={entry.quantity <= 0}
+                    >
+                      <Minus className="h-3 w-3" />
+                    </Button>
+                    <span className="w-10 text-center font-semibold">{entry.quantity}</span>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="h-8 w-8"
+                      onClick={() => onAdjustQuantity(dishId, 1)}
+                    >
+                      <Plus className="h-3 w-3" />
+                    </Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Button size="sm" onClick={() => onOrderDish(entry.dish)}>
+                      Order dish
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => onToggleKit(entry.dish)}
+                      disabled={isLoadingKit}
+                    >
+                      {isLoadingKit && <Spinner className="mr-2 h-4 w-4" />}
+                      {expanded ? "Hide ingredient kit" : "Buy ingredients instead"}
+                    </Button>
+                  </div>
                 </div>
               </div>
               {expanded && (
@@ -846,7 +915,7 @@ function GroupOrderCard({
         <p className="text-sm text-muted-foreground max-w-md">
           We bundled dishes into a single order so you can jump straight into delivery tracking.
         </p>
-        <Button onClick={onOrderGroup}>Order all dishes</Button>
+        <Button onClick={onOrderGroup} disabled={orderDisabled || !plan.length}>Order all dishes</Button>
       </CardFooter>
     </Card>
   );

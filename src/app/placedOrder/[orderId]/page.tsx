@@ -4,8 +4,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getOrderIdForDish } from "@/lib/order-routing";
+import type { Dish, Restaurant } from "@/types/restaurant";
 
 function pad(n: number) {
   return String(n).padStart(2, "0");
@@ -15,12 +17,26 @@ function formatRange(start: Date, end: Date) {
   return `${pad(start.getHours())}:${pad(start.getMinutes())} - ${pad(end.getHours())}:${pad(end.getMinutes())}`;
 }
 
+type StoredGroupEntry = {
+  dish: Dish;
+  restaurant: Restaurant | null;
+  quantity: number;
+  matchScore: number;
+};
+
+type StoredGroupPlan = {
+  plan?: StoredGroupEntry[];
+  partySize?: number | null;
+};
+
 export default function PlacedOrderPage() {
   const params = useParams() as { orderId?: string };
   const router = useRouter();
   const orderId = params.orderId ?? "";
 
   const [dishName, setDishName] = useState<string>();
+  const [groupPlan, setGroupPlan] = useState<StoredGroupEntry[]>([]);
+  const [partySize, setPartySize] = useState<number | null>(null);
 
   useEffect(() => {
     try {
@@ -35,6 +51,23 @@ export default function PlacedOrderPage() {
       // ignore
     }
   }, [orderId]);
+
+  useEffect(() => {
+    try {
+      const rawPlan = sessionStorage.getItem("group-order-plan");
+      if (rawPlan) {
+        const parsed = JSON.parse(rawPlan) as StoredGroupPlan;
+        setGroupPlan(parsed.plan?.filter(entry => entry.quantity > 0) ?? []);
+        setPartySize(parsed.partySize ?? null);
+      }
+      else {
+        setGroupPlan([]);
+      }
+    }
+    catch {
+      setGroupPlan([]);
+    }
+  }, []);
 
   // Slide-in time card state
   const [showSlide, setShowSlide] = useState(false);
@@ -65,6 +98,23 @@ export default function PlacedOrderPage() {
   // progress state: will animate from 0 -> 0.75 over 15 minutes after the slide appears
   const [progress, setProgress] = useState<number>(0);
   const dash = circumference * progress;
+  const totalServings = groupPlan.reduce((sum, entry) => sum + entry.quantity, 0);
+  const guestEstimate = partySize ?? (totalServings || 0);
+
+  const handleGoToRestaurant = (dish: Dish) => {
+    const lookup = getOrderIdForDish(dish);
+    if (lookup) {
+      router.push(`/orders/${lookup}`);
+      return;
+    }
+
+    if (dish.restaurantSlug) {
+      router.push(`/restaurants/${dish.restaurantSlug}`);
+      return;
+    }
+
+    router.push("/orders");
+  };
 
   useEffect(() => {
     if (!showSlide) return;
@@ -105,9 +155,10 @@ export default function PlacedOrderPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center">
-      <div className="w-full max-w-md px-6 pt-10">
-        <Card className="p-4">
-          <CardContent>
+      <div className="w-full px-6 pt-10 flex flex-col items-center gap-6">
+        <div className="w-full max-w-md">
+          <Card className="p-4">
+            <CardContent>
             <p className="text-center text-sm text-muted-foreground mb-4">Tracking is not available for this order 😕</p>
 
             <Card className="mb-4">
@@ -155,8 +206,64 @@ export default function PlacedOrderPage() {
                 </Button>
               </div>
             </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
+
+        {groupPlan.length > 0 && (
+          <Card className="w-full max-w-3xl">
+            <CardHeader>
+              <Badge variant="outline">Group plan</Badge>
+              <CardTitle>Curated dishes</CardTitle>
+              <CardDescription>
+                Serving approximately
+                {" "}
+                {guestEstimate}
+                {" "}
+                guest{guestEstimate === 1 ? "" : "s"}
+                {totalServings > 0 && (
+                  <>
+                    {" "}·
+                    {" "}
+                    {totalServings}
+                    {" "}
+                    portion
+                    {totalServings === 1 ? "" : "s"}
+                  </>
+                )}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {groupPlan.map((entry) => (
+                <div
+                  key={entry.dish.id}
+                  className="rounded-2xl border p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+                >
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold leading-tight">{entry.dish.name}</h3>
+                      <Badge variant="secondary">×{entry.quantity}</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {entry.restaurant?.name ?? "Restaurant info unavailable"}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Match confidence
+                      {" "}
+                      {Math.round(Math.min(Math.max(entry.matchScore, 0), 1) * 100)}%
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{entry.dish.description}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 md:justify-end">
+                    <Button size="sm" variant="outline" onClick={() => handleGoToRestaurant(entry.dish)}>
+                      Go to restaurant
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
       </div>
       {/* Slide-in time card (appears after 2s) */}
       <div
