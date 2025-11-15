@@ -5,12 +5,14 @@ import notFound from "../_middlewares/not-found-middleware";
 import onError from "../_middlewares/on-error-middleware";
 import { ordersRoute } from "../_routes/orders";
 import { stockRoute } from "../_routes/stock";
+import { calendarRoute } from "../_routes/calendar";
 
 const app = new Hono().basePath("/api").onError(onError).notFound(notFound);
 
 const routes = [
   ordersRoute,
   stockRoute,
+  calendarRoute,
 ] as const;
 
 routes.forEach((route) => {

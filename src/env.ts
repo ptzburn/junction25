@@ -11,6 +11,7 @@ const env = createEnv({
     NODE_ENV: z.enum(["development", "testing", "production"]).default("development"),
     GEMINI_API_KEY: z.string(),
     GEMINI_URL: z.url(),
+    GOOGLE_SERVICE_ACCOUNT_KEY: z.string(),
   },
   experimental__runtimeEnv: {
     /* eslint-disable node/no-process-env */
