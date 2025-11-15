@@ -7,15 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getOrderIdForDish } from "@/lib/order-routing";
+import { computeEtaWindow } from "@/lib/time-window";
 import type { Dish, Restaurant } from "@/types/restaurant";
-
-function pad(n: number) {
-  return String(n).padStart(2, "0");
-}
-
-function formatRange(start: Date, end: Date) {
-  return `${pad(start.getHours())}:${pad(start.getMinutes())} - ${pad(end.getHours())}:${pad(end.getMinutes())}`;
-}
+import type { DeliveryBetSummary } from "@/types/delivery-bet";
 
 type StoredGroupEntry = {
   dish: Dish;
@@ -37,6 +31,8 @@ export default function PlacedOrderPage() {
   const [dishName, setDishName] = useState<string>();
   const [groupPlan, setGroupPlan] = useState<StoredGroupEntry[]>([]);
   const [partySize, setPartySize] = useState<number | null>(null);
+  const [showEta, setShowEta] = useState(false);
+  const [betSummary, setBetSummary] = useState<DeliveryBetSummary | null>(null);
 
   useEffect(() => {
     try {
@@ -69,6 +65,21 @@ export default function PlacedOrderPage() {
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      const storedBet = orderId ? sessionStorage.getItem(`delivery-bet:${orderId}`) : null;
+      if (storedBet) {
+        setBetSummary(JSON.parse(storedBet) as DeliveryBetSummary);
+      }
+      else {
+        setBetSummary(null);
+      }
+    }
+    catch {
+      setBetSummary(null);
+    }
+  }, [orderId]);
+
   // Slide-in time card state
   const [showSlide, setShowSlide] = useState(false);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
@@ -77,14 +88,15 @@ export default function PlacedOrderPage() {
 
   const search = useSearchParams();
   const timeOfDeliveryParam = search?.get("timeOfDelivery");
-  const parsedDelivery = timeOfDeliveryParam ? new Date(timeOfDeliveryParam) : null;
-  const hasDeliveryParam = parsedDelivery && !Number.isNaN(parsedDelivery.getTime());
+  const { etaText, parsedDelivery, hasDeliveryParam } = computeEtaWindow(timeOfDeliveryParam);
 
   useEffect(() => {
     const t = window.setTimeout(() => {
       // show the slide and capture a single timestamp snapshot
       // If a delivery time was provided, set the snapshot to 3 hours before the delivery time
-      const snap = hasDeliveryParam ? new Date(parsedDelivery!.getTime() - 3 * 60 * 60 * 1000) : new Date();
+      const snap = hasDeliveryParam && parsedDelivery
+        ? new Date(parsedDelivery.getTime() - 3 * 60 * 60 * 1000)
+        : new Date();
       setCurrentTime(snap);
       setDisplayTime(snap);
       baseTimeRef.current = snap;
@@ -93,19 +105,6 @@ export default function PlacedOrderPage() {
 
     return () => clearTimeout(t);
   }, [timeOfDeliveryParam]);
-
-  // Compute a friendly ETA display. If a delivery time was passed, show a window around it.
-  let etaText: string;
-  if (hasDeliveryParam) {
-    const start = new Date(parsedDelivery!.getTime() - 10 * 60_000);
-    const end = new Date(parsedDelivery!.getTime() + 10 * 60_000);
-    etaText = formatRange(start, end);
-  } else {
-    const now = new Date();
-    const start = new Date(now.getTime() + 20 * 60_000);
-    const end = new Date(now.getTime() + 40 * 60_000);
-    etaText = formatRange(start, end);
-  }
 
   const circumference = 2 * Math.PI * 88; // r = 88
   // progress state: will animate from 0 -> 0.75 over 15 minutes after the slide appears
@@ -168,59 +167,136 @@ export default function PlacedOrderPage() {
     return () => clearTimeout(delayTimer);
   }, [showSlide]);
 
+  const handleReturnHome = () => router.push("/");
+  const handleRevealEta = () => setShowEta(true);
+  const handleOpenMinigame = () => {
+    const params = new URLSearchParams();
+    if (timeOfDeliveryParam) {
+      params.set("timeOfDelivery", timeOfDeliveryParam);
+    }
+    const query = params.toString();
+    router.push(`/placedOrder/${orderId}/minigame${query ? `?${query}` : ""}`);
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center">
       <div className="w-full px-6 pt-10 flex flex-col items-center gap-6">
         <div className="w-full max-w-md">
           <Card className="p-4">
-            <CardContent>
-            <p className="text-center text-sm text-muted-foreground mb-4">Tracking is not available for this order 😕</p>
+            <CardContent className="space-y-6">
+              <p className="text-center text-sm text-muted-foreground">Tracking is not available for this order 😕</p>
 
-            <Card className="mb-4">
-              <CardContent className="flex items-center gap-4">
-                <div className="flex-1">
-                  <div className="font-semibold">{dishName}</div>
-                  <div className="text-xs text-muted-foreground">Distance 2.7 km</div>
+              <Card>
+                <CardContent className="flex items-center gap-4 py-4">
+                  <div className="flex-1">
+                    <div className="font-semibold">{dishName} Ingridients</div>
+                    <div className="text-xs text-muted-foreground">Distance 2.7 km</div>
+                  </div>
+                  <div className="text-sm text-muted-foreground">📞 📍</div>
+                </CardContent>
+              </Card>
+
+              <div className="flex w-full flex-col items-center gap-6">
+              {betSummary ? (
+                <div className="w-full space-y-4 rounded-[28px] border border-primary/20 bg-primary/5 p-5 text-center">
+                  <p className="text-xs uppercase tracking-[0.3em] text-primary/80">Prediction bet locked</p>
+                  <p className="text-2xl font-semibold">{betSummary.outcomeLabel}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Stake locked: €
+                    {betSummary.stake.toFixed(2)}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    We&apos;ll notify you once the courier arrives so you know whether the bet hits.
+                  </p>
+                  <Button
+                    className="w-full py-4 text-base font-semibold"
+                    variant="secondary"
+                    onClick={handleReturnHome}
+                  >
+                    Return to main page
+                  </Button>
                 </div>
-                <div className="text-sm text-muted-foreground">📞 📍</div>
-              </CardContent>
-            </Card>
+              ) : (
+                <>
+                  <div className="w-full space-y-4">
+                    <div className="flex flex-col gap-3">
+                      <Button
+                        className="w-full py-5 text-base font-semibold"
+                        variant="secondary"
+                        onClick={handleRevealEta}
+                        disabled={showEta}
+                      >
+                        {showEta ? "Arrival window revealed" : "Reveal estimated arrival time"}
+                      </Button>
+                      {!showEta && (
+                        <Button
+                          className="w-full py-5 text-base font-semibold bg-gradient-to-r from-orange-400 via-pink-500 to-fuchsia-500 text-white shadow-lg hover:opacity-90"
+                          variant="default"
+                          onClick={handleOpenMinigame}
+                        >
+                          Guess delivery time
+                        </Button>
+                      )}
+                    </div>
+                    {!showEta && (
+                      <p className="text-center text-xs text-muted-foreground">
+                        Choose reveal to check the official window or guess to place a prediction bet.
+                      </p>
+                    )}
+                  </div>
 
-            <div className="flex flex-col items-center">
-              <div className="w-56 h-56 relative mb-6">
-                <svg className="w-full h-full" viewBox="0 0 220 220">
-                  <defs>
-                    <linearGradient id="g1" x1="0" x2="1">
-                      <stop offset="0%" stopColor="#34d399" />
-                      <stop offset="100%" stopColor="#10b981" />
-                    </linearGradient>
-                  </defs>
-                  <g transform="translate(110,110)">
-                    <circle r="88" fill="none" stroke="var(--muted)" strokeWidth="12" strokeOpacity="1" />
-                    <circle r="88" fill="none" stroke="url(#g1)" strokeWidth="12" strokeLinecap="round"
-                      strokeDasharray={`${dash} ${circumference - dash}`} strokeDashoffset={0} transform="rotate(-90)" />
-                    <circle r="70" fill="var(--background)" />
-                  </g>
-                </svg>
+                  {showEta && (
+                    <>
+                      <div className="relative mb-4 h-56 w-56">
+                        <svg className="h-full w-full" viewBox="0 0 220 220">
+                          <defs>
+                            <linearGradient id="g1" x1="0" x2="1">
+                              <stop offset="0%" stopColor="#34d399" />
+                              <stop offset="100%" stopColor="#10b981" />
+                            </linearGradient>
+                          </defs>
+                          <g transform="translate(110,110)">
+                            <circle r="88" fill="none" stroke="var(--muted)" strokeWidth="12" strokeOpacity="1" />
+                            <circle
+                              r="88"
+                              fill="none"
+                              stroke="url(#g1)"
+                              strokeWidth="12"
+                              strokeLinecap="round"
+                              strokeDasharray={`${dash} ${circumference - dash}`}
+                              strokeDashoffset={0}
+                              transform="rotate(-90)"
+                            />
+                            <circle r="70" fill="var(--background)" />
+                          </g>
+                        </svg>
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                  <div className="text-lg font-semibold">{etaText}</div>
-                  <div className="text-xs text-muted-foreground">Estimated delivery time</div>
-                </div>
+                        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                          <div className="text-lg font-semibold">{etaText}</div>
+                          <div className="text-xs text-muted-foreground">Estimated delivery time</div>
+                        </div>
+                      </div>
+
+                      <div className="mb-2 text-center">
+                        <div className="font-semibold">Your order will be delivered soon</div>
+                        <div className="mt-2 text-sm text-muted-foreground">Order in progress! Your order is being prepared now.</div>
+                        <div className="mt-1 text-sm text-muted-foreground">Estimated delivery window: {etaText}.</div>
+                      </div>
+
+                     
+                    </>
+                  )}
+
+                  <Button
+                    className="w-full py-5 text-base font-semibold"
+                    variant="ghost"
+                    onClick={handleReturnHome}
+                  >
+                    Return to main page
+                  </Button>
+                </>
+              )}
               </div>
-
-              <div className="text-center mb-6">
-                <div className="font-semibold">Your order will be delivered soon</div>
-                <div className="text-sm text-muted-foreground mt-2">Order in progress! Your order is being prepared now.</div>
-                <div className="text-sm text-muted-foreground mt-1">Estimated delivery window: {etaText}.</div>
-              </div>
-
-              <div className="w-full">
-                <Button className="w-full" variant="default" onClick={() => router.back()}>
-                  Hide tracking
-                </Button>
-              </div>
-            </div>
             </CardContent>
           </Card>
         </div>
