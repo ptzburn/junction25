@@ -1,7 +1,8 @@
 "use client";
 
 import { ChefHat, ChevronRight, Loader2, Package } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import type { Dish } from "@/app/api/_schemas/dishes";
 
@@ -27,6 +28,7 @@ export function CookYourselfDialog({ dish }: { dish: Dish }) {
   const [isOpen, setIsOpen] = useState(false);
   const [quantities, setQuantities] = useState<Record<number, number>>({});
   const analyzeMutation = useAnalyzeDish(dish);
+  const router = useRouter();
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -131,7 +133,27 @@ export function CookYourselfDialog({ dish }: { dish: Dish }) {
           >
             Close
           </Button>
-          <Button className="w-full sm:w-auto" disabled={analyzeMutation.isPending}>
+          <Button
+            className="w-full sm:w-auto"
+            disabled={analyzeMutation.isPending || !analyzeMutation.data}
+            onClick={() => {
+              // create a temporary order id and store analysis in sessionStorage
+              const orderId = `ord-${Date.now()}`;
+              try {
+                const payload = {
+                  name: dish.name,
+                  matchedStockItems: analyzeMutation.data?.matchedStockItems ?? [],
+                  instructions: analyzeMutation.data?.instructions ?? [],
+                  quantities,
+                };
+                sessionStorage.setItem(`analysis:${orderId}`, JSON.stringify(payload));
+              } catch (e) {
+                // ignore storage errors
+              }
+              // navigate to placed order page for the generated id
+              router.push(`/placedOrder/${orderId}`);
+            }}
+          >
             <Package className="h-4 w-4 mr-2" />
             Order Ingredients
           </Button>

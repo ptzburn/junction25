@@ -77,6 +77,9 @@ export default function Home() {
               <Button variant="default" size="lg" asChild>
                 <Link href="/image_text_order">Image or text AI order</Link>
               </Button>
+              <Button variant="default" size="lg" asChild>
+                <Link href="/googlecalendar">"I'm busy" order</Link>
+              </Button>
               {hero.actions.map(action => (
                 action.label === "OnlyFood Feed"
                   ? (

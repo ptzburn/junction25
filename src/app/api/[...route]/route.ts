@@ -8,6 +8,7 @@ import { ordersRoute } from "../_routes/orders";
 import { restaurantsRoute } from "../_routes/restaurants";
 import { stockRoute } from "../_routes/stock";
 import { calendarRoute } from "../_routes/calendar";
+import { suggestionsRoute } from "../_routes/suggestions";
 
 const app = new Hono().basePath("/api").onError(onError).notFound(notFound);
 
@@ -17,6 +18,7 @@ const routes = [
   dishesRoute,
   restaurantsRoute,
   calendarRoute,
+  suggestionsRoute,
 ] as const;
 
 routes.forEach((route) => {
