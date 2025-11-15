@@ -112,7 +112,6 @@ export default function PlacedOrderPage() {
 
             <Card className="mb-4">
               <CardContent className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-2xl">🍕</div>
                 <div className="flex-1">
                   <div className="font-semibold">{dishName} Ingridients</div>
                   <div className="text-xs text-muted-foreground">Distance 2.7 km</div>
@@ -131,7 +130,7 @@ export default function PlacedOrderPage() {
                     </linearGradient>
                   </defs>
                   <g transform="translate(110,110)">
-                    <circle r="88" fill="none" stroke="var(--muted)" strokeWidth="12" opacity="0.12" />
+                    <circle r="88" fill="none" stroke="var(--muted)" strokeWidth="12" strokeOpacity="1" />
                     <circle r="88" fill="none" stroke="url(#g1)" strokeWidth="12" strokeLinecap="round"
                       strokeDasharray={`${dash} ${circumference - dash}`} strokeDashoffset={0} transform="rotate(-90)" />
                     <circle r="70" fill="var(--background)" />
@@ -145,7 +144,7 @@ export default function PlacedOrderPage() {
               </div>
 
               <div className="text-center mb-6">
-                <div className="font-semibold">Miia's Home Delivery</div>
+                <div className="font-semibold">Your order will be delivered soon</div>
                 <div className="text-sm text-muted-foreground mt-2">Order in progress! Your order is being prepared now.</div>
                 <div className="text-sm text-muted-foreground mt-1">Estimated delivery window: {etaText}.</div>
               </div>
