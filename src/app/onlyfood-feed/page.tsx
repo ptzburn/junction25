@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-import dishesJson from "../../../data/dishes.json";
+import dishesJson from "../../../data/dishes-2.json";
 import restaurantsJson from "../../../data/restaurants.json";
 
 type DishRecord = (typeof dishesJson)["dishes"][number];
