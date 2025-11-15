@@ -5,6 +5,8 @@ import path from "node:path";
 import { DishAnalysisSchema } from "@/app/api/_schemas/orders";
 import env from "@/env";
 
+import { searchStock } from "./stock-search";
+
 const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 
 export async function generateEmbeddings(texts: string[]): Promise<Float32Array[]> {
@@ -47,10 +49,16 @@ export async function analyzeDishWithGemini({
   dishName: string;
   imagePath: string;
 }): Promise<{
-  ingredients: string[];
+  matchedStockItems: {
+    id: number;
+    name: string;
+    price: number;
+    unit: string;
+    category: string;
+    image: string;
+    score: number;
+  }[];
   instructions: string[];
-  totalPrice: number;
-  ingredientEmbeddings: Float32Array[];
 }> {
   const { mimeType, base64 } = await loadImage(imagePath);
 
@@ -66,9 +74,6 @@ export async function analyzeDishWithGemini({
 Return a JSON object with:
 - "ingredients": array of strings (exact ingredients needed)
 - "instructions": array of strings (step-by-step preparation guide)
-- "totalPrice": number (estimated cost in EUR, realistic for Europe)
-
-Current time for reference: ${new Date().toISOString()}
 
 Respond ONLY with valid JSON. No extra text.`,
           },
@@ -95,9 +100,8 @@ Respond ONLY with valid JSON. No extra text.`,
             type: "array" as const,
             items: { type: "string" as const },
           },
-          totalPrice: { type: "number" as const },
         },
-        required: ["ingredients", "instructions", "totalPrice"] as const,
+        required: ["ingredients", "instructions"] as const,
       },
       // Optional: Tune safety (e.g., block harmful content; defaults are fine for dish analysis)
       safetySettings: [
@@ -137,21 +141,25 @@ Respond ONLY with valid JSON. No extra text.`,
     throw new Error("Gemini response failed validation");
   }
 
-  const data = validation.data;
+  const { ingredients, instructions } = validation.data;
 
-  // New: Generate embeddings if requested
-  let ingredientEmbeddings: Float32Array[] = [];
-  if (data.ingredients.length > 0) {
-    try {
-      ingredientEmbeddings = await generateEmbeddings(data.ingredients);
-    }
-    catch (error) {
-      console.error("Embedding generation failed:", error);
-      // Optional: Don't throw—fallback to no embeddings
-    }
-  }
+  const queryEmbeddings = await generateEmbeddings(ingredients); // ← live Gemini (or cache later)
 
-  return { ...data, ingredientEmbeddings };
+  const matchedStockItems = ingredients.flatMap((ing, i) => {
+    const matches = searchStock(queryEmbeddings[i], 1, 0.75); // top-1, high threshold
+    return matches.map(({ item, score }) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      unit: item.unit,
+      category: item.category,
+      image: item.image,
+      score: Number(score.toFixed(4)),
+      ingredient: ing, // optional: know which ingredient matched
+    }));
+  });
+
+  return { matchedStockItems, instructions };
 }
 
 async function loadImage(relativePath: string): Promise<{ mimeType: string; base64: string }> {

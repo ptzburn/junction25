@@ -40,6 +40,9 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { useAnalyzeDish, useOrder } from "@/hooks/use-orders";
 
+import { IngredientsCard } from "./_components/ingridient-card";
+import { PriceSummaryCard } from "./_components/price-card";
+
 function getStatusConfig(status: Order["status"]) {
   switch (status) {
     case "preparing":
@@ -81,6 +84,8 @@ export default function OrderDetailPage() {
   const params = useParams<{ orderId: string }>();
   const router = useRouter();
   const [isPrepDialogOpen, setIsPrepDialogOpen] = useState(false);
+
+  const [quantities, setQuantities] = useState<Record<number, number>>({});
 
   const id = params.orderId;
   const { data: order, isLoading, error } = useOrder(id);
@@ -445,18 +450,18 @@ export default function OrderDetailPage() {
                             <Package className="h-5 w-5 text-primary" />
                             <h3 className="font-semibold">Ingredients</h3>
                             <Badge variant="secondary" className="ml-auto">
-                              {analyzeMutation.data?.ingredients.length}
+                              {analyzeMutation.data?.matchedStockItems.length}
                               {" "}
                               items
                             </Badge>
                           </div>
                           <ul className="space-y-2">
-                            {analyzeMutation.data?.ingredients.map((ing, i) => (
-                              <li key={i} className="flex items-center gap-2 text-sm">
-                                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                {ing}
-                              </li>
-                            ))}
+                            {analyzeMutation.data && (
+                              <div className="space-y-6 py-4">
+                                <IngredientsCard items={analyzeMutation.data.matchedStockItems} onQuantityChange={setQuantities} />
+                                {/* Other cards... */}
+                              </div>
+                            )}
                           </ul>
                         </CardContent>
                       </Card>
@@ -488,16 +493,10 @@ export default function OrderDetailPage() {
                       <Separator />
 
                       {/* Price Summary */}
-                      <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <Euro className="h-5 w-5 text-green-600" />
-                          <span className="font-semibold">Total Estimated Cost</span>
-                        </div>
-                        <span className="text-2xl font-bold text-green-600">
-                          €
-                          {analyzeMutation.data?.totalPrice.toFixed(2)}
-                        </span>
-                      </div>
+                      <PriceSummaryCard
+                        items={analyzeMutation.data.matchedStockItems}
+                        quantities={quantities}
+                      />
                     </div>
                   )}
 

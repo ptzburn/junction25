@@ -31,7 +31,6 @@ export type Order = z.infer<typeof OrderSchema>;
 export const DishAnalysisSchema = z.object({
   ingredients: z.array(z.string()).min(1),
   instructions: z.array(z.string()).min(1),
-  totalPrice: z.number().positive(),
 });
 
 export type DishAnalysis = z.infer<typeof DishAnalysisSchema>;
