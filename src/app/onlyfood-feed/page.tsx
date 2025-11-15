@@ -92,10 +92,24 @@ export default function OnlyFoodFeedPage() {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState<number | null>(null);
+  const [introVisible, setIntroVisible] = useState(true);
   const currentClip = feedItems[currentIndex];
 
-  const goToNextClip = () => setCurrentIndex(prev => (prev + 1) % feedItems.length);
-  const handleOrderNow = () => router.push(currentClip.href);
+  const dismissIntro = () => setIntroVisible(false);
+
+  const goToNextClip = () => {
+    if (introVisible) {
+      return;
+    }
+    setCurrentIndex(prev => (prev + 1) % feedItems.length);
+  };
+
+  const handleOrderNow = () => {
+    if (introVisible) {
+      return;
+    }
+    router.push(currentClip.href);
+  };
 
   const evaluateSwipe = (deltaX: number) => {
     if (deltaX <= -60) {
@@ -107,12 +121,19 @@ export default function OnlyFoodFeedPage() {
   };
 
   const registerStart = (clientX: number | undefined) => {
+    if (introVisible) {
+      return;
+    }
     if (typeof clientX === "number") {
       setStartX(clientX);
     }
   };
 
   const registerEnd = (clientX: number | undefined) => {
+    if (introVisible) {
+      setStartX(null);
+      return;
+    }
     if (startX === null || typeof clientX !== "number") {
       setStartX(null);
       return;
@@ -172,10 +193,10 @@ export default function OnlyFoodFeedPage() {
             <span>Courier-ready in minutes</span>
           </div>
           <div className="flex gap-3">
-            <Button className="flex-1" onClick={handleOrderNow}>
+            <Button className="flex-1" onClick={handleOrderNow} disabled={introVisible}>
               Order now
             </Button>
-            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10" onClick={goToNextClip}>
+            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10" onClick={goToNextClip} disabled={introVisible}>
               Next
             </Button>
           </div>
@@ -199,6 +220,31 @@ export default function OnlyFoodFeedPage() {
             <span>{currentClip.loops}</span>
           </div>
         </div>
+
+        {introVisible && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/85 px-6 text-center text-white backdrop-blur">
+            <div className="max-w-md space-y-6">
+              <div className="space-y-2">
+                <p className="text-xs uppercase tracking-[0.3em] text-white/60">Welcome to OnlyFood Feed</p>
+                <h1 className="text-3xl font-semibold">Know the gestures</h1>
+                <p className="text-sm text-white/80">Swipe to explore hero dishes. Left to preview the next one, right to jump straight into ordering.</p>
+              </div>
+              <div className="divide-y divide-white/10 overflow-hidden rounded-3xl border border-white/15 bg-white/5 text-left">
+                <div className="px-5 py-4">
+                  <p className="text-lg font-semibold text-white">Swipe left</p>
+                  <p className="text-sm text-white/80">See the next dish in the lineup.</p>
+                </div>
+                <div className="px-5 py-4">
+                  <p className="text-lg font-semibold text-white">Swipe right</p>
+                  <p className="text-sm text-white/80">Open the restaurant page and order immediately.</p>
+                </div>
+              </div>
+              <Button size="lg" className="w-full" onClick={dismissIntro}>
+                Understood
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
