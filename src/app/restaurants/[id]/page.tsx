@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
+"use client";
 
-import type { Dish, Restaurant } from "@/types/restaurant";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 import { CookYourselfDialog } from "@/app/orders/[orderId]/_components/cook-yourself-dialog";
 import { Badge } from "@/components/ui/badge";
@@ -14,41 +14,28 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useRestaurantDishes } from "@/hooks/use-dishes";
+import { useRestaurant } from "@/hooks/use-restaurants";
 
-import dishesJson from "../../../../data/dishes.json";
-import restaurantsJson from "../../../../data/restaurants.json";
+export default function RestaurantPage() {
+  const { id } = useParams<{ id: string }>();
+  const { data: restaurant, isLoading: isRestaurantLoading, error: restaurantError } = useRestaurant(id);
+  const { data: dishes, isLoading: isDishesLoading, error: dishesError } = useRestaurantDishes(id);
 
-type RestaurantDishData = {
-  restaurantDishes: Dish[];
-};
+  const isLoading = isRestaurantLoading || isDishesLoading;
+  const hasError = restaurantError || dishesError;
 
-const restaurantsData = restaurantsJson as Restaurant[];
-const dishesData = dishesJson as RestaurantDishData;
-const dishCatalog = dishesData.restaurantDishes;
-
-export function generateStaticParams() {
-  return restaurantsData.map(restaurant => ({ slug: restaurant.slug }));
-}
-
-type RestaurantPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-export default async function RestaurantPage({ params }: RestaurantPageProps) {
-  const { slug } = await params;
-  const restaurant = restaurantsData.find(entry => entry.slug === slug);
-  if (!restaurant) {
-    notFound();
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  const restaurantDishes = dishCatalog.filter(dish => dish.restaurantSlug === restaurant.slug);
-  const featuredDishes = restaurant.featuredDishIds
-    .map(id => restaurantDishes.find(dish => dish.id === id))
-    .filter((dish): dish is Dish => Boolean(dish));
-  const heroDishes = (featuredDishes.length ? featuredDishes : restaurantDishes).slice(0, 2);
-  const menuDishes = restaurantDishes;
+  if (hasError || !restaurant || !dishes) {
+    return (
+      <div>
+        Error
+      </div>
+    );
+  }
 
   return (
     <main className="bg-background text-foreground min-h-screen">
@@ -143,7 +130,7 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
             <Button variant="ghost">View all</Button>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {heroDishes.map(dish => (
+            {dishes.dishes.map(dish => (
               <Card key={dish.id} className="flex h-full flex-col overflow-hidden">
                 <div
                   className="h-40 w-full bg-cover bg-center"
@@ -153,11 +140,6 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-4">
                     <CardTitle className="text-lg">{dish.name}</CardTitle>
-                    {dish.badge
-                      ? (
-                          <Badge variant="secondary">{dish.badge}</Badge>
-                        )
-                      : null}
                   </div>
                   <CardDescription>{dish.description}</CardDescription>
                   <p className="text-xs text-muted-foreground">
@@ -186,7 +168,7 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
                 <CardTitle className="text-xl">Chef's picks</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col divide-y">
-                {menuDishes.map(dish => (
+                {dishes.dishes.map(dish => (
                   <div key={dish.id} className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0">
                     <div className="flex gap-4">
                       <div
@@ -206,42 +188,6 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {dish.vegetarian ? (
-                        <Badge variant="outline" className="text-xs">
-                          Vegetarian
-                        </Badge>
-                      ) : null}
-                      {dish.vegan ? (
-                        <Badge variant="outline" className="text-xs">
-                          Vegan
-                        </Badge>
-                      ) : null}
-                      {dish.badge ? (
-                        <Badge variant="secondary" className="text-xs">
-                          {dish.badge}
-                        </Badge>
-                      ) : null}
-                      {dish.vegetarian
-                        ? (
-                            <Badge variant="outline" className="text-xs">
-                              Vegetarian
-                            </Badge>
-                          )
-                        : null}
-                      {dish.vegan
-                        ? (
-                            <Badge variant="outline" className="text-xs">
-                              Vegan
-                            </Badge>
-                          )
-                        : null}
-                      {dish.badge
-                        ? (
-                            <Badge variant="secondary" className="text-xs">
-                              {dish.badge}
-                            </Badge>
-                          )
-                        : null}
                       <CookYourselfDialog dishName={dish.name} dishImage={dish.image} />
                     </div>
                   </div>
