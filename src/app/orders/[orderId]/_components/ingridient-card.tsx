@@ -18,6 +18,7 @@ export type MatchedStockItem = {
   category: string;
   image: string;
   score: number;
+  ingredient?: string;
 };
 
 type Props = {

@@ -39,27 +39,63 @@ export async function generateEmbeddings(texts: string[]): Promise<Float32Array[
   return embeddings ?? [];
 }
 
+export type MatchedIngredientStockItem = {
+  id: number;
+  name: string;
+  price: number;
+  unit: string;
+  category: string;
+  image: string;
+  score: number;
+  ingredient: string;
+};
+
+export async function matchIngredientsToStock(
+  ingredients: string[],
+  options?: { topK?: number; minScore?: number },
+): Promise<MatchedIngredientStockItem[]> {
+  if (!ingredients.length) {
+    return [];
+  }
+
+  const { topK = 1, minScore = 0.75 } = options ?? {};
+
+  const queryEmbeddings = await generateEmbeddings(ingredients);
+
+  return ingredients.flatMap((ingredient, index) => {
+    const embedding = queryEmbeddings[index];
+    if (!embedding) return [];
+
+    const matches = searchStock(embedding, topK, minScore);
+    return matches.map(({ item, score }) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      unit: item.unit,
+      category: item.category,
+      image: item.image,
+      score: Number(score.toFixed(4)),
+      ingredient,
+    }));
+  });
+}
+
 /**
  * Calls Gemini with an image + text prompt and forces JSON output.
  */
+export type GeminiDishAnalysis = {
+  ingredients: string[];
+  instructions: string[];
+  matchedStockItems: MatchedIngredientStockItem[];
+};
+
 export async function analyzeDishWithGemini({
   dishName,
   imagePath,
 }: {
   dishName: string;
   imagePath: string;
-}): Promise<{
-  matchedStockItems: {
-    id: number;
-    name: string;
-    price: number;
-    unit: string;
-    category: string;
-    image: string;
-    score: number;
-  }[];
-  instructions: string[];
-}> {
+}): Promise<GeminiDishAnalysis> {
   const { mimeType, base64 } = await loadImage(imagePath);
 
   const result = await genAI.models.generateContent({
@@ -143,23 +179,9 @@ Respond ONLY with valid JSON. No extra text.`,
 
   const { ingredients, instructions } = validation.data;
 
-  const queryEmbeddings = await generateEmbeddings(ingredients); // ← live Gemini (or cache later)
+  const matchedStockItems = await matchIngredientsToStock(ingredients);
 
-  const matchedStockItems = ingredients.flatMap((ing, i) => {
-    const matches = searchStock(queryEmbeddings[i], 1, 0.75); // top-1, high threshold
-    return matches.map(({ item, score }) => ({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      unit: item.unit,
-      category: item.category,
-      image: item.image,
-      score: Number(score.toFixed(4)),
-      ingredient: ing, // optional: know which ingredient matched
-    }));
-  });
-
-  return { matchedStockItems, instructions };
+  return { matchedStockItems, instructions, ingredients };
 }
 
 async function loadImage(relativePath: string): Promise<{ mimeType: string; base64: string }> {

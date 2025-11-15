@@ -404,6 +404,10 @@ export default function OrderDetailPage() {
 
             {/* Actions */}
             <div className="space-y-3">
+              <Button className="w-full justify-between" size="lg" variant="default" onClick={() => router.push(`/placedOrder/${id}`)}>
+                <span>Order</span>
+                <ChevronRight className="h-5 w-5" />
+              </Button>
               <Button className="w-full justify-between" size="lg">
                 <span>Reorder Items</span>
                 <ChevronRight className="h-5 w-5" />
