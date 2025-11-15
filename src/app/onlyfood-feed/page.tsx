@@ -1,34 +1,32 @@
+"use client";
+
 import { Heart, MessageCircle, Share2, Volume2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-import type { Dish, RestaurantCollection } from "@/types/restaurant";
-
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 import dishesJson from "../../../data/dishes.json";
 import restaurantsJson from "../../../data/restaurants.json";
 
-type DishCatalog = {
-  dishes: Dish[];
-};
+type DishRecord = (typeof dishesJson)["dishes"][number];
+type RestaurantRecord = (typeof restaurantsJson)["restaurants"][number];
 
 const euroFormatter = new Intl.NumberFormat("fi-FI", {
   style: "currency",
   currency: "EUR",
 });
 
-const dishesData = dishesJson as DishCatalog;
-const restaurantsData = (restaurantsJson as RestaurantCollection).restaurants;
+const dishesData: DishRecord[] = dishesJson.dishes;
+const restaurantsData: RestaurantRecord[] = restaurantsJson.restaurants;
 
 const restaurantsById = new Map(
   restaurantsData.map(restaurant => [restaurant.id, restaurant]),
 );
 
 const dishesById = new Map(
-  dishesData.dishes.map(dish => [dish.id, dish]),
+  dishesData.map(dish => [dish.id, dish]),
 );
 
 const videoClips = [
@@ -91,110 +89,116 @@ const feedItems = videoClips
   .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
 export default function OnlyFoodFeedPage() {
+  const router = useRouter();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [startX, setStartX] = useState<number | null>(null);
+  const currentClip = feedItems[currentIndex];
+
+  const goToNextClip = () => setCurrentIndex(prev => (prev + 1) % feedItems.length);
+  const handleOrderNow = () => router.push(currentClip.href);
+
+  const evaluateSwipe = (deltaX: number) => {
+    if (deltaX <= -60) {
+      goToNextClip();
+    }
+    else if (deltaX >= 60) {
+      handleOrderNow();
+    }
+  };
+
+  const registerStart = (clientX: number | undefined) => {
+    if (typeof clientX === "number") {
+      setStartX(clientX);
+    }
+  };
+
+  const registerEnd = (clientX: number | undefined) => {
+    if (startX === null || typeof clientX !== "number") {
+      setStartX(null);
+      return;
+    }
+    evaluateSwipe(clientX - startX);
+    setStartX(null);
+  };
+
+  if (!currentClip) {
+    return null;
+  }
+
   return (
-    <main className="bg-background text-foreground min-h-screen">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-10">
-        <div className="flex flex-wrap items-start justify-between gap-6">
-          <div className="space-y-3">
-            <Badge variant="secondary" className="w-fit">
-              OnlyFood Labs
-            </Badge>
-            <div className="space-y-2">
-              <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                OnlyFood Feed
-              </h1>
-              <p className="text-muted-foreground text-base md:text-lg">
-                Scroll through cinematic previews of dishes ready to dispatch. Add from the feed and we
-                route it straight to your courier.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2 rounded-full bg-muted px-3 py-1">
-                <span className="inline-flex size-2 rounded-full bg-emerald-400" />
-                Live drops in Helsinki
-              </div>
-              <div className="flex items-center gap-2 rounded-full bg-muted px-3 py-1">
-                120+ creators testing
-              </div>
-              <div className="flex items-center gap-2 rounded-full bg-muted px-3 py-1">
-                Fresh loops every 5 min
-              </div>
-            </div>
+    <main className="bg-black text-white">
+      <div
+        className="relative h-screen w-full overflow-hidden"
+        onPointerDown={event => registerStart(event.clientX)}
+        onPointerUp={event => registerEnd(event.clientX)}
+        onTouchStart={event => registerStart(event.touches[0]?.clientX)}
+        onTouchEnd={event => registerEnd(event.changedTouches[0]?.clientX)}
+      >
+        <video
+          key={currentClip.id}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={currentClip.poster}
+          className="h-full w-full object-cover"
+          src={currentClip.videoSrc}
+        />
+
+        <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-4 sm:p-8">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-white/70">OnlyFood Feed</p>
+            <p className="text-lg font-semibold leading-tight">{currentClip.restaurantName}</p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button variant="ghost" asChild>
-              <Link href="/">← Back to home</Link>
+          <Button variant="ghost" className="bg-black/30 text-white hover:bg-black/50" asChild>
+            <Link href="/">← Home</Link>
+          </Button>
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+        <div className="absolute bottom-6 left-4 right-24 space-y-4 rounded-3xl bg-black/45 p-4 backdrop-blur">
+          <div className="space-y-1">
+            <p className="text-xs uppercase tracking-wide text-white/75">{currentClip.restaurantHandle}</p>
+            <p className="text-3xl font-semibold leading-tight">{currentClip.name}</p>
+            <p className="text-sm text-white/80">{currentClip.description}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
+            <span>{currentClip.deliveryEta}</span>
+            <span className="text-white/50">•</span>
+            <span>{euroFormatter.format(currentClip.price)}</span>
+            <span className="text-white/50">•</span>
+            <span>Courier-ready in minutes</span>
+          </div>
+          <div className="flex gap-3">
+            <Button className="flex-1" onClick={handleOrderNow}>
+              Order now
             </Button>
-            <Button asChild>
-              <Link href="/image_text_order">Image or text AI order</Link>
+            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10" onClick={goToNextClip}>
+              Next
             </Button>
           </div>
         </div>
 
-        <Separator />
-
-        <section className="flex flex-col items-center gap-12">
-          {feedItems.map(item => (
-            <Card key={item.id} className="w-full max-w-sm border-none bg-transparent shadow-none">
-              <div className="relative overflow-hidden rounded-[36px] bg-black shadow-[0_25px_60px_rgba(15,23,42,0.4)]">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  poster={item.poster}
-                  className="aspect-[9/16] w-full object-cover"
-                  src={item.videoSrc}
-                />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <div className="pointer-events-none absolute bottom-4 left-4 right-20 text-white">
-                  <p className="text-xs uppercase tracking-wide text-white/80">{item.restaurantHandle}</p>
-                  <p className="text-lg font-semibold leading-tight">{item.name}</p>
-                </div>
-                <div className="pointer-events-none absolute bottom-6 right-4 flex flex-col items-center gap-4 text-white">
-                  <div className="flex flex-col items-center gap-1 rounded-full bg-white/10 px-3 py-2">
-                    <Volume2 className="size-5" />
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-full bg-white/10 px-3 py-2">
-                    <Heart className="size-5" />
-                    <span className="text-xs font-semibold">{item.likes}</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-full bg-white/10 px-3 py-2">
-                    <MessageCircle className="size-5" />
-                    <span className="text-xs font-semibold">Live</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-full bg-white/10 px-3 py-2">
-                    <Share2 className="size-5" />
-                    <span className="text-xs font-semibold">Share</span>
-                  </div>
-                </div>
-                <div className="pointer-events-none absolute top-4 left-4 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white/90">
-                  {item.loops}
-                </div>
-              </div>
-
-              <div className="mt-4 space-y-3 rounded-[28px] border border-border/60 bg-card/80 p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold">{item.restaurantName}</p>
-                    <p className="text-xs text-muted-foreground">{item.description}</p>
-                  </div>
-                  <Badge variant="outline">{item.deliveryEta}</Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-2xl font-semibold leading-tight">{euroFormatter.format(item.price)}</p>
-                    <p className="text-xs text-muted-foreground">Courier-ready in minutes</p>
-                  </div>
-                  <Button size="lg" asChild>
-                    <Link href={item.href}>Order now</Link>
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </section>
+        <div className="absolute inset-y-0 right-4 flex flex-col items-center justify-center gap-4 text-white">
+          <div className="flex flex-col items-center gap-1 rounded-full bg-white/15 px-3 py-2 text-xs font-semibold">
+            <Volume2 className="size-5" />
+            <span>Sound</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 rounded-full bg-white/15 px-3 py-2 text-xs font-semibold">
+            <Heart className="size-5" />
+            <span>{currentClip.likes}</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 rounded-full bg-white/15 px-3 py-2 text-xs font-semibold">
+            <MessageCircle className="size-5" />
+            <span>Live</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 rounded-full bg-white/15 px-3 py-2 text-xs font-semibold">
+            <Share2 className="size-5" />
+            <span>{currentClip.loops}</span>
+          </div>
+        </div>
       </div>
     </main>
   );
