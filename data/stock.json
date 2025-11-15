@@ -4,125 +4,143 @@
     "name": "Fresh salmon fillet (sashimi grade)",
     "price": 19.90,
     "unit": "kg",
-    "category": "fish"
+    "category": "fish",
+    "image": "/stock/fresh-salmon-fillet.png"
   },
   {
     "id": 2,
     "name": "Sushi rice",
     "price": 2.49,
     "unit": "500 g bag",
-    "category": "grains"
+    "category": "grains",
+    "image": "/stock/sushi-rice.png"
   },
   {
     "id": 3,
     "name": "Nori (seaweed sheets)",
     "price": 3.29,
     "unit": "10 sheets",
-    "category": "seaweed"
+    "category": "seaweed",
+    "image": "/stock/nori.jpg"
   },
   {
     "id": 4,
     "name": "Imitation crab sticks",
     "price": 2.99,
     "unit": "200 g pack",
-    "category": "seafood"
+    "category": "seafood",
+    "image": "/stock/crab-sticks.jpg"
   },
   {
     "id": 5,
     "name": "Cucumber",
     "price": 1.19,
     "unit": "piece",
-    "category": "vegetables"
+    "category": "vegetables",
+    "image": "/stock/cucumber.jpg"
   },
   {
     "id": 6,
     "name": "Tamago (Japanese egg omelet)",
     "price": 4.50,
     "unit": "200 g pack",
-    "category": "prepared"
+    "category": "prepared",
+    "image": "/stock/tamago.jpg"
   },
   {
     "id": 7,
     "name": "Orange tobiko (flying fish roe)",
     "price": 7.99,
     "unit": "50 g jar",
-    "category": "roe"
+    "category": "roe",
+    "image": "/stock/tobiko.jpg"
   },
   {
     "id": 8,
     "name": "Masago (capelin roe)",
     "price": 5.49,
     "unit": "50 g jar",
-    "category": "roe"
+    "category": "roe",
+    "image": "/stock/masago.png"
   },
   {
     "id": 9,
     "name": "Wakame (seaweed salad)",
     "price": 3.79,
     "unit": "100 g pack",
-    "category": "seaweed"
+    "category": "seaweed",
+    "image": "/stock/wakame.png"
   },
   {
     "id": 10,
     "name": "Sesame seeds",
     "price": 1.89,
     "unit": "100 g bag",
-    "category": "spices"
+    "category": "spices",
+    "image": "/stock/sesame-seeds.jpg"
   },
   {
     "id": 11,
     "name": "Pickled ginger (gari)",
     "price": 2.59,
     "unit": "100 g jar",
-    "category": "condiments"
+    "category": "condiments",
+    "image": "/stock/pickled-ginger.jpg"
   },
   {
     "id": 12,
     "name": "Wasabi",
     "price": 2.29,
     "unit": "43 g tube",
-    "category": "condiments"
+    "category": "condiments",
+    "image": "/stock/wasabi.jpg"
   },
   {
     "id": 13,
     "name": "Soy sauce",
     "price": 2.99,
     "unit": "150 ml bottle",
-    "category": "condiments"
+    "category": "condiments",
+    "image": "/stock/soy-sauce.webp"
   },
   {
     "id": 14,
     "name": "Daikon radish",
     "price": 1.79,
     "unit": "piece",
-    "category": "vegetables"
+    "category": "vegetables",
+    "image": "/stock/daikon-radish.jpg"
   },
   {
     "id": 15,
     "name": "Sushi vinegar",
     "price": 3.49,
     "unit": "150 ml bottle",
-    "category": "condiments"
+    "category": "condiments",
+    "image": "/stock/sushi-vinegar.jpg"
   },
   {
     "id": 16,
     "name": "Rice vinegar",
     "price": 2.19,
     "unit": "250 ml bottle",
-    "category": "condiments"
+    "category": "condiments",
+    "image": "/stock/rice-vinegar.jpg"
   },
   {
     "id": 17,
     "name": "Granulated sugar",
     "price": 1.29,
     "unit": "1 kg bag",
-    "category": "baking"
+    "category": "baking",
+    "image": "/stock/granulated-sugar.jpg"
   },
   {
     "id": 18,
     "name": "Fine sea salt",
     "price": 0.99,
     "unit": "750 g box",
-    "category": "baking"
+    "category": "baking",
+    "image": "/stock/sea-salt.jpg"
   }
 ]

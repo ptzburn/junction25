@@ -5,6 +5,7 @@
     "price": 19.9,
     "unit": "kg",
     "category": "fish",
+    "image": "/stock/fresh-salmon-fillet.png",
     "embedding": [
       -0.021822238340973854,
       0.0035923607647418976,
@@ -782,6 +783,7 @@
     "price": 2.49,
     "unit": "500 g bag",
     "category": "grains",
+    "image": "/stock/sushi-rice.png",
     "embedding": [
       -0.026318557560443878,
       -0.001202548504807055,
@@ -1559,6 +1561,7 @@
     "price": 3.29,
     "unit": "10 sheets",
     "category": "seaweed",
+    "image": "/stock/nori.jpg",
     "embedding": [
       -0.017623115330934525,
       -0.006279718596488237,
@@ -2336,6 +2339,7 @@
     "price": 2.99,
     "unit": "200 g pack",
     "category": "seafood",
+    "image": "/stock/crab-sticks.jpg",
     "embedding": [
       -0.010920042172074318,
       0.015727993100881577,
@@ -3113,6 +3117,7 @@
     "price": 1.19,
     "unit": "piece",
     "category": "vegetables",
+    "image": "/stock/cucumber.jpg",
     "embedding": [
       -0.02982858382165432,
       0.004701720084995031,
@@ -3890,6 +3895,7 @@
     "price": 4.5,
     "unit": "200 g pack",
     "category": "prepared",
+    "image": "/stock/tamago.jpg",
     "embedding": [
       -0.014423142187297344,
       -0.021642159670591354,
@@ -4667,6 +4673,7 @@
     "price": 7.99,
     "unit": "50 g jar",
     "category": "roe",
+    "image": "/stock/tobiko.jpg",
     "embedding": [
       -0.027301792055368423,
       0.004073908552527428,
@@ -5444,6 +5451,7 @@
     "price": 5.49,
     "unit": "50 g jar",
     "category": "roe",
+    "image": "/stock/masago.png",
     "embedding": [
       -0.02303476817905903,
       -0.005090820137411356,
@@ -6221,6 +6229,7 @@
     "price": 3.79,
     "unit": "100 g pack",
     "category": "seaweed",
+    "image": "/stock/wakame.png",
     "embedding": [
       -0.008301010355353355,
       0.0007392130792140961,
@@ -6998,6 +7007,7 @@
     "price": 1.89,
     "unit": "100 g bag",
     "category": "spices",
+    "image": "/stock/sesame-seeds.jpg",
     "embedding": [
       -0.014449025504291058,
       -0.015003114007413387,
@@ -7775,6 +7785,7 @@
     "price": 2.59,
     "unit": "100 g jar",
     "category": "condiments",
+    "image": "/stock/pickled-ginger.jpg",
     "embedding": [
       -0.01171937957406044,
       0.010224265977740288,
@@ -8552,6 +8563,7 @@
     "price": 2.29,
     "unit": "43 g tube",
     "category": "condiments",
+    "image": "/stock/wasabi.jpg",
     "embedding": [
       -0.024530470371246338,
       0.0011692872503772378,
@@ -9329,6 +9341,7 @@
     "price": 2.99,
     "unit": "150 ml bottle",
     "category": "condiments",
+    "image": "/stock/soy-sauce.webp",
     "embedding": [
       0.006319057196378708,
       0.005338381975889206,
@@ -10106,6 +10119,7 @@
     "price": 1.79,
     "unit": "piece",
     "category": "vegetables",
+    "image": "/stock/daikon-radish.jpg",
     "embedding": [
       -0.020884091034531593,
       -0.006925663910806179,
@@ -10883,6 +10897,7 @@
     "price": 3.49,
     "unit": "150 ml bottle",
     "category": "condiments",
+    "image": "/stock/sushi-vinegar.jpg",
     "embedding": [
       -0.010443301871418953,
       -0.01189461350440979,
@@ -11660,6 +11675,7 @@
     "price": 2.19,
     "unit": "250 ml bottle",
     "category": "condiments",
+    "image": "/stock/rice-vinegar.jpg",
     "embedding": [
       -0.010712950490415096,
       -0.010809877887368202,
@@ -12437,6 +12453,7 @@
     "price": 1.29,
     "unit": "1 kg bag",
     "category": "baking",
+    "image": "/stock/granulated-sugar.jpg",
     "embedding": [
       0.012214568443596363,
       0.012704586610198021,
@@ -13214,6 +13231,7 @@
     "price": 0.99,
     "unit": "750 g box",
     "category": "baking",
+    "image": "/stock/sea-salt.jpg",
     "embedding": [
       -0.02797754667699337,
       0.012086460366845131,

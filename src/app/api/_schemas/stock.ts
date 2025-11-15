@@ -6,6 +6,7 @@ export const StockItemSchema = z.object({
   price: z.number().positive(),
   unit: z.string().min(1).trim(),
   category: z.string().min(1).trim(),
+  image: z.string().min(1).trim(),
 });
 
 export type StockItem = z.infer<typeof StockItemSchema>;
@@ -20,6 +21,7 @@ export const StockItemWithEmbeddingSchema = z.object({
   price: z.number().positive(),
   unit: z.string().min(1).trim(),
   category: z.string().min(1).trim(),
+  image: z.string().min(1).trim(),
   embedding: z.array(z.number()).min(1),
 });
 
