@@ -1,489 +1,202 @@
 {
-  "hero": {
-    "tag": "New in Helsinki",
-    "title": "Crave it? Courier it.",
-    "description": "Discover restaurants, specialty grocers, and indie shops ready to deliver. Schedule ahead, track your rider, and reorder favorites in a tap.",
-    "highlights": [
-      { "label": "Restaurants", "value": "640+" },
-      { "label": "Grocers & shops", "value": "120+" },
-      { "label": "Cities covered", "value": "35" }
-    ],
-    "actions": [
-      { "label": "Find nearby food", "variant": "default" },
-      { "label": "Schedule delivery", "variant": "outline" }
-    ]
-  },
-  "featuredCities": [
+  "dishes": [
     {
-      "name": "Helsinki",
-      "eta": "Delivery in ~25 min",
-      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=60"
-    },
-    {
-      "name": "Espoo",
-      "eta": "Delivery in ~30 min",
-      "image": "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=60"
-    },
-    {
-      "name": "Vantaa",
-      "eta": "Delivery in ~35 min",
-      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=60"
-    }
-  ],
-  "categories": [
-    "All",
-    "Express",
-    "Pizza",
-    "Burgers",
-    "Sushi",
-    "Vegan",
-    "Healthy",
-    "Breakfast",
-    "Dessert",
-    "Groceries",
-    "Pharmacy"
-  ],
-  "collections": [
-    {
-      "title": "Express grocery runs",
-      "badge": "New",
-      "description": "Ultra-fast produce, pantry staples, and zero-effort dinner kits.",
-      "image": "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1200&q=60"
-    },
-    {
-      "title": "Weekend brunch picks",
-      "badge": "Curated",
-      "description": "Scandinavian pastries, açai bowls, and roastery-grade lattes.",
-      "image": "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=1200&q=60"
-    }
-  ],
-  "shortcuts": [
-    {
-      "label": "Fresh produce",
-      "eta": "under 20 min"
-    },
-    {
-      "label": "Everyday essentials",
-      "eta": "under 25 min"
-    },
-    {
-      "label": "Drinks & snacks",
-      "eta": "under 20 min"
-    },
-    {
-      "label": "Wellness",
-      "eta": "under 30 min"
-    }
-  ],
-  "couriers": [
-    {
-      "name": "Mikko Kuosmanen",
-      "status": "2 deliveries in progress",
-      "initials": "MK",
-      "avatar": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=60"
-    },
-    {
-      "name": "Aino Virtanen",
-      "status": "Available in Kamppi",
-      "initials": "AV",
-      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=60"
-    },
-    {
-      "name": "Ravi Patel",
-      "status": "Finishing delivery",
-      "initials": "RP",
-      "avatar": "https://images.unsplash.com/photo-1545996124-0501ebae84d0?auto=format&fit=crop&w=600&q=60"
-    }
-  ],
-  "restaurantDishes": [
-    {
-      "id": "downtown-pizza-co-smoky-pepperoni",
-      "restaurantSlug": "downtown-pizza-co",
+      "id": "9aa3224b-f285-4911-9ea5-ac83dc28a8a5",
+      "restaurantId": "884ed3a7-fa0b-43ff-9e19-6ba7317e2701",
       "name": "Smoky Pepperoni",
       "description": "Cup-and-char pepperoni, roasted garlic crema, basil oil.",
-      "price": "€14.90",
+      "price": 14.90,
       "image": "/smoky-pepperoni.jpeg",
-      "ingredients": ["Sourdough base", "San Marzano sauce", "Pepperoni", "Fior di latte", "Chili honey"],
-      "badge": "Most ordered"
+      "ingredients": ["Sourdough base", "San Marzano sauce", "Pepperoni", "Fior di latte", "Chili honey"]
     },
     {
-      "id": "downtown-pizza-co-midnight-truffle",
-      "restaurantSlug": "downtown-pizza-co",
+      "id": "712b739b-038b-465d-aace-59c903ef6798",
+      "restaurantId": "884ed3a7-fa0b-43ff-9e19-6ba7317e2701",
       "name": "Midnight Truffle",
       "description": "Black truffle paste, fior di latte, confit mushrooms, arugula.",
-      "price": "€16.40",
-      "image": "https://giadzy.com/cdn/shop/articles/IMG_7208_copy.jpg?v=1658468222auto=format&fit=crop&w=1200&q=60",
+      "price": 16.40,
+      "image": "/midnight-truffle.jpg",
       "ingredients": ["Truffle paste", "Fior di latte", "Confit mushrooms", "Arugula", "Sea salt"]
     },
     {
-      "id": "downtown-pizza-co-green-olli",
-      "restaurantSlug": "downtown-pizza-co",
+      "id": "819dd838-fe06-47b0-99e4-d97683d700a0",
+      "restaurantId": "884ed3a7-fa0b-43ff-9e19-6ba7317e2701",
       "name": "Green Olli",
       "description": "Pesto bianco, grilled zucchini, ricotta salata, lemon zest.",
-      "price": "€13.50",
-      "image": "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Pesto bianco", "Grilled zucchini", "Ricotta salata", "Lemon zest"],
-      "vegetarian": true
+      "price": 13.50,
+      "image": "/green-olli.jpg",
+      "ingredients": ["Pesto bianco", "Grilled zucchini", "Ricotta salata", "Lemon zest"]
     },
     {
-      "id": "downtown-pizza-co-karjala-lager",
-      "restaurantSlug": "downtown-pizza-co",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"],
-      "badge": "New"
-    },
-    {
-      "id": "downtown-pizza-co-classic-coke",
-      "restaurantSlug": "downtown-pizza-co",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-      "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "bombay-spice-kitchen-butter-chicken-deluxe",
-      "restaurantSlug": "bombay-spice-kitchen",
+      "id": "866043ae-b759-4c39-974f-7daec4934f68",
+      "restaurantId": "8f8fc234-335d-4d28-9c5a-4356133a1ace",
       "name": "Butter chicken deluxe",
       "description": "Fenugreek tomato gravy, charred chicken thigh, cashew cream.",
-      "price": "€16.90",
-      "image": "https://vikalinka.com/wp-content/uploads/2018/04/Butter-Chicken-Curry-1-Edit.jpg",
-      "ingredients": ["Chicken thigh", "Tomato gravy", "Fenugreek", "Cashew cream", "Ghee"],
-      "badge": "Chef's pick"
+      "price": 16.90,
+      "image": "/butter-chicken-deluxe.jpg",
+      "ingredients": ["Chicken thigh", "Tomato gravy", "Fenugreek", "Cashew cream", "Ghee"]
     },
     {
-      "id": "bombay-spice-kitchen-paneer-tikka-skewers",
-      "restaurantSlug": "bombay-spice-kitchen",
+      "id": "d9df5cc0-3a8a-4df5-92ad-b4291f679713",
+      "restaurantId": "8f8fc234-335d-4d28-9c5a-4356133a1ace",
       "name": "Paneer tikka skewers",
       "description": "Smoked paneer, peppers, mint chutney, charred lime.",
-      "price": "€14.50",
-      "image": "https://thespicemess.com/wp-content/uploads/2021/07/Paneer-Tikka-03.jpg",
-      "ingredients": ["Paneer", "Bell peppers", "Mint chutney", "Yogurt marinade", "Charred lime"],
-      "vegetarian": true
+      "price": 14.50,
+      "image": "/paneer-tikka-skewers.jpg",
+      "ingredients": ["Paneer", "Bell peppers", "Mint chutney", "Yogurt marinade", "Charred lime"]
     },
     {
-      "id": "bombay-spice-kitchen-goan-fish-curry",
-      "restaurantSlug": "bombay-spice-kitchen",
+      "id": "de14ea39-96d9-4861-910a-9863d5fc74cc",
+      "restaurantId": "8f8fc234-335d-4d28-9c5a-4356133a1ace",
       "name": "Goan fish curry",
       "description": "Coconut, kokum, coriander seed oil.",
-      "price": "€17.40",
-      "image": "https://www.recipetineats.com/tachyon/2020/10/Goan-Fish-Curry_6-SQ.jpg?resize=500%2C500",
+      "price": 17.40,
+      "image": "/goan-fish-curry.jpg",
       "ingredients": ["White fish", "Coconut milk", "Kokum", "Mustard seeds", "Coriander oil"]
     },
     {
-      "id": "bombay-spice-kitchen-karjala-lager",
-      "restaurantSlug": "bombay-spice-kitchen",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "bombay-spice-kitchen-classic-coke",
-      "restaurantSlug": "bombay-spice-kitchen",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "saigon-street-eats-pho-brisket-deluxe",
-      "restaurantSlug": "saigon-street-eats",
+      "id": "04753132-782f-4479-ac65-5ce699a668c8",
+      "restaurantId": "587dfe7b-aa3d-43fa-adae-301ebe7c19d3",
       "name": "Pho brisket deluxe",
       "description": "Bone marrow broth, flame-torched brisket, fresh herbs.",
-      "price": "€15.20",
-      "image": "https://www.recipetineats.com/uploads/2019/04/Beef-Pho_6.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Beef broth", "Rice noodles", "Brisket", "Bean sprouts", "Herb mix"],
-      "badge": "Top rated"
+      "price": 15.20,
+      "image": "/pho-brisket-deluxe.jpg",
+      "ingredients": ["Beef broth", "Rice noodles", "Brisket", "Bean sprouts", "Herb mix"]
     },
     {
-      "id": "saigon-street-eats-lemongrass-tofu-banh-mi",
-      "restaurantSlug": "saigon-street-eats",
+      "id": "627b95c1-f866-462e-a47d-18484a3a8e02",
+      "restaurantId": "587dfe7b-aa3d-43fa-adae-301ebe7c19d3",
       "name": "Lemongrass tofu banh mi",
       "description": "Crispy tofu, pickled carrot, vegan mayo, bird's eye chili.",
-      "price": "€13.10",
-      "image": "https://www.goodfoodstories.com/wp-content/uploads/2018/08/lemongrass-tofu-banh-mi-1-Photograph-%C2%A9-Good-Food-Stories-LLC.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Baguette", "Lemongrass tofu", "Pickled carrot", "Cucumber", "Herbs"],
-      "vegan": true
+      "price": 13.10,
+      "image": "/lemongrass-tofu-banh-mi.jpg",
+      "ingredients": ["Baguette", "Lemongrass tofu", "Pickled carrot", "Cucumber", "Herbs"]
     },
     {
-      "id": "saigon-street-eats-crispy-prawn-rolls",
-      "restaurantSlug": "saigon-street-eats",
+      "id": "cffcf174-07b4-4d77-9cd2-3db293d40ccd",
+      "restaurantId": "587dfe7b-aa3d-43fa-adae-301ebe7c19d3",
       "name": "Crispy prawn rolls",
       "description": "Nuoc cham, lettuce wraps, toasted peanuts.",
-      "price": "€8.90",
-      "image": "https://natashaskitchen.com/wp-content/uploads/2018/07/Shrimp-Lettuce-Wraps-600x900.jpg?auto=format&fit=crop&w=1200&q=60",
+      "price": 8.90,
+      "image": "/crispy-prawn-rolls.jpg",
       "ingredients": ["Prawns", "Spring roll wrapper", "Glass noodles", "Nuoc cham", "Peanuts"]
     },
     {
-      "id": "saigon-street-eats-karjala-lager",
-      "restaurantSlug": "saigon-street-eats",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "saigon-street-eats-classic-coke",
-      "restaurantSlug": "saigon-street-eats",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "sushi-house-salmon-lover-set",
-      "restaurantSlug": "sushi-house",
+      "id": "089c21a5-b77e-4848-a2f6-66e9af67b312",
+      "restaurantId": "a1d0cfd7-5bd1-4e84-8ee8-c78a5aeb1bf4",
       "name": "Salmon lover set",
       "description": "8-piece nigiri & maki, yuzu kosho mayo, ikura.",
-      "price": "€24.90",
+      "price": 24.90,
       "image": "/salmon-lover-set.jpg",
       "ingredients": ["Salmon nigiri", "Salmon maki", "Ikura", "Yuzu kosho", "Shiso"]
     },
     {
-      "id": "sushi-house-truffled-tuna-temaki",
-      "restaurantSlug": "sushi-house",
+      "id": "2e6b6f99-11d8-436c-a232-f0705458281f",
+      "restaurantId": "a1d0cfd7-5bd1-4e84-8ee8-c78a5aeb1bf4",
       "name": "Truffled tuna temaki",
       "description": "Hand roll, bluefin akami, truffle ponzu, shiso.",
-      "price": "€12.50",
-      "image": "https://steaks.lv/cache/images/original/ALWN6BTbjHLGMhR7RNngsaqTGjzHtdOuNDgpbV85.png?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Nori", "Sushi rice", "Tuna akami", "Truffle ponzu", "Shiso"],
-      "badge": "Limited"
+      "price": 12.50,
+      "image": "/truffled-tuna-temaki.jpg",
+      "ingredients": ["Nori", "Sushi rice", "Tuna akami", "Truffle ponzu", "Shiso"]
     },
     {
-      "id": "sushi-house-garden-maki",
-      "restaurantSlug": "sushi-house",
+      "id": "6b5e7006-bd65-4cfa-b53d-ac11571fe7a5",
+      "restaurantId": "a1d0cfd7-5bd1-4e84-8ee8-c78a5aeb1bf4",
       "name": "Garden maki",
       "description": "Cucumber, oshinko, avocado, black sesame.",
-      "price": "€11.60",
-      "image": "https://www.yummymummykitchen.com/wp-content/uploads/2021/07/oshinko-04.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Nori", "Sushi rice", "Cucumber", "Pickled radish", "Avocado"],
-      "vegetarian": true
+      "price": 11.60,
+      "image": "/garden-maki.jpg",
+      "ingredients": ["Nori", "Sushi rice", "Cucumber", "Pickled radish", "Avocado"]
     },
     {
-      "id": "sushi-house-karjala-lager",
-      "restaurantSlug": "sushi-house",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "sushi-house-classic-coke",
-      "restaurantSlug": "sushi-house",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "green-bowl-nordic-harvest-bowl",
-      "restaurantSlug": "green-bowl",
+      "id": "279b199c-6a97-45f3-8609-66f678d35e1a",
+      "restaurantId": "e9a8b249-37e0-4791-90d5-96498587f687",
       "name": "Nordic harvest bowl",
       "description": "Roasted roots, kale, lemon-dill tahini, crunchy seeds.",
-      "price": "€13.20",
+      "price": 13.20,
       "image": "/nordic-harvest-bowl.jpeg",
-      "ingredients": ["Roasted roots", "Kale", "Tahini", "Seeds", "Pickled onion"],
-      "vegan": true,
-      "badge": "Vegan hit"
+      "ingredients": ["Roasted roots", "Kale", "Tahini", "Seeds", "Pickled onion"]
     },
     {
-      "id": "green-bowl-smoked-oat-falafel",
-      "restaurantSlug": "green-bowl",
+      "id": "2889ddff-7a05-483f-96ed-a6644d608a97",
+      "restaurantId": "e9a8b249-37e0-4791-90d5-96498587f687",
       "name": "Smoked oat falafel",
       "description": "Beet hummus, red cabbage slaw, herb oil.",
-      "price": "€12.50",
-      "image": "https://images.immediate.co.uk/production/volatile/sites/2/2018/04/Falafel-Beetroot-and-Hummus-Grain-Bowl-ad32e58.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Oat falafel", "Beet hummus", "Red cabbage", "Herb oil"],
-      "vegan": true
+      "price": 12.50,
+      "image": "/smoked-oat-falafel.jpg",
+      "ingredients": ["Oat falafel", "Beet hummus", "Red cabbage", "Herb oil"]
     },
     {
-      "id": "green-bowl-birch-water-refresher",
-      "restaurantSlug": "green-bowl",
-      "name": "Birch water refresher",
-      "description": "Birch sap, sea buckthorn, lime.",
-      "price": "€4.80",
-      "image": "https://m.media-amazon.com/images/I/71ZJ2xS6fkL._AC_UF894%2C1000_QL80_.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Birch sap", "Sea buckthorn", "Lime", "Honey"],
-      "vegetarian": true
-    },
-    {
-      "id": "green-bowl-karjala-lager",
-      "restaurantSlug": "green-bowl",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "green-bowl-classic-coke",
-      "restaurantSlug": "green-bowl",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "burger-lane-smash-burger-duo",
-      "restaurantSlug": "burger-lane",
+      "id": "55653eaf-67ed-4b3b-bb4a-9e5bd39fee5b",
+      "restaurantId": "2f85dc97-5e32-497c-a4aa-4adc950add6d",
       "name": "Smash burger duo",
       "description": "Two 90g patties, cheddar, charred onion, smash sauce.",
-      "price": "€15.90",
+      "price": 15.90,
       "image": "/smash-burger-duo.jpeg",
-      "ingredients": ["Beef patties", "Cheddar", "Onion", "Smash sauce", "Potato bun"],
-      "badge": "Combo deal"
+      "ingredients": ["Beef patties", "Cheddar", "Onion", "Smash sauce", "Potato bun"]
     },
     {
-      "id": "burger-lane-hot-honey-crunch",
-      "restaurantSlug": "burger-lane",
+      "id": "42c0d8b0-4074-4a49-8ddf-d8682a2fe8ec",
+      "restaurantId": "2f85dc97-5e32-497c-a4aa-4adc950add6d",
       "name": "Hot honey crunch",
       "description": "Fried chicken thigh, chili honey, pickled jalapeño.",
-      "price": "€14.80",
-      "image": "https://fireandsmokesociety.com/cdn/shop/articles/Hot-Honey-Fried-Chicken-Sandwich-Fire-and-Smoke-Society.jpg?v=1679321486?auto=format&fit=crop&w=1200&q=60",
+      "price": 14.80,
+      "image": "/hot-honey-crunch.jpg",
       "ingredients": ["Fried chicken", "Hot honey", "Jalapeño", "Lettuce", "Toasted bun"]
     },
     {
-      "id": "burger-lane-plant-powered-smash",
-      "restaurantSlug": "burger-lane",
-      "name": "Plant-powered smash",
-      "description": "Beyond patty, vegan cheddar, miso mayo.",
-      "price": "€15.20",
-      "image": "https://schoolnightvegan.com/wp-content/uploads/2024/07/vegan-smash-burgers-11.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Plant-based patty", "Vegan cheddar", "Miso mayo", "Pickles"],
-      "vegan": true
-    },
-    {
-      "id": "burger-lane-karjala-lager",
-      "restaurantSlug": "burger-lane",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "burger-lane-classic-coke",
-      "restaurantSlug": "burger-lane",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "nordic-kitchen-grilled-salmon-rye",
-      "restaurantSlug": "nordic-kitchen",
+      "id": "3b078bd9-df47-4ba9-a1f3-795abec3ef84",
+      "restaurantId": "2362258d-1d8e-43eb-b2c3-5e238efd4534",
       "name": "Grilled salmon rye",
       "description": "Charred salmon, rye crumble, dill butter sauce.",
-      "price": "€22.50",
+      "price": 22.50,
       "image": "/grilled-salmon-rye.jpeg",
-      "ingredients": ["Salmon", "Rye crumble", "Dill butter", "Lemon"],
-      "badge": "Seasonal"
+      "ingredients": ["Salmon", "Rye crumble", "Dill butter", "Lemon"]
     },
     {
-      "id": "nordic-kitchen-charred-cabbage",
-      "restaurantSlug": "nordic-kitchen",
+      "id": "2d4922ac-9b36-4eab-9542-3af6e8b8948f",
+      "restaurantId": "2362258d-1d8e-43eb-b2c3-5e238efd4534",
       "name": "Charred cabbage",
       "description": "Hazelnut crumb, cultured cream, spruce oil.",
-      "price": "€14.80",
-      "image": "https://images.unsplash.com/photo-1484981138541-3d074aa97716?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Charred cabbage", "Hazelnut crumb", "Cultured cream", "Spruce oil"],
-      "vegetarian": true
+      "price": 14.80,
+      "image": "/charred-cabbage.jpg",
+      "ingredients": ["Charred cabbage", "Hazelnut crumb", "Cultured cream", "Spruce oil"]
     },
     {
-      "id": "nordic-kitchen-sea-buckthorn-tart",
-      "restaurantSlug": "nordic-kitchen",
+      "id": "7b36d13d-d4a9-4108-a6cd-1bbbef5ef7fa",
+      "restaurantId": "2362258d-1d8e-43eb-b2c3-5e238efd4534",
       "name": "Sea buckthorn tart",
       "description": "Toasted meringue, spruce oil.",
-      "price": "€9.50",
-      "image": "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Sea buckthorn curd", "Shortcrust", "Meringue", "Spruce oil"],
-      "vegetarian": true
+      "price": 9.50,
+      "image": "/sea-buckthorn-tart.jpg",
+      "ingredients": ["Sea buckthorn curd", "Shortcrust", "Meringue", "Spruce oil"]
     },
     {
-      "id": "nordic-kitchen-karjala-lager",
-      "restaurantSlug": "nordic-kitchen",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "nordic-kitchen-classic-coke",
-      "restaurantSlug": "nordic-kitchen",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
-    },
-    {
-      "id": "bao-street-short-rib-bao",
-      "restaurantSlug": "bao-street",
+      "id": "6025e51a-3c1f-407b-8b7b-9889511078cb",
+      "restaurantId": "1c94aad2-2ef8-41a1-a702-5999e6821ea4",
       "name": "Short rib bao",
       "description": "Soy glazed beef, pickled daikon, coriander.",
-      "price": "€12.90",
+      "price": 12.90,
       "image": "/short-rib-bao.png",
-      "ingredients": ["Bao bun", "Short rib", "Pickled daikon", "Coriander"],
-      "badge": "Street icon"
+      "ingredients": ["Bao bun", "Short rib", "Pickled daikon", "Coriander"]
     },
     {
-      "id": "bao-street-miso-aubergine-bao",
-      "restaurantSlug": "bao-street",
+      "id": "d469b1ba-edbb-4431-8ff8-b78f836772b8",
+      "restaurantId": "1c94aad2-2ef8-41a1-a702-5999e6821ea4",
       "name": "Miso aubergine bao",
       "description": "Smoked eggplant, crispy garlic, shiso.",
-      "price": "€10.40",
-      "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Bao bun", "Miso eggplant", "Crispy garlic", "Shiso"],
-      "vegan": true
+      "price": 10.40,
+      "image": "/miso-aubergine-bao.jpg",
+      "ingredients": ["Bao bun", "Miso eggplant", "Crispy garlic", "Shiso"]
     },
     {
-      "id": "bao-street-five-spice-fries",
-      "restaurantSlug": "bao-street",
+      "id": "6abab7ef-319c-4a9e-ae0c-3346d6bfa071",
+      "restaurantId": "1c94aad2-2ef8-41a1-a702-5999e6821ea4",
       "name": "Five-spice fries",
       "description": "Chili mayo, toasted sesame, scallion.",
-      "price": "€6.40",
-      "image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Hand-cut fries", "Five-spice salt", "Chili mayo", "Sesame", "Scallion"],
-      "vegetarian": true
-    },
-    {
-      "id": "bao-street-karjala-lager",
-      "restaurantSlug": "bao-street",
-      "name": "Karjala Lager",
-      "description": "0.33l Karjala beer served ice cold.",
-      "price": "€5.20",
-  "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Karjala lager", "Chilled glass"]
-    },
-    {
-      "id": "bao-street-classic-coke",
-      "restaurantSlug": "bao-street",
-      "name": "Classic Coke",
-      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
-      "price": "€3.20",
-  "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
-      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
-      "vegetarian": true
+      "price": 6.40,
+      "image": "/five-spice-fries.jpg",
+      "ingredients": ["Hand-cut fries", "Five-spice salt", "Chili mayo", "Sesame", "Scallion"]
     }
   ]
 }
