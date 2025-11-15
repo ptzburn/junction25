@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-import type { Order } from "@/app/api/_schemas/orders";
 
 import { OrderCard } from "@/_components/order-card";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -81,9 +78,17 @@ export default function Home() {
                 <Link href="/image_text_order">Image or text AI order</Link>
               </Button>
               {hero.actions.map(action => (
-                <Button key={action.label} variant="outline" size="lg">
-                  {action.label}
-                </Button>
+                action.label === "OnlyFood Feed"
+                  ? (
+                      <Button key={action.label} variant="outline" size="lg" asChild>
+                        <Link href="/onlyfood-feed">{action.label}</Link>
+                      </Button>
+                    )
+                  : (
+                      <Button key={action.label} variant="outline" size="lg">
+                        {action.label}
+                      </Button>
+                    )
               ))}
             </div>
             <div className="flex items-center gap-3 text-xs text-muted-foreground md:text-sm">
