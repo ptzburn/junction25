@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -75,10 +75,16 @@ export default function PlacedOrderPage() {
   const [displayTime, setDisplayTime] = useState<Date>(new Date());
   const baseTimeRef = useRef<Date | null>(null);
 
+  const search = useSearchParams();
+  const timeOfDeliveryParam = search?.get("timeOfDelivery");
+  const parsedDelivery = timeOfDeliveryParam ? new Date(timeOfDeliveryParam) : null;
+  const hasDeliveryParam = parsedDelivery && !Number.isNaN(parsedDelivery.getTime());
+
   useEffect(() => {
     const t = window.setTimeout(() => {
       // show the slide and capture a single timestamp snapshot
-      const snap = new Date();
+      // If a delivery time was provided, set the snapshot to 3 hours before the delivery time
+      const snap = hasDeliveryParam ? new Date(parsedDelivery!.getTime() - 3 * 60 * 60 * 1000) : new Date();
       setCurrentTime(snap);
       setDisplayTime(snap);
       baseTimeRef.current = snap;
@@ -86,13 +92,20 @@ export default function PlacedOrderPage() {
     }, 2000);
 
     return () => clearTimeout(t);
-  }, []);
+  }, [timeOfDeliveryParam]);
 
-  // Compute a friendly ETA range (20 - 40 minutes from now)
-  const now = new Date();
-  const start = new Date(now.getTime() + 20 * 60_000);
-  const end = new Date(now.getTime() + 40 * 60_000);
-  const etaText = formatRange(start, end);
+  // Compute a friendly ETA display. If a delivery time was passed, show a window around it.
+  let etaText: string;
+  if (hasDeliveryParam) {
+    const start = new Date(parsedDelivery!.getTime() - 10 * 60_000);
+    const end = new Date(parsedDelivery!.getTime() + 10 * 60_000);
+    etaText = formatRange(start, end);
+  } else {
+    const now = new Date();
+    const start = new Date(now.getTime() + 20 * 60_000);
+    const end = new Date(now.getTime() + 40 * 60_000);
+    etaText = formatRange(start, end);
+  }
 
   const circumference = 2 * Math.PI * 88; // r = 88
   // progress state: will animate from 0 -> 0.75 over 15 minutes after the slide appears

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ type CalendarPayload = {
 };
 
 export default function GoogleCalendarPage() {
+	const router = useRouter();
 	const [data, setData] = useState<CalendarPayload | null>(null);
 	const [suggestion, setSuggestion] = useState<any | null>(null);
 	const [loading, setLoading] = useState(true);
@@ -129,8 +131,19 @@ export default function GoogleCalendarPage() {
 								return [];
 							})();
 
-							const matched = dishName ? allDishes.find((d: any) => String(d?.name ?? "").toLowerCase() === String(dishName).toLowerCase()) : null;
-							const image = matched?.image ?? matched?.img ?? matched?.picture ?? null;
+							// If the suggestion included an explicit image or id, prefer those
+							const suggestedImage = suggestion.dish?.image ?? null;
+							const suggestedId = suggestion.dish?.id ?? null;
+							let matched: any = null;
+							if (suggestedImage) {
+								// We have a direct image URL from the suggestion
+								matched = { image: suggestedImage };
+							} else if (suggestedId) {
+								matched = allDishes.find((d: any) => String(d?.id ?? "") === String(suggestedId));
+							} else if (dishName) {
+								matched = allDishes.find((d: any) => String(d?.name ?? "").toLowerCase() === String(dishName).toLowerCase());
+							}
+							const image = matched?.image ?? matched?.img ?? matched?.picture ?? matched?.imgUrl ?? null;
 
 							// format time without date and seconds
 							const formattedTime = deliveryTime
@@ -185,7 +198,29 @@ export default function GoogleCalendarPage() {
 				</CardContent>
 				<CardFooter className="flex justify-end gap-2">
 					<Button variant="outline">Cancel</Button>
-					<Button variant="default">Place order</Button>
+					<Button
+						variant="default"
+						onClick={() => {
+							if (!suggestion || suggestion.error) return;
+							const baseId = suggestion.dish?.id ?? suggestion.dish?.name ?? "suggestion";
+							const safe = String(baseId).replace(/[^a-zA-Z0-9-_]/g, "_");
+							const orderId = `${safe}-${Date.now()}`;
+							try {
+								sessionStorage.setItem(`analysis:${orderId}`, JSON.stringify(suggestion));
+							} catch (e) {
+								console.warn("failed to write suggestion to sessionStorage", e);
+							}
+							// If the suggestion included a delivery time, pass it as a query parameter
+							const tParam = suggestion?.deliveryTime ?? suggestion?.bestOrderTimeISO ?? null;
+							const url = tParam
+								? `/placedOrder/${orderId}?timeOfDelivery=${encodeURIComponent(String(tParam))}`
+								: `/placedOrder/${orderId}`;
+							router.push(url);
+						}}
+						disabled={!suggestion || !!suggestion?.error}
+					>
+						Place order
+					</Button>
 				</CardFooter>
 			</Card>
 		</div>

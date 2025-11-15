@@ -45,7 +45,7 @@ export async function fetchCalendarEvents(): Promise<any[]> {
  */
 export async function suggestOrderTimeAndDishesForToday(): Promise<{
   deliveryTime: string;
-  dish: { name: string; quantity: number };
+  dish: { name: string; quantity: number; id?: string; image?: string };
   amountOfTime: number; // minutes of free time available in the suggested window
   fromTime: string; // ISO-8601 start of free window
   tillTime: string; // ISO-8601 end of free window
@@ -155,9 +155,28 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
     // Ensure quantity is integer
     parsed.dish.quantity = Number(parsed.dish.quantity) || 1;
 
+    // If the model returned a dish id (rather than a human name), resolve it using dishes.json
+    let resolvedDishName = parsed.dish.name;
+    let resolvedDishId: string | undefined = undefined;
+    let resolvedDishImage: string | undefined = undefined;
+    try {
+      const maybeId = String(parsed.dish.name ?? "");
+      if (dishById.has(maybeId)) {
+        const d = dishById.get(maybeId);
+        resolvedDishName = d?.name ?? resolvedDishName;
+        resolvedDishId = String(d?.id ?? maybeId);
+        resolvedDishImage = d?.image ?? undefined;
+      }
+    } catch {}
+
     return {
       deliveryTime: parsed.deliveryTime,
-      dish: { name: parsed.dish.name, quantity: Math.max(1, Math.floor(parsed.dish.quantity)) },
+      dish: {
+        name: resolvedDishName,
+        quantity: Math.max(1, Math.floor(parsed.dish.quantity)),
+        id: resolvedDishId,
+        image: resolvedDishImage,
+      },
       amountOfTime: Math.max(0, Math.floor(Number(parsed.amountOfTime) || 0)),
       fromTime: parsed.fromTime,
       tillTime: parsed.tillTime,
@@ -170,10 +189,12 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
     const fallbackTime = new Date(fallbackFrom.getTime() + 15 * 60000).toISOString();
     const lastRaw = (orders as any[]).flatMap(o => (o.items ?? [])).slice(-1)[0];
     const lastId = normalizeId(lastRaw);
-    const lastDish = dishById.get(lastId) ?? { name: "Chef's Choice", quantity: 1 };
+    const lastDishObj = dishById.get(lastId) ?? null;
+    const fallbackDishName = lastDishObj?.name ?? "Chef's Choice";
+    const fallbackDishQty = lastDishObj?.quantity ?? 1;
     return {
       deliveryTime: fallbackTime,
-      dish: { name: lastDish.name ?? "Chef's Choice", quantity: lastDish.quantity ?? 1 },
+      dish: { name: fallbackDishName, quantity: fallbackDishQty, id: lastDishObj?.id, image: lastDishObj?.image },
       amountOfTime: Math.round((fallbackTill.getTime() - fallbackFrom.getTime()) / 60000),
       fromTime: fallbackFrom.toISOString(),
       tillTime: fallbackTill.toISOString(),
