@@ -1,14 +1,16 @@
-import { randomUUID } from "node:crypto";
-import fs from "node:fs/promises";
-import path from "node:path";
-
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
+import { Buffer } from "node:buffer";
+import { randomUUID } from "node:crypto";
+import fs from "node:fs/promises";
+import path from "node:path";
 import z from "zod";
 
-import { analyzeDishWithGemini, matchIngredientsToStock, type MatchedIngredientStockItem } from "@/lib/gemini";
+import type { MatchedIngredientStockItem } from "@/lib/gemini";
 import type { Dish, Restaurant } from "@/types/restaurant";
+
+import { analyzeDishWithGemini, matchIngredientsToStock } from "@/lib/gemini";
 
 import { OrderSchema } from "../_schemas/orders";
 import dishesJson from "../../../../data/dishes.json" assert { type: "json" };
@@ -112,10 +114,10 @@ export const ordersRoute = new Hono()
           imagePath: `/${upload.relativePath}`,
         });
 
-        const match = findBestDishMatch(analysis.ingredients ?? [], notes);
+        const match = findBestDishMatch([], notes);
         const restaurant = match ? restaurantsBySlug.get(match.dish.restaurantSlug) ?? null : null;
         const marketFallback = !match
-          ? await recommendMarketItemsFromText({ ingredients: analysis.ingredients, notes }, 4)
+          ? await recommendMarketItemsFromText({ ingredients: [], notes }, 4)
           : undefined;
 
         return c.json({
@@ -287,7 +289,8 @@ function normalize(value: string): string {
 }
 
 function tokenize(value: string | undefined): string[] {
-  if (!value) return [];
+  if (!value)
+    return [];
   return normalize(value).split(/\s+/).filter(Boolean);
 }
 
@@ -318,7 +321,7 @@ function rankDishMatches(
       }
     });
 
-    const directIngredientMatches = ingredients.filter((ingredient) =>
+    const directIngredientMatches = ingredients.filter(ingredient =>
       dish.ingredients.some(dishIngredient => normalize(dishIngredient) === normalize(ingredient)),
     ).length;
 
