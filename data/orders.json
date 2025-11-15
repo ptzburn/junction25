@@ -12,7 +12,7 @@
     "items": [
       { "name": "Smoky Pepperoni", "quantity": 1 }
     ],
-    "image": "https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "image": "/smoky-pepperoni.jpeg",
     "total": 28.5,
     "placedAt": "2025-03-14T17:05:00+02:00"
   },
@@ -29,7 +29,7 @@
     "items": [
       { "name": "Nordic Harvest Bowl", "quantity": 1 }
     ],
-    "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "image": "/nordic-harvest-bowl.jpeg",
     "total": 19.8,
     "placedAt": "2025-03-14T16:52:00+02:00"
   },
@@ -47,6 +47,7 @@
       { "name": "Salmon Lover Set", "quantity": 1 }
     ],
     "image": "https://globalseafoods.com/cdn/shop/articles/dreamstime_s_11648441_011a88f1-f7a0-4565-95bc-66a5e699b9b9_2048x.jpg?auto=compress&cs=tinysrgb&w=1200",
+    "image": "/salmon-lover-set.jpg",
     "total": 34.2,
     "placedAt": "2025-03-14T15:37:00+02:00"
   },
@@ -64,6 +65,7 @@
       { "name": "Short Rib Bao", "quantity": 1 }
     ],
     "image": "https://rusticjoyfulfood.com/wp-content/uploads/2025/01/Asian-Short-Ribs-5-scaled.jpg?auto=compress&cs=tinysrgb&w=1200",
+    "image": "/short-rib-bao.png",
     "total": 31.4,
     "placedAt": "2025-03-14T15:10:00+02:00"
   },
@@ -80,7 +82,7 @@
     "items": [
       { "name": "Grilled Salmon Rye", "quantity": 1 }
     ],
-    "image": "https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "image": "/grilled-salmon-rye.jpeg",
     "total": 29.1,
     "placedAt": "2025-03-14T14:40:00+02:00"
   },
@@ -97,7 +99,7 @@
     "items": [
       { "name": "Smash Burger Duo", "quantity": 1 }
     ],
-    "image": "https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "image": "/smash-burger-duo.jpeg",
     "total": 24.5,
     "placedAt": "2025-03-14T14:05:00+02:00"
   }
