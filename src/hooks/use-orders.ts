@@ -32,3 +32,12 @@ export function useAnalyzeDish(dishName: string, imageUrl: string) {
     },
   });
 }
+
+export function useImageDishOrder() {
+  return useMutation({
+    mutationFn: async (payload: { imageBase64: string; mimeType: string; notes?: string }) => {
+      const response = await routesClient["ai-image-order"].$post({ json: payload });
+      return response.json();
+    },
+  });
+}
