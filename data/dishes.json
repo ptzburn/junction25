@@ -126,6 +126,26 @@
       "vegetarian": true
     },
     {
+      "id": "downtown-pizza-co-karjala-lager",
+      "restaurantSlug": "downtown-pizza-co",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://littlefinland.de/7577-large_default/karjala-lagerbier-52-033l.jpg?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"],
+      "badge": "New"
+    },
+    {
+      "id": "downtown-pizza-co-classic-coke",
+      "restaurantSlug": "downtown-pizza-co",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://i.pinimg.com/564x/bf/88/9e/bf889e7f51cdef20a07db1cfbb1c69e8.jpg?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
+      "vegetarian": true
+    },
+    {
       "id": "bombay-spice-kitchen-butter-chicken-deluxe",
       "restaurantSlug": "bombay-spice-kitchen",
       "name": "Butter chicken deluxe",
@@ -153,6 +173,25 @@
       "price": "€17.40",
       "image": "https://www.recipetineats.com/tachyon/2020/10/Goan-Fish-Curry_6-SQ.jpg?resize=500%2C500",
       "ingredients": ["White fish", "Coconut milk", "Kokum", "Mustard seeds", "Coriander oil"]
+    },
+    {
+      "id": "bombay-spice-kitchen-karjala-lager",
+      "restaurantSlug": "bombay-spice-kitchen",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "bombay-spice-kitchen-classic-coke",
+      "restaurantSlug": "bombay-spice-kitchen",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
+      "vegetarian": true
     },
     {
       "id": "saigon-street-eats-pho-brisket-deluxe",
@@ -184,6 +223,25 @@
       "ingredients": ["Prawns", "Spring roll wrapper", "Glass noodles", "Nuoc cham", "Peanuts"]
     },
     {
+      "id": "saigon-street-eats-karjala-lager",
+      "restaurantSlug": "saigon-street-eats",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "saigon-street-eats-classic-coke",
+      "restaurantSlug": "saigon-street-eats",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
+      "vegetarian": true
+    },
+    {
       "id": "sushi-house-salmon-lover-set",
       "restaurantSlug": "sushi-house",
       "name": "Salmon lover set",
@@ -210,6 +268,25 @@
       "price": "€11.60",
   "image": "https://www.yummymummykitchen.com/wp-content/uploads/2021/07/oshinko-04.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Nori", "Sushi rice", "Cucumber", "Pickled radish", "Avocado"],
+      "vegetarian": true
+    },
+    {
+      "id": "sushi-house-karjala-lager",
+      "restaurantSlug": "sushi-house",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "sushi-house-classic-coke",
+      "restaurantSlug": "sushi-house",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
       "vegetarian": true
     },
     {
@@ -244,6 +321,25 @@
       "vegetarian": true
     },
     {
+      "id": "green-bowl-karjala-lager",
+      "restaurantSlug": "green-bowl",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "green-bowl-classic-coke",
+      "restaurantSlug": "green-bowl",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
+      "vegetarian": true
+    },
+    {
       "id": "burger-lane-smash-burger-duo",
       "restaurantSlug": "burger-lane",
       "name": "Smash burger duo",
@@ -271,6 +367,25 @@
   "image": "https://schoolnightvegan.com/wp-content/uploads/2024/07/vegan-smash-burgers-11.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Plant-based patty", "Vegan cheddar", "Miso mayo", "Pickles"],
       "vegan": true
+    },
+    {
+      "id": "burger-lane-karjala-lager",
+      "restaurantSlug": "burger-lane",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "burger-lane-classic-coke",
+      "restaurantSlug": "burger-lane",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
+      "vegetarian": true
     },
     {
       "id": "nordic-kitchen-grilled-salmon-rye",
@@ -303,6 +418,25 @@
       "vegetarian": true
     },
     {
+      "id": "nordic-kitchen-karjala-lager",
+      "restaurantSlug": "nordic-kitchen",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "nordic-kitchen-classic-coke",
+      "restaurantSlug": "nordic-kitchen",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
+      "vegetarian": true
+    },
+    {
       "id": "bao-street-short-rib-bao",
       "restaurantSlug": "bao-street",
       "name": "Short rib bao",
@@ -330,6 +464,25 @@
       "price": "€6.40",
   "image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Hand-cut fries", "Five-spice salt", "Chili mayo", "Sesame", "Scallion"],
+      "vegetarian": true
+    },
+    {
+      "id": "bao-street-karjala-lager",
+      "restaurantSlug": "bao-street",
+      "name": "Karjala Lager",
+      "description": "0.33l Karjala beer served ice cold.",
+      "price": "€5.20",
+      "image": "https://images.olvi.fi/sites/default/files/styles/product_cover_image_mobile_480_720/public/2023-01/karjala-lager-05-tl-tl-olut.png?itok=7GKoR2en",
+      "ingredients": ["Karjala lager", "Chilled glass"]
+    },
+    {
+      "id": "bao-street-classic-coke",
+      "restaurantSlug": "bao-street",
+      "name": "Classic Coke",
+      "description": "0.33l Coca-Cola, chilled with ice and lemon option.",
+      "price": "€3.20",
+      "image": "https://images.unsplash.com/photo-1582719478173-d9924ced9df7?auto=format&fit=crop&w=1200&q=60",
+      "ingredients": ["Coca-Cola", "Ice", "Lemon wedge"],
       "vegetarian": true
     }
   ]
