@@ -82,6 +82,8 @@ export const ordersRoute = new Hono()
     async (c) => {
       const { dishName, imageUrl } = c.req.valid("json");
 
+      console.log("dishName", dishName);
+
       const result = await analyzeDishWithGemini({
         dishName,
         imagePath: imageUrl, // Relative path to public/

@@ -180,6 +180,9 @@ Respond ONLY with valid JSON. No extra text.`,
   const { ingredients, instructions } = validation.data;
 
   const matchedStockItems = await matchIngredientsToStock(ingredients);
+  console.log("ingredients", ingredients);
+
+  const queryEmbeddings = await generateEmbeddings(ingredients); // ← live Gemini (or cache later)
 
   return { matchedStockItems, instructions, ingredients };
 }

@@ -3,11 +3,9 @@ import { formatInTimeZone } from "date-fns-tz";
 import {
   AlertCircle,
   ArrowLeft,
-  ChefHat,
   ChevronRight,
   Clock,
   Euro,
-  Loader2,
   MapPin,
   Package,
   Receipt,
@@ -15,7 +13,6 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
 
 import type { Order } from "@/app/api/_schemas/orders";
 
@@ -28,20 +25,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { useAnalyzeDish, useOrder } from "@/hooks/use-orders";
+import { useOrder } from "@/hooks/use-orders";
 
-import { IngredientsCard } from "./_components/ingridient-card";
-import { PriceSummaryCard } from "./_components/price-card";
+import { CookYourselfDialog } from "./_components/cook-yourself-dialog";
 
 function getStatusConfig(status: Order["status"]) {
   switch (status) {
@@ -83,38 +70,9 @@ function getStatusConfig(status: Order["status"]) {
 export default function OrderDetailPage() {
   const params = useParams<{ orderId: string }>();
   const router = useRouter();
-  const [isPrepDialogOpen, setIsPrepDialogOpen] = useState(false);
-
-  const [quantities, setQuantities] = useState<Record<number, number>>({});
 
   const id = params.orderId;
   const { data: order, isLoading, error } = useOrder(id);
-  const analyzeMutation = useAnalyzeDish(order?.items[0]?.name ?? "", order?.image ?? "");
-
-  const handleOpen = () => {
-    setIsPrepDialogOpen(true);
-    analyzeMutation.mutate();
-  };
-
-  // Keep track of whether we've already triggered analysis
-  const hasAnalyzed = useRef(false);
-
-  useEffect(() => {
-    if (
-      order?.items?.[0]?.name
-      && order?.image
-      && !isLoading
-      && !hasAnalyzed.current
-    ) {
-      hasAnalyzed.current = true; // Prevent future calls
-      analyzeMutation.mutate();
-    }
-  }, [order, isLoading, analyzeMutation]);
-
-  // Reset flag when order changes (e.g., new ID)
-  useEffect(() => {
-    hasAnalyzed.current = false;
-  }, [id]);
 
   if (isLoading) {
     return (
@@ -536,6 +494,7 @@ export default function OrderDetailPage() {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
+              <CookYourselfDialog dishName={order.items[0]!.name} dishImage={order.image} />
               <Button variant="outline" className="w-full" size="lg">
                 <Receipt className="mr-2 h-5 w-5" />
                 Download Receipt
