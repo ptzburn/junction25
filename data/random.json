@@ -9,7 +9,7 @@
       { "label": "Cities covered", "value": "35" }
     ],
     "actions": [
-      { "label": "Find nearby food", "variant": "default" },
+      { "label": "OnlyFood Feed", "variant": "default" },
       { "label": "Schedule delivery", "variant": "outline" }
     ]
   },
