@@ -1,9 +1,9 @@
 "use client";
 
 import { ChefHat, ChevronRight, Loader2, Package } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-import type { Order } from "@/app/api/_schemas/orders";
+import type { Dish } from "@/app/api/_schemas/dishes";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,15 +23,10 @@ import { useAnalyzeDish } from "@/hooks/use-orders";
 import { IngredientsCard } from "./ingridient-card";
 import { PriceSummaryCard } from "./price-card";
 
-type CookYourselfDialogProps = {
-  dishName: string;
-  dishImage: string;
-};
-
-export function CookYourselfDialog({ dishName, dishImage }: CookYourselfDialogProps) {
+export function CookYourselfDialog({ dish }: { dish: Dish }) {
   const [isOpen, setIsOpen] = useState(false);
   const [quantities, setQuantities] = useState<Record<number, number>>({});
-  const analyzeMutation = useAnalyzeDish(dishName, dishImage);
+  const analyzeMutation = useAnalyzeDish(dish);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -52,7 +47,7 @@ export function CookYourselfDialog({ dishName, dishImage }: CookYourselfDialogPr
             <ChefHat className="h-6 w-6" />
             Prepare
             {" "}
-            {dishName}
+            {dish.name}
           </DialogTitle>
           <DialogDescription>
             Here's everything you need to make it at home.

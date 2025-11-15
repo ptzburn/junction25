@@ -5,6 +5,7 @@ import z from "zod";
 
 import { analyzeDishWithGemini } from "@/lib/gemini";
 
+import { DishSchema } from "../_schemas/dishes";
 import { OrderSchema } from "../_schemas/orders";
 import orders from "../../../../data/orders.json" assert { type: "json" };
 
@@ -32,18 +33,12 @@ export const ordersRoute = new Hono()
     "/analyze-dish",
     zValidator(
       "json",
-      z.object({
-        dishName: z.string().min(1, "Dish name is required"),
-        imageUrl: z.string().min(1, "Image URL is required"),
-      }),
+      DishSchema,
     ),
     async (c) => {
-      const { dishName, imageUrl } = c.req.valid("json");
+      const dish = c.req.valid("json");
 
-      const result = await analyzeDishWithGemini({
-        dishName,
-        imagePath: imageUrl, // Relative path to public/
-      });
+      const result = await analyzeDishWithGemini(dish);
       return c.json(result);
     },
   );

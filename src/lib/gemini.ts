@@ -2,6 +2,8 @@ import { GoogleGenAI, HarmBlockThreshold, HarmCategory } from "@google/genai";
 import fs from "node:fs/promises"; // For local file reads
 import path from "node:path";
 
+import type { Dish } from "@/app/api/_schemas/dishes";
+
 import { DishAnalysisSchema } from "@/app/api/_schemas/orders";
 import env from "@/env";
 
@@ -42,13 +44,7 @@ export async function generateEmbeddings(texts: string[]): Promise<Float32Array[
 /**
  * Calls Gemini with an image + text prompt and forces JSON output.
  */
-export async function analyzeDishWithGemini({
-  dishName,
-  imagePath,
-}: {
-  dishName: string;
-  imagePath: string;
-}): Promise<{
+export async function analyzeDishWithGemini(dish: Dish): Promise<{
   matchedStockItems: {
     id: number;
     name: string;
@@ -60,7 +56,7 @@ export async function analyzeDishWithGemini({
   }[];
   instructions: string[];
 }> {
-  const { mimeType, base64 } = await loadImage(imagePath);
+  const { mimeType, base64 } = await loadImage(dish.image);
 
   const result = await genAI.models.generateContent({
     model: "gemini-2.5-flash",
@@ -69,11 +65,11 @@ export async function analyzeDishWithGemini({
         role: "user",
         parts: [
           {
-            text: `Analyze the dish named "${dishName}" from the provided image.
+            text: `Analyze the dish named "${dish.name}" from the provided image. Use the official description "${dish.description}" and listed ingredients [${dish.ingredients.join(", ")}] as reference to ensure accuracy.
 
 Return a JSON object with:
-- "ingredients": array of strings (exact ingredients needed)
-- "instructions": array of strings (step-by-step preparation guide)
+- "ingredients": array of strings (exact ingredients needed, refined from official list and image [provided list of ingridients might be incomplete!])
+- "instructions": array of strings (step-by-step preparation guide inferred from image and description)
 
 Respond ONLY with valid JSON. No extra text.`,
           },

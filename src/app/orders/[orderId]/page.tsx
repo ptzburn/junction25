@@ -111,7 +111,7 @@ export default function OrderDetailPage() {
     );
   }
 
-  if (!order || hasError) {
+  if (!order || !dish || !restaurant || hasError) {
     return (
       <main className="bg-background text-foreground min-h-screen">
         <div className="mx-auto max-w-4xl px-4 py-8">
@@ -390,7 +390,7 @@ export default function OrderDetailPage() {
                 <span>Reorder Items</span>
                 <ChevronRight className="h-5 w-5" />
               </Button>
-              <CookYourselfDialog dishName={dish?.name ?? ""} dishImage={dish?.image ?? ""} />
+              <CookYourselfDialog dish={dish} />
               <Button variant="outline" className="w-full" size="lg">
                 <Receipt className="mr-2 h-5 w-5" />
                 Download Receipt

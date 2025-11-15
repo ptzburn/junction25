@@ -1,5 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+import type { Dish } from "@/app/api/_schemas/dishes";
+
 import { routesClient } from "@/lib/rpc-client";
 
 export function useOrders() {
@@ -24,10 +26,10 @@ export function useOrder(id: string) {
   });
 }
 
-export function useAnalyzeDish(dishName: string, imageUrl: string) {
+export function useAnalyzeDish(dish: Dish) {
   return useMutation({
     mutationFn: async () => {
-      const response = await routesClient["analyze-dish"].$post({ json: { dishName, imageUrl } });
+      const response = await routesClient["analyze-dish"].$post({ json: dish });
       return response.json();
     },
   });

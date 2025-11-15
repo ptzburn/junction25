@@ -188,7 +188,7 @@ export default function RestaurantPage() {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      <CookYourselfDialog dishName={dish.name} dishImage={dish.image} />
+                      <CookYourselfDialog dish={dish} />
                     </div>
                   </div>
                 ))}
