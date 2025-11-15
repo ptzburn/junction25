@@ -509,7 +509,24 @@ export default function OrderDetailPage() {
                     >
                       Close
                     </Button>
-                    <Button className="w-full sm:w-auto" disabled={analyzeMutation.isPending}>
+                    <Button
+                      className="w-full sm:w-auto"
+                      disabled={analyzeMutation.isPending || !analyzeMutation.data}
+                      onClick={() => {
+                        try {
+                          // store the analysis for this order so the placedOrder page can read it
+                          const dishName = order?.items?.[0]?.name ?? undefined;
+                          const payload = dishName
+                            ? { ...analyzeMutation.data, dishName }
+                            : analyzeMutation.data;
+                          sessionStorage.setItem(`analysis:${id}`, JSON.stringify(payload));
+                        } catch (e) {
+                          // ignore storage errors
+                        }
+                        // navigate to the placedOrder page for this order
+                        router.push(`/placedOrder/${id}`);
+                      }}
+                    >
                       <Package className="h-4 w-4 mr-2" />
                       Order Ingredients
                     </Button>
