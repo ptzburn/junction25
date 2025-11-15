@@ -143,6 +143,8 @@ Respond ONLY with valid JSON. No extra text.`,
 
   const { ingredients, instructions } = validation.data;
 
+  console.log("ingredients", ingredients);
+
   const queryEmbeddings = await generateEmbeddings(ingredients); // ← live Gemini (or cache later)
 
   const matchedStockItems = ingredients.flatMap((ing, i) => {

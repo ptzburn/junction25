@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import type { Dish, Restaurant } from "@/types/restaurant";
+
+import { CookYourselfDialog } from "@/app/orders/[orderId]/_components/cook-yourself-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,11 +14,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { Dish, Restaurant } from "@/types/restaurant";
 
 import dishesJson from "../../../../data/dishes.json";
 import restaurantsJson from "../../../../data/restaurants.json";
-import OrderIngredientsButton from "@/components/order/OrderIngredientsButton";
 
 type RestaurantDishData = {
   restaurantDishes: Dish[];
@@ -24,7 +25,6 @@ type RestaurantDishData = {
 const restaurantsData = restaurantsJson as Restaurant[];
 const dishesData = dishesJson as RestaurantDishData;
 const dishCatalog = dishesData.restaurantDishes;
-
 
 export function generateStaticParams() {
   return restaurantsData.map(restaurant => ({ slug: restaurant.slug }));
@@ -153,9 +153,11 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
                 <CardHeader>
                   <div className="flex items-center justify-between gap-4">
                     <CardTitle className="text-lg">{dish.name}</CardTitle>
-                    {dish.badge ? (
-                      <Badge variant="secondary">{dish.badge}</Badge>
-                    ) : null}
+                    {dish.badge
+                      ? (
+                          <Badge variant="secondary">{dish.badge}</Badge>
+                        )
+                      : null}
                   </div>
                   <CardDescription>{dish.description}</CardDescription>
                   <p className="text-xs text-muted-foreground">
@@ -204,23 +206,28 @@ export default async function RestaurantPage({ params }: RestaurantPageProps) {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {dish.vegetarian ? (
-                        <Badge variant="outline" className="text-xs">
-                          Vegetarian
-                        </Badge>
-                      ) : null}
-                      {dish.vegan ? (
-                        <Badge variant="outline" className="text-xs">
-                          Vegan
-                        </Badge>
-                      ) : null}
-                      {dish.badge ? (
-                        <Badge variant="secondary" className="text-xs">
-                          {dish.badge}
-                        </Badge>
-                      ) : null}
-                      {/* Order ingredients uses a client component to analyze the dish then navigate */}
-                      <OrderIngredientsButton dishId={dish.id} dishName={dish.name} imageUrl={dish.image} />
+                      {dish.vegetarian
+                        ? (
+                            <Badge variant="outline" className="text-xs">
+                              Vegetarian
+                            </Badge>
+                          )
+                        : null}
+                      {dish.vegan
+                        ? (
+                            <Badge variant="outline" className="text-xs">
+                              Vegan
+                            </Badge>
+                          )
+                        : null}
+                      {dish.badge
+                        ? (
+                            <Badge variant="secondary" className="text-xs">
+                              {dish.badge}
+                            </Badge>
+                          )
+                        : null}
+                      <CookYourselfDialog dishName={dish.name} dishImage={dish.image} />
                     </div>
                   </div>
                 ))}

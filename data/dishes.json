@@ -102,7 +102,7 @@
       "name": "Smoky Pepperoni",
       "description": "Cup-and-char pepperoni, roasted garlic crema, basil oil.",
       "price": "€14.90",
-  "image": "https://pitbarrelcooker.com/cdn/shop/articles/Pepperoni-Pizza_936x.png?v=1598630636",
+      "image": "/smoky-pepperoni.jpeg",
       "ingredients": ["Sourdough base", "San Marzano sauce", "Pepperoni", "Fior di latte", "Chili honey"],
       "badge": "Most ordered"
     },
@@ -112,7 +112,7 @@
       "name": "Midnight Truffle",
       "description": "Black truffle paste, fior di latte, confit mushrooms, arugula.",
       "price": "€16.40",
-  "image": "https://giadzy.com/cdn/shop/articles/IMG_7208_copy.jpg?v=1658468222auto=format&fit=crop&w=1200&q=60",
+      "image": "https://giadzy.com/cdn/shop/articles/IMG_7208_copy.jpg?v=1658468222auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Truffle paste", "Fior di latte", "Confit mushrooms", "Arugula", "Sea salt"]
     },
     {
@@ -121,7 +121,7 @@
       "name": "Green Olli",
       "description": "Pesto bianco, grilled zucchini, ricotta salata, lemon zest.",
       "price": "€13.50",
-  "image": "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Pesto bianco", "Grilled zucchini", "Ricotta salata", "Lemon zest"],
       "vegetarian": true
     },
@@ -131,7 +131,7 @@
       "name": "Butter chicken deluxe",
       "description": "Fenugreek tomato gravy, charred chicken thigh, cashew cream.",
       "price": "€16.90",
-  "image": "https://vikalinka.com/wp-content/uploads/2018/04/Butter-Chicken-Curry-1-Edit.jpg",
+      "image": "https://vikalinka.com/wp-content/uploads/2018/04/Butter-Chicken-Curry-1-Edit.jpg",
       "ingredients": ["Chicken thigh", "Tomato gravy", "Fenugreek", "Cashew cream", "Ghee"],
       "badge": "Chef's pick"
     },
@@ -141,7 +141,7 @@
       "name": "Paneer tikka skewers",
       "description": "Smoked paneer, peppers, mint chutney, charred lime.",
       "price": "€14.50",
-  "image": "https://thespicemess.com/wp-content/uploads/2021/07/Paneer-Tikka-03.jpg",
+      "image": "https://thespicemess.com/wp-content/uploads/2021/07/Paneer-Tikka-03.jpg",
       "ingredients": ["Paneer", "Bell peppers", "Mint chutney", "Yogurt marinade", "Charred lime"],
       "vegetarian": true
     },
@@ -160,7 +160,7 @@
       "name": "Pho brisket deluxe",
       "description": "Bone marrow broth, flame-torched brisket, fresh herbs.",
       "price": "€15.20",
-  "image": "https://www.recipetineats.com/uploads/2019/04/Beef-Pho_6.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://www.recipetineats.com/uploads/2019/04/Beef-Pho_6.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Beef broth", "Rice noodles", "Brisket", "Bean sprouts", "Herb mix"],
       "badge": "Top rated"
     },
@@ -170,7 +170,7 @@
       "name": "Lemongrass tofu banh mi",
       "description": "Crispy tofu, pickled carrot, vegan mayo, bird's eye chili.",
       "price": "€13.10",
-  "image": "https://www.goodfoodstories.com/wp-content/uploads/2018/08/lemongrass-tofu-banh-mi-1-Photograph-%C2%A9-Good-Food-Stories-LLC.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://www.goodfoodstories.com/wp-content/uploads/2018/08/lemongrass-tofu-banh-mi-1-Photograph-%C2%A9-Good-Food-Stories-LLC.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Baguette", "Lemongrass tofu", "Pickled carrot", "Cucumber", "Herbs"],
       "vegan": true
     },
@@ -180,7 +180,7 @@
       "name": "Crispy prawn rolls",
       "description": "Nuoc cham, lettuce wraps, toasted peanuts.",
       "price": "€8.90",
-  "image": "https://natashaskitchen.com/wp-content/uploads/2018/07/Shrimp-Lettuce-Wraps-600x900.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://natashaskitchen.com/wp-content/uploads/2018/07/Shrimp-Lettuce-Wraps-600x900.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Prawns", "Spring roll wrapper", "Glass noodles", "Nuoc cham", "Peanuts"]
     },
     {
@@ -189,7 +189,7 @@
       "name": "Salmon lover set",
       "description": "8-piece nigiri & maki, yuzu kosho mayo, ikura.",
       "price": "€24.90",
-  "image": "https://globalseafoods.com/cdn/shop/articles/dreamstime_s_11648441_011a88f1-f7a0-4565-95bc-66a5e699b9b9_2048x.jpg?v=1740367721?auto=format&fit=crop&w=1200&q=60",
+      "image": "/salmon-lover-set.jpg",
       "ingredients": ["Salmon nigiri", "Salmon maki", "Ikura", "Yuzu kosho", "Shiso"]
     },
     {
@@ -198,7 +198,7 @@
       "name": "Truffled tuna temaki",
       "description": "Hand roll, bluefin akami, truffle ponzu, shiso.",
       "price": "€12.50",
-  "image": "https://steaks.lv/cache/images/original/ALWN6BTbjHLGMhR7RNngsaqTGjzHtdOuNDgpbV85.png?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://steaks.lv/cache/images/original/ALWN6BTbjHLGMhR7RNngsaqTGjzHtdOuNDgpbV85.png?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Nori", "Sushi rice", "Tuna akami", "Truffle ponzu", "Shiso"],
       "badge": "Limited"
     },
@@ -208,7 +208,7 @@
       "name": "Garden maki",
       "description": "Cucumber, oshinko, avocado, black sesame.",
       "price": "€11.60",
-  "image": "https://www.yummymummykitchen.com/wp-content/uploads/2021/07/oshinko-04.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://www.yummymummykitchen.com/wp-content/uploads/2021/07/oshinko-04.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Nori", "Sushi rice", "Cucumber", "Pickled radish", "Avocado"],
       "vegetarian": true
     },
@@ -218,7 +218,7 @@
       "name": "Nordic harvest bowl",
       "description": "Roasted roots, kale, lemon-dill tahini, crunchy seeds.",
       "price": "€13.20",
-  "image": "https://www.forkinthekitchen.com/wp-content/uploads/2020/01/200110.root_.veggie.bowls-5530-7.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "/nordic-harvest-bowl.jpeg",
       "ingredients": ["Roasted roots", "Kale", "Tahini", "Seeds", "Pickled onion"],
       "vegan": true,
       "badge": "Vegan hit"
@@ -229,7 +229,7 @@
       "name": "Smoked oat falafel",
       "description": "Beet hummus, red cabbage slaw, herb oil.",
       "price": "€12.50",
-  "image": "https://images.immediate.co.uk/production/volatile/sites/2/2018/04/Falafel-Beetroot-and-Hummus-Grain-Bowl-ad32e58.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://images.immediate.co.uk/production/volatile/sites/2/2018/04/Falafel-Beetroot-and-Hummus-Grain-Bowl-ad32e58.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Oat falafel", "Beet hummus", "Red cabbage", "Herb oil"],
       "vegan": true
     },
@@ -239,7 +239,7 @@
       "name": "Birch water refresher",
       "description": "Birch sap, sea buckthorn, lime.",
       "price": "€4.80",
-  "image": "https://m.media-amazon.com/images/I/71ZJ2xS6fkL._AC_UF894%2C1000_QL80_.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://m.media-amazon.com/images/I/71ZJ2xS6fkL._AC_UF894%2C1000_QL80_.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Birch sap", "Sea buckthorn", "Lime", "Honey"],
       "vegetarian": true
     },
@@ -249,7 +249,7 @@
       "name": "Smash burger duo",
       "description": "Two 90g patties, cheddar, charred onion, smash sauce.",
       "price": "€15.90",
-  "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=60",
+      "image": "/smash-burger-duo.jpeg",
       "ingredients": ["Beef patties", "Cheddar", "Onion", "Smash sauce", "Potato bun"],
       "badge": "Combo deal"
     },
@@ -259,7 +259,7 @@
       "name": "Hot honey crunch",
       "description": "Fried chicken thigh, chili honey, pickled jalapeño.",
       "price": "€14.80",
-  "image": "https://fireandsmokesociety.com/cdn/shop/articles/Hot-Honey-Fried-Chicken-Sandwich-Fire-and-Smoke-Society.jpg?v=1679321486?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://fireandsmokesociety.com/cdn/shop/articles/Hot-Honey-Fried-Chicken-Sandwich-Fire-and-Smoke-Society.jpg?v=1679321486?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Fried chicken", "Hot honey", "Jalapeño", "Lettuce", "Toasted bun"]
     },
     {
@@ -268,7 +268,7 @@
       "name": "Plant-powered smash",
       "description": "Beyond patty, vegan cheddar, miso mayo.",
       "price": "€15.20",
-  "image": "https://schoolnightvegan.com/wp-content/uploads/2024/07/vegan-smash-burgers-11.jpg?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://schoolnightvegan.com/wp-content/uploads/2024/07/vegan-smash-burgers-11.jpg?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Plant-based patty", "Vegan cheddar", "Miso mayo", "Pickles"],
       "vegan": true
     },
@@ -278,7 +278,7 @@
       "name": "Grilled salmon rye",
       "description": "Charred salmon, rye crumble, dill butter sauce.",
       "price": "€22.50",
-  "image": "https://images.unsplash.com/photo-1449049607083-e297f3b38881?auto=format&fit=crop&w=1200&q=60",
+      "image": "/grilled-salmon-rye.jpeg",
       "ingredients": ["Salmon", "Rye crumble", "Dill butter", "Lemon"],
       "badge": "Seasonal"
     },
@@ -288,7 +288,7 @@
       "name": "Charred cabbage",
       "description": "Hazelnut crumb, cultured cream, spruce oil.",
       "price": "€14.80",
-  "image": "https://images.unsplash.com/photo-1484981138541-3d074aa97716?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://images.unsplash.com/photo-1484981138541-3d074aa97716?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Charred cabbage", "Hazelnut crumb", "Cultured cream", "Spruce oil"],
       "vegetarian": true
     },
@@ -298,7 +298,7 @@
       "name": "Sea buckthorn tart",
       "description": "Toasted meringue, spruce oil.",
       "price": "€9.50",
-  "image": "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Sea buckthorn curd", "Shortcrust", "Meringue", "Spruce oil"],
       "vegetarian": true
     },
@@ -308,7 +308,7 @@
       "name": "Short rib bao",
       "description": "Soy glazed beef, pickled daikon, coriander.",
       "price": "€12.90",
-  "image": "https://images.unsplash.com/photo-1504671903410-93bc5bfbfd38?auto=format&fit=crop&w=1200&q=60",
+      "image": "/short-rib-bao.png",
       "ingredients": ["Bao bun", "Short rib", "Pickled daikon", "Coriander"],
       "badge": "Street icon"
     },
@@ -318,7 +318,7 @@
       "name": "Miso aubergine bao",
       "description": "Smoked eggplant, crispy garlic, shiso.",
       "price": "€10.40",
-  "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Bao bun", "Miso eggplant", "Crispy garlic", "Shiso"],
       "vegan": true
     },
@@ -328,7 +328,7 @@
       "name": "Five-spice fries",
       "description": "Chili mayo, toasted sesame, scallion.",
       "price": "€6.40",
-  "image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=60",
+      "image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=60",
       "ingredients": ["Hand-cut fries", "Five-spice salt", "Chili mayo", "Sesame", "Scallion"],
       "vegetarian": true
     }
