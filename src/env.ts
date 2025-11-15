@@ -4,9 +4,13 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 const env = createEnv({
+  client: {
+    NEXT_PUBLIC_APP_URL: z.url(),
+  },
   server: {
     NODE_ENV: z.enum(["development", "testing", "production"]).default("development"),
     GEMINI_API_KEY: z.string(),
+    GEMINI_URL: z.url(),
   },
   experimental__runtimeEnv: {
     /* eslint-disable node/no-process-env */
