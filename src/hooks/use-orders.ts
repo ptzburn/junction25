@@ -32,30 +32,3 @@ export function useAnalyzeDish(dishName: string, imageUrl: string) {
     },
   });
 }
-
-export function useImageDishOrder() {
-  return useMutation({
-    mutationFn: async (payload: { imageBase64: string; mimeType: string; notes?: string }) => {
-      const response = await routesClient["ai-image-order"].$post({ json: payload });
-      return response.json();
-    },
-  });
-}
-
-export function useTextDishOrder() {
-  return useMutation({
-    mutationFn: async (payload: { notes: string; limit?: number }) => {
-      const response = await routesClient["ai-text-order"].$post({ json: payload });
-      return response.json();
-    },
-  });
-}
-
-export function useBuyIngredients() {
-  return useMutation({
-    mutationFn: async (payload: { dishId: string }) => {
-      const response = await routesClient["buy-ingredients"].$post({ json: payload });
-      return response.json();
-    },
-  });
-}

@@ -25,7 +25,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useDish } from "@/hooks/use-dishes";
 import { useOrder } from "@/hooks/use-orders";
+import { useRestaurant } from "@/hooks/use-restaurants";
 
 import { CookYourselfDialog } from "./_components/cook-yourself-dialog";
 
@@ -39,7 +41,7 @@ function getStatusConfig(status: Order["status"]) {
         color: "text-amber-600",
         bg: "bg-amber-50",
       };
-    case "delivering":
+    case "en-route":
       return {
         label: "Courier en route",
         variant: "default" as const,
@@ -71,7 +73,31 @@ export default function OrderDetailPage() {
   const router = useRouter();
 
   const id = params.orderId;
-  const { data: order, isLoading, error } = useOrder(id);
+
+  const {
+    data: order,
+    isLoading: orderLoading,
+    error: orderError,
+  } = useOrder(id);
+
+  // 2. Fetch first dish (only if we have an item ID)
+  const firstItemId = order?.items[0]?.id;
+  const {
+    data: dish,
+    isLoading: dishLoading,
+    error: dishError,
+  } = useDish(firstItemId ?? "");
+
+  // 3. Fetch restaurant (only if we have restaurant ID from dish)
+  const restaurantId = dish?.restaurantId; // assuming field is `restaurant` (string ID)
+  const {
+    data: restaurant,
+    isLoading: restaurantLoading,
+    error: restaurantError,
+  } = useRestaurant(restaurantId ?? "");
+
+  const isLoading = orderLoading || dishLoading || restaurantLoading;
+  const hasError = orderError || dishError || restaurantError;
 
   if (isLoading) {
     return (
@@ -85,7 +111,7 @@ export default function OrderDetailPage() {
     );
   }
 
-  if (!order || error) {
+  if (!order || hasError) {
     return (
       <main className="bg-background text-foreground min-h-screen">
         <div className="mx-auto max-w-4xl px-4 py-8">
@@ -226,16 +252,15 @@ export default function OrderDetailPage() {
                 <CardTitle className="flex items-center justify-between">
                   Order from
                   {" "}
-                  {order.restaurant}
-                  <Badge variant="outline">{order.category}</Badge>
+                  {restaurant?.name}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex gap-4">
                   <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl">
                     <Image
-                      src={order.image}
-                      alt={order.restaurant}
+                      src={dish?.image ?? ""}
+                      alt={dish?.name ?? ""}
                       fill
                       className="object-cover"
                     />
@@ -246,7 +271,7 @@ export default function OrderDetailPage() {
                         <span className="font-medium">
                           {item.quantity}
                           ×
-                          {item.name}
+                          {dish?.name}
                         </span>
                       </div>
                     ))}
@@ -257,7 +282,7 @@ export default function OrderDetailPage() {
                   <span>Total</span>
                   <span>
                     €
-                    {order.total.toFixed(2)}
+                    {((dish?.price ?? 0) * order.items[0]?.quantity).toFixed(2)}
                   </span>
                 </div>
               </CardContent>
@@ -321,7 +346,7 @@ export default function OrderDetailPage() {
                   <div className="flex gap-3">
                     <div
                       className={`flex h-8 w-8 items-center justify-center rounded-full ${
-                        order.status === "delivering" || isDelivered
+                        order.status === "en-route" || isDelivered
                           ? "bg-primary text-primary-foreground"
                           : "bg-muted"
                       }`}
@@ -330,7 +355,7 @@ export default function OrderDetailPage() {
                     </div>
                     <div>
                       <p className="font-medium">Out for Delivery</p>
-                      {order.status === "delivering" && (
+                      {order.status === "en-route" && (
                         <p className="text-sm text-muted-foreground">
                           Courier
                           {" "}
@@ -365,7 +390,7 @@ export default function OrderDetailPage() {
                 <span>Reorder Items</span>
                 <ChevronRight className="h-5 w-5" />
               </Button>
-              <CookYourselfDialog dishName={order.items[0]!.name} dishImage={order.image} />
+              <CookYourselfDialog dishName={dish?.name ?? ""} dishImage={dish?.image ?? ""} />
               <Button variant="outline" className="w-full" size="lg">
                 <Receipt className="mr-2 h-5 w-5" />
                 Download Receipt
