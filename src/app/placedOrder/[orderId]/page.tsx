@@ -145,7 +145,9 @@ export default function PlacedOrderPage() {
         setProgress(0.75 * t);
         // animate displayed time from snapshot -> snapshot + 15 minutes over the same t
         const base = baseTimeRef.current ?? new Date();
-        const addedMs = t * 15 * 60 * 1000; // 15 minutes in ms scaled by t
+        // If a delivery time param was provided, fast-forward by a larger amount (135 minutes) to simulate time progress
+        const targetAdvanceMinutes = hasDeliveryParam ? 135 : 15;
+        const addedMs = t * targetAdvanceMinutes * 60 * 1000; // minutes -> ms scaled by t
         setDisplayTime(new Date(base.getTime() + addedMs));
         if (elapsed < duration) {
           rafId = requestAnimationFrame(tick);
