@@ -142,5 +142,173 @@
     "unit": "750 g box",
     "category": "baking",
     "image": "/stock/sea-salt.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Pizza dough",
+    "price": 2.49,
+    "unit": "500 g ball",
+    "category": "bakery",
+    "image": "/stock/pizza-dough.webp"
+  },
+  {
+    "id": 20,
+    "name": "Tomato pizza sauce",
+    "price": 1.79,
+    "unit": "300 g jar",
+    "category": "condiments",
+    "image": "/stock/tomato-pizza-sauce.jpg"
+  },
+  {
+    "id": 21,
+    "name": "Mozzarella cheese",
+    "price": 4.99,
+    "unit": "250 g block",
+    "category": "dairy",
+    "image": "/stock/mozzarella-cheese.jpg"
+  },
+  {
+    "id": 22,
+    "name": "Sliced mushrooms",
+    "price": 2.29,
+    "unit": "200 g pack",
+    "category": "vegetables",
+    "image": "/stock/sliced-mushrooms.jpg"
+  },
+  {
+    "id": 23,
+    "name": "Sliced green bell peppers",
+    "price": 1.89,
+    "unit": "200 g pack",
+    "category": "vegetables",
+    "image": "/stock/sliced-green-bell-peppers.jpg"
+  },
+  {
+    "id": 24,
+    "name": "Sliced white onions",
+    "price": 1.19,
+    "unit": "200 g pack",
+    "category": "vegetables",
+    "image": "/stock/sliced-white-onions.jpg"
+  },
+  {
+    "id": 25,
+    "name": "Sliced tomatoes",
+    "price": 1.99,
+    "unit": "300 g pack",
+    "category": "vegetables",
+    "image": "/stock/sliced-tomatoes.jpg"
+  },
+  {
+    "id": 26,
+    "name": "Quinoa",
+    "price": 3.49,
+    "unit": "500 g bag",
+    "category": "grains",
+    "image": "/stock/quinoa.jpg"
+  },
+  {
+    "id": 27,
+    "name": "Broccoli florets",
+    "price": 2.79,
+    "unit": "400 g pack",
+    "category": "vegetables",
+    "image": "/stock/broccoli-florets.jpg"
+  },
+  {
+    "id": 28,
+    "name": "Carrots",
+    "price": 1.29,
+    "unit": "1 kg bag",
+    "category": "vegetables",
+    "image": "/stock/carrots.png"
+  },
+  {
+    "id": 29,
+    "name": "Brussels sprouts",
+    "price": 3.19,
+    "unit": "500 g pack",
+    "category": "vegetables",
+    "image": "/stock/brussels-sprouts.jpg"
+  },
+  {
+    "id": 30,
+    "name": "Zucchini",
+    "price": 1.89,
+    "unit": "piece",
+    "category": "vegetables",
+    "image": "/stock/zucchini.jpg"
+  },
+  {
+    "id": 31,
+    "name": "Red bell pepper",
+    "price": 1.59,
+    "unit": "piece",
+    "category": "vegetables",
+    "image": "/stock/red-bell-pepper.jpg"
+  },
+  {
+    "id": 32,
+    "name": "Orange bell pepper",
+    "price": 1.59,
+    "unit": "piece",
+    "category": "vegetables",
+    "image": "/stock/orange-bell-pepper.jpg"
+  },
+  {
+    "id": 33,
+    "name": "Cherry tomatoes",
+    "price": 2.99,
+    "unit": "250 g punnet",
+    "category": "vegetables",
+    "image": "/stock/cherry-tomatoes.jpg"
+  },
+  {
+    "id": 34,
+    "name": "Fresh parsley",
+    "price": 1.29,
+    "unit": "bunch",
+    "category": "herbs",
+    "image": "/stock/fresh-parsley.jpg"
+  },
+  {
+    "id": 35,
+    "name": "Fresh lime",
+    "price": 0.79,
+    "unit": "piece",
+    "category": "fruits",
+    "image": "/stock/fresh-lime.jpg"
+  },
+  {
+    "id": 36,
+    "name": "Fresh ginger",
+    "price": 4.99,
+    "unit": "kg",
+    "category": "vegetables",
+    "image": "/stock/fresh-ginger.jpg"
+  },
+  {
+    "id": 37,
+    "name": "Olive oil",
+    "price": 6.99,
+    "unit": "500 ml bottle",
+    "category": "oils",
+    "image": "/stock/olive-oil.jpg"
+  },
+  {
+    "id": 38,
+    "name": "Salt",
+    "price": 0.89,
+    "unit": "750 g box",
+    "category": "spices",
+    "image": "/stock/salt.jpg"
+  },
+  {
+    "id": 39,
+    "name": "Black pepper",
+    "price": 2.49,
+    "unit": "100 g grinder",
+    "category": "spices",
+    "image": "/stock/black-pepper.jpg"
   }
 ]

@@ -3,11 +3,8 @@ import { formatInTimeZone } from "date-fns-tz";
 import {
   AlertCircle,
   ArrowLeft,
-  ChefHat,
   ChevronRight,
   Clock,
-  Euro,
-  Loader2,
   MapPin,
   Package,
   Receipt,
@@ -15,7 +12,6 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
 
 import type { Order } from "@/app/api/_schemas/orders";
 
@@ -28,20 +24,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { useAnalyzeDish, useOrder } from "@/hooks/use-orders";
+import { useOrder } from "@/hooks/use-orders";
 
-import { IngredientsCard } from "./_components/ingridient-card";
-import { PriceSummaryCard } from "./_components/price-card";
+import { CookYourselfDialog } from "./_components/cook-yourself-dialog";
 
 function getStatusConfig(status: Order["status"]) {
   switch (status) {
@@ -83,38 +69,9 @@ function getStatusConfig(status: Order["status"]) {
 export default function OrderDetailPage() {
   const params = useParams<{ orderId: string }>();
   const router = useRouter();
-  const [isPrepDialogOpen, setIsPrepDialogOpen] = useState(false);
-
-  const [quantities, setQuantities] = useState<Record<number, number>>({});
 
   const id = params.orderId;
   const { data: order, isLoading, error } = useOrder(id);
-  const analyzeMutation = useAnalyzeDish(order?.items[0]?.name ?? "", order?.image ?? "");
-
-  const handleOpen = () => {
-    setIsPrepDialogOpen(true);
-    analyzeMutation.mutate();
-  };
-
-  // Keep track of whether we've already triggered analysis
-  const hasAnalyzed = useRef(false);
-
-  useEffect(() => {
-    if (
-      order?.items?.[0]?.name
-      && order?.image
-      && !isLoading
-      && !hasAnalyzed.current
-    ) {
-      hasAnalyzed.current = true; // Prevent future calls
-      analyzeMutation.mutate();
-    }
-  }, [order, isLoading, analyzeMutation]);
-
-  // Reset flag when order changes (e.g., new ID)
-  useEffect(() => {
-    hasAnalyzed.current = false;
-  }, [id]);
 
   if (isLoading) {
     return (
@@ -408,130 +365,7 @@ export default function OrderDetailPage() {
                 <span>Reorder Items</span>
                 <ChevronRight className="h-5 w-5" />
               </Button>
-              <Dialog open={isPrepDialogOpen} onOpenChange={setIsPrepDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button className="w-full justify-between" size="lg" variant="secondary" onClick={handleOpen}>
-                    <span>Want to prepare it yourself?</span>
-                    <ChevronRight className="h-5 w-5" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="flex items-center gap-2">
-                      <ChefHat className="h-6 w-6" />
-                      Prepare
-                      {" "}
-                      {order.items[0]!.name}
-                    </DialogTitle>
-                    <DialogDescription>
-                      Here's everything you need to make it at home.
-                    </DialogDescription>
-                  </DialogHeader>
-
-                  {analyzeMutation.isPending && (
-                    <div className="flex flex-col items-center justify-center py-12 gap-3">
-                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                      <p className="text-sm text-muted-foreground">Analyzing dish...</p>
-                    </div>
-                  )}
-
-                  {analyzeMutation.isError && (
-                    <div className="text-center py-8 text-destructive">
-                      Failed to analyze dish. Please try again.
-                    </div>
-                  )}
-
-                  {analyzeMutation.data && (
-                    <div className="space-y-6 py-4">
-                      {/* Ingredients */}
-                      <Card>
-                        <CardContent className="pt-6">
-                          <div className="flex items-center gap-2 mb-4">
-                            <Package className="h-5 w-5 text-primary" />
-                            <h3 className="font-semibold">Ingredients</h3>
-                            <Badge variant="secondary" className="ml-auto">
-                              {analyzeMutation.data?.matchedStockItems.length}
-                              {" "}
-                              items
-                            </Badge>
-                          </div>
-                          <ul className="space-y-2">
-                            {analyzeMutation.data && (
-                              <div className="space-y-6 py-4">
-                                <IngredientsCard items={analyzeMutation.data.matchedStockItems} onQuantityChange={setQuantities} />
-                                {/* Other cards... */}
-                              </div>
-                            )}
-                          </ul>
-                        </CardContent>
-                      </Card>
-
-                      {/* Instructions */}
-                      <Card>
-                        <CardContent className="pt-6">
-                          <h3 className="font-semibold mb-4 flex items-center gap-2">
-                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                              1
-                            </span>
-                            Instructions
-                          </h3>
-                          <ol className="space-y-3">
-                            {analyzeMutation.data?.instructions.map((step, i) => (
-                              <li key={i} className="flex gap-3">
-                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                                  {i + 1}
-                                </span>
-                                <span className="text-sm text-muted-foreground pt-0.5">
-                                  {step}
-                                </span>
-                              </li>
-                            ))}
-                          </ol>
-                        </CardContent>
-                      </Card>
-
-                      <Separator />
-
-                      {/* Price Summary */}
-                      <PriceSummaryCard
-                        items={analyzeMutation.data.matchedStockItems}
-                        quantities={quantities}
-                      />
-                    </div>
-                  )}
-
-                  <DialogFooter className="flex-col sm:flex-row gap-2">
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsPrepDialogOpen(false)}
-                      className="w-full sm:w-auto"
-                    >
-                      Close
-                    </Button>
-                    <Button
-                      className="w-full sm:w-auto"
-                      disabled={analyzeMutation.isPending || !analyzeMutation.data}
-                      onClick={() => {
-                        try {
-                          // store the analysis for this order so the placedOrder page can read it
-                          const dishName = order?.items?.[0]?.name ?? undefined;
-                          const payload = dishName
-                            ? { ...analyzeMutation.data, dishName }
-                            : analyzeMutation.data;
-                          sessionStorage.setItem(`analysis:${id}`, JSON.stringify(payload));
-                        } catch (e) {
-                          // ignore storage errors
-                        }
-                        // navigate to the placedOrder page for this order
-                        router.push(`/placedOrder/${id}`);
-                      }}
-                    >
-                      <Package className="h-4 w-4 mr-2" />
-                      Order Ingredients
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
+              <CookYourselfDialog dishName={order.items[0]!.name} dishImage={order.image} />
               <Button variant="outline" className="w-full" size="lg">
                 <Receipt className="mr-2 h-5 w-5" />
                 Download Receipt
