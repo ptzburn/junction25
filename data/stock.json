@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "Fresh salmon fillet (sashimi grade)",
+    "price": 19.90,
+    "unit": "kg",
+    "category": "fish"
+  },
+  {
+    "id": 2,
+    "name": "Sushi rice",
+    "price": 2.49,
+    "unit": "500 g bag",
+    "category": "grains"
+  },
+  {
+    "id": 3,
+    "name": "Nori (seaweed sheets)",
+    "price": 3.29,
+    "unit": "10 sheets",
+    "category": "seaweed"
+  },
+  {
+    "id": 4,
+    "name": "Imitation crab sticks",
+    "price": 2.99,
+    "unit": "200 g pack",
+    "category": "seafood"
+  },
+  {
+    "id": 5,
+    "name": "Cucumber",
+    "price": 1.19,
+    "unit": "piece",
+    "category": "vegetables"
+  },
+  {
+    "id": 6,
+    "name": "Tamago (Japanese egg omelet)",
+    "price": 4.50,
+    "unit": "200 g pack",
+    "category": "prepared"
+  },
+  {
+    "id": 7,
+    "name": "Orange tobiko (flying fish roe)",
+    "price": 7.99,
+    "unit": "50 g jar",
+    "category": "roe"
+  },
+  {
+    "id": 8,
+    "name": "Masago (capelin roe)",
+    "price": 5.49,
+    "unit": "50 g jar",
+    "category": "roe"
+  },
+  {
+    "id": 9,
+    "name": "Wakame (seaweed salad)",
+    "price": 3.79,
+    "unit": "100 g pack",
+    "category": "seaweed"
+  },
+  {
+    "id": 10,
+    "name": "Sesame seeds",
+    "price": 1.89,
+    "unit": "100 g bag",
+    "category": "spices"
+  },
+  {
+    "id": 11,
+    "name": "Pickled ginger (gari)",
+    "price": 2.59,
+    "unit": "100 g jar",
+    "category": "condiments"
+  },
+  {
+    "id": 12,
+    "name": "Wasabi",
+    "price": 2.29,
+    "unit": "43 g tube",
+    "category": "condiments"
+  },
+  {
+    "id": 13,
+    "name": "Soy sauce",
+    "price": 2.99,
+    "unit": "150 ml bottle",
+    "category": "condiments"
+  },
+  {
+    "id": 14,
+    "name": "Daikon radish",
+    "price": 1.79,
+    "unit": "piece",
+    "category": "vegetables"
+  },
+  {
+    "id": 15,
+    "name": "Sushi vinegar",
+    "price": 3.49,
+    "unit": "150 ml bottle",
+    "category": "condiments"
+  },
+  {
+    "id": 16,
+    "name": "Rice vinegar",
+    "price": 2.19,
+    "unit": "250 ml bottle",
+    "category": "condiments"
+  },
+  {
+    "id": 17,
+    "name": "Granulated sugar",
+    "price": 1.29,
+    "unit": "1 kg bag",
+    "category": "baking"
+  },
+  {
+    "id": 18,
+    "name": "Fine sea salt",
+    "price": 0.99,
+    "unit": "750 g box",
+    "category": "baking"
+  }
+]

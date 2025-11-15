@@ -7,6 +7,36 @@ import env from "@/env";
 
 const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 
+export async function generateEmbeddings(texts: string[]): Promise<Float32Array[]> {
+  if (texts.length === 0) {
+    throw new Error("No texts provided for embedding");
+  }
+
+  const response = await genAI.models.embedContent({
+    model: "gemini-embedding-001",
+    contents: texts, // Batch: array of strings
+    config: {
+      taskType: "SEMANTIC_SIMILARITY",
+      outputDimensionality: 768,
+    },
+  });
+
+  const embeddings = response?.embeddings?.map((e) => {
+    const vector = new Float32Array(e.values ?? []); // Convert to typed array for efficiency
+
+    const norm = Math.sqrt(vector.reduce((sum, val) => sum + val * val, 0));
+    if (norm > 0) {
+      for (let i = 0; i < vector.length; i++) {
+        vector[i] /= norm;
+      }
+    }
+
+    return vector;
+  });
+
+  return embeddings ?? [];
+}
+
 /**
  * Calls Gemini with an image + text prompt and forces JSON output.
  */
@@ -20,6 +50,7 @@ export async function analyzeDishWithGemini({
   ingredients: string[];
   instructions: string[];
   totalPrice: number;
+  ingredientEmbeddings: Float32Array[];
 }> {
   const { mimeType, base64 } = await loadImage(imagePath);
 
@@ -106,7 +137,21 @@ Respond ONLY with valid JSON. No extra text.`,
     throw new Error("Gemini response failed validation");
   }
 
-  return validation.data;
+  const data = validation.data;
+
+  // New: Generate embeddings if requested
+  let ingredientEmbeddings: Float32Array[] = [];
+  if (data.ingredients.length > 0) {
+    try {
+      ingredientEmbeddings = await generateEmbeddings(data.ingredients);
+    }
+    catch (error) {
+      console.error("Embedding generation failed:", error);
+      // Optional: Don't throw—fallback to no embeddings
+    }
+  }
+
+  return { ...data, ingredientEmbeddings };
 }
 
 async function loadImage(relativePath: string): Promise<{ mimeType: string; base64: string }> {

@@ -8,10 +8,10 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./src/*"],
-      "@orders.json": ["./data/orders.json"]
+      "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "allowJs": true,
     "strict": true,
     "noEmit": true,

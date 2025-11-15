@@ -1,5 +1,4 @@
 import { zValidator } from "@hono/zod-validator";
-import orders from "@orders.json";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import z from "zod";
@@ -7,6 +6,7 @@ import z from "zod";
 import { analyzeDishWithGemini } from "@/lib/gemini";
 
 import { OrderSchema } from "../_schemas/orders";
+import orders from "../../../../data/orders.json" assert { type: "json" };
 
 const parsedOrders = z.array(OrderSchema).parse(orders);
 
