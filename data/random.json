@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "tag": "New in Helsinki",
+    "title": "Crave it? Courier it.",
+    "description": "Discover restaurants, specialty grocers, and indie shops ready to deliver. Schedule ahead, track your rider, and reorder favorites in a tap.",
+    "highlights": [
+      { "label": "Restaurants", "value": "640+" },
+      { "label": "Grocers & shops", "value": "120+" },
+      { "label": "Cities covered", "value": "35" }
+    ],
+    "actions": [
+      { "label": "Find nearby food", "variant": "default" },
+      { "label": "Schedule delivery", "variant": "outline" }
+    ]
+  },
+  "featuredCities": [
+    {
+      "name": "Helsinki",
+      "eta": "Delivery in ~25 min",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "name": "Espoo",
+      "eta": "Delivery in ~30 min",
+      "image": "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "name": "Vantaa",
+      "eta": "Delivery in ~35 min",
+      "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=60"
+    }
+  ],
+  "categories": [
+    "All",
+    "Express",
+    "Pizza",
+    "Burgers",
+    "Sushi",
+    "Vegan",
+    "Healthy",
+    "Breakfast",
+    "Dessert",
+    "Groceries",
+    "Pharmacy"
+  ],
+  "collections": [
+    {
+      "title": "Express grocery runs",
+      "badge": "New",
+      "description": "Ultra-fast produce, pantry staples, and zero-effort dinner kits.",
+      "image": "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1200&q=60"
+    },
+    {
+      "title": "Weekend brunch picks",
+      "badge": "Curated",
+      "description": "Scandinavian pastries, açai bowls, and roastery-grade lattes.",
+      "image": "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=1200&q=60"
+    }
+  ],
+  "shortcuts": [
+    {
+      "label": "Fresh produce",
+      "eta": "under 20 min"
+    },
+    {
+      "label": "Everyday essentials",
+      "eta": "under 25 min"
+    },
+    {
+      "label": "Drinks & snacks",
+      "eta": "under 20 min"
+    },
+    {
+      "label": "Wellness",
+      "eta": "under 30 min"
+    }
+  ],
+  "couriers": [
+    {
+      "name": "Mikko Kuosmanen",
+      "status": "2 deliveries in progress",
+      "initials": "MK",
+      "avatar": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=60"
+    },
+    {
+      "name": "Aino Virtanen",
+      "status": "Available in Kamppi",
+      "initials": "AV",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=60"
+    },
+    {
+      "name": "Ravi Patel",
+      "status": "Finishing delivery",
+      "initials": "RP",
+      "avatar": "https://images.unsplash.com/photo-1545996124-0501ebae84d0?auto=format&fit=crop&w=600&q=60"
+    }
+  ]
+}

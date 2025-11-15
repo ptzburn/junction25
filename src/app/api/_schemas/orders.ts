@@ -1,28 +1,22 @@
 import { z } from "zod";
 
-const OrderItemSchema = z.object({
-  name: z.string(),
-  quantity: z.number().int().positive(),
+export const OrderItemSchema = z.object({
+  id: z.uuid("Dish ID must be a valid UUID"),
+  quantity: z.number().int().positive("Quantity must be a positive integer"),
 });
 
 export type OrderItem = z.infer<typeof OrderItemSchema>;
 
 export const OrderSchema = z.object({
-  id: z.string().regex(/^ord-\d+$/),
-  restaurant: z.string().min(1),
-  category: z.string().min(1),
-  status: z.enum(["preparing", "delivering", "delivered"]),
-  city: z.string().min(1),
-  neighborhood: z.string().min(1),
-  etaMinutes: z.tuple([z.number().int().min(0), z.number().int().min(0)]).refine(
-    ([min, max]) => min <= max,
-    { message: "etaMinutes min must be <= max" },
-  ),
-  courier: z.string().min(1),
-  courierEta: z.number().int().min(0),
-  items: z.array(OrderItemSchema).min(1),
-  image: z.string().min(1, "Image URL is required"),
-  total: z.number().positive(),
+  id: z.uuid("Order ID must be a valid UUID"),
+  status: z.enum(["preparing", "en-route", "delivered", "cancelled"]),
+  city: z.enum(["Helsinki", "Espoo", "Vantaa"]),
+  neighborhood: z.string().min(1, "Neighborhood is required"),
+  etaMinutes: z
+    .tuple([z.number().int().min(1), z.number().int().min(1)]),
+  courier: z.string().min(1, "Courier name is required"),
+  courierEta: z.number().int(),
+  items: z.array(OrderItemSchema).min(1, "Order must have at least one item"),
   placedAt: z.iso.datetime({ offset: true }),
 });
 

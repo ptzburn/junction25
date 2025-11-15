@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import type { Order } from "@/app/api/_schemas/orders";
-import type { Dish, Restaurant } from "@/types/restaurant";
 
+import { OrderCard } from "@/_components/order-card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,51 +19,18 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useOrders } from "@/hooks/use-orders";
+import { useRestaurants } from "@/hooks/use-restaurants";
 
-import dishesJson from "../../data/dishes.json";
-import restaurantsJson from "../../data/restaurants.json";
-
-type HeroActionVariant = "default" | "secondary" | "outline" | "ghost";
-
-type DishesData = {
-  hero: {
-    tag: string;
-    title: string;
-    description: string;
-    highlights: { label: string; value: string }[];
-    actions: { label: string; variant: HeroActionVariant }[];
-  };
-  featuredCities: { name: string; eta: string; image: string }[];
-  categories: string[];
-  collections: {
-    title: string;
-    badge: string;
-    description: string;
-    image: string;
-  }[];
-  shortcuts: { label: string; eta: string }[];
-  couriers: {
-    name: string;
-    status: string;
-    initials: string;
-    avatar: string;
-  }[];
-  restaurantDishes: Dish[];
-};
-
-const dishesData = dishesJson as DishesData;
-const restaurantsData = restaurantsJson as Restaurant[];
-
-function formatItems(items: Order["items"]) {
-  return items.map(item => `${item.quantity}× ${item.name}`).join(", ");
-}
+import randomJson from "../../data/random.json";
 
 export default function Home() {
   const router = useRouter();
+
   const { data: ordersData } = useOrders();
+  const { data: restaurantsData } = useRestaurants();
 
   const orders = ordersData?.orders ?? [];
-  const hero = dishesData.hero;
+  const hero = randomJson.hero;
   const liveOrders = orders.filter(order => order.status !== "delivered");
   const liveOrdersCount = liveOrders.length;
   const neighborhoods = Array.from(new Set(liveOrders.map(order => order.neighborhood)));
@@ -148,7 +115,7 @@ export default function Home() {
               <CardDescription>Fastest drop-offs right now.</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-              {dishesData.featuredCities.map(city => (
+              {randomJson.featuredCities.map(city => (
                 <div key={city.name} className="flex items-center gap-4 rounded-2xl bg-background/70 p-3">
                   <div
                     className="h-14 w-14 rounded-2xl bg-cover bg-center"
@@ -181,57 +148,7 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {recentOrders.map(order => (
-              <Card
-                key={order.id}
-                className="overflow-hidden cursor-pointer transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                role="button"
-                tabIndex={0}
-                aria-label={`View order ${order.id}`}
-                onClick={() => router.push(`/orders/${order.id}`)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    router.push(`/orders/${order.id}`);
-                  }
-                }}
-              >
-                <Image
-                  src={order.image}
-                  alt={`Preview of ${order.restaurant}`}
-                  width={400}
-                  height={200}
-                  className="h-32 w-full object-cover"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                />
-                <CardContent className="flex flex-col gap-3 p-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-semibold">{order.restaurant}</p>
-                      <p className="text-sm text-muted-foreground">{order.category}</p>
-                    </div>
-                    <Badge variant={order.status === "delivered" ? "outline" : order.status === "delivering" ? "default" : "secondary"}>
-                      {order.status === "delivered"
-                        ? "Delivered"
-                        : order.status === "delivering"
-                          ? "Courier en route"
-                          : "Being prepared"}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{formatItems(order.items)}</p>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>
-                      {`${order.etaMinutes[0]}–${order.etaMinutes[1]} min`}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={event => event.stopPropagation()}
-                    >
-                      Reorder
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <OrderCard key={order.id} orderId={order.id} />
             ))}
           </div>
         </section>
@@ -247,7 +164,7 @@ export default function Home() {
             </Button>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {dishesData.categories.map((category, index) => (
+            {randomJson.categories.map((category, index) => (
               <Badge
                 key={category}
                 variant={index === 0 ? "default" : "outline"}
@@ -260,7 +177,7 @@ export default function Home() {
         </section>
 
         <section className="grid gap-4 md:grid-cols-2">
-          {dishesData.collections.map(collection => (
+          {randomJson.collections.map(collection => (
             <Card key={collection.title} className="flex flex-col overflow-hidden md:flex-row">
               <div className="flex flex-1 flex-col gap-3 p-6">
                 <Badge variant="secondary" className="w-fit">
@@ -295,10 +212,10 @@ export default function Home() {
             </Button>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {restaurantsData.map(restaurant => (
+            {restaurantsData?.restaurants.map(restaurant => (
               <Link
-                key={restaurant.slug}
-                href={`/restaurants/${restaurant.slug}`}
+                key={restaurant.id}
+                href={`/restaurants/${restaurant.id}`}
                 className="group block focus-visible:outline-none"
                 aria-label={`View ${restaurant.name}`}
               >

@@ -1,128 +1,170 @@
-[
-  {
-    "slug": "downtown-pizza-co",
-    "name": "Downtown Pizza Co.",
-    "description": "Neighborhood pizzaiolos firing naturally leavened pies in a 450°C oven with market toppings and house-made chili honey.",
-    "tags": ["Italian", "Pizza"],
-    "rating": 4.8,
-    "eta": "25–35 min",
-    "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=60",
-    "location": "Kamppi, Helsinki",
-    "address": "Urho Kekkosen katu 7",
-    "hours": "10:30–23:00",
-    "deliveryFee": "€2.90",
-    "minOrder": "€12.00",
-    "promoTag": "Sourdough specialist",
-    "highlights": ["Organic Finnish flour", "72h fermented dough", "Local burrata add-on"],
-    "featuredDishIds": [
-      "downtown-pizza-co-smoky-pepperoni",
-      "downtown-pizza-co-midnight-truffle",
-      "downtown-pizza-co-green-olli"
-    ]
-  },
-  {
-    "slug": "bombay-spice-kitchen",
-    "name": "Bombay Spice Kitchen",
-    "description": "Family-run spot layering smoky tandoor, creamy curries, and regionally inspired chaats from Mumbai streets.",
-    "tags": ["Indian", "Tandoor"],
-    "rating": 4.7,
-    "eta": "30–40 min",
-    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=60",
-    "location": "Punavuori, Helsinki",
-    "address": "Pursimiehenkatu 21",
-    "hours": "11:00–22:30",
-    "deliveryFee": "€3.20",
-    "minOrder": "€15.00",
-    "promoTag": "Tandoor favorite",
-    "highlights": ["Hand-ground garam masala", "Fresh naan all day", "Mango lassi add-on"],
-    "featuredDishIds": [
-      "bombay-spice-kitchen-butter-chicken-deluxe",
-      "bombay-spice-kitchen-paneer-tikka-skewers",
-      "bombay-spice-kitchen-goan-fish-curry"
-    ]
-  },
-  {
-    "slug": "saigon-street-eats",
-    "name": "Saigon Street Eats",
-    "description": "Broth-obsessed crew simmering pho for 18 hours and stacking banh mi with herbs flown from Saigon markets.",
-    "tags": ["Vietnamese", "Pho"],
-    "rating": 4.6,
-    "eta": "25–35 min",
-    "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60",
-    "location": "Kallio, Helsinki",
-    "address": "Hämeentie 22",
-    "hours": "11:00–00:00",
-    "deliveryFee": "€2.50",
-    "minOrder": "€10.00",
-    "promoTag": "Late-night pho",
-    "highlights": ["Herb-packed broths", "Pickled daikon in-house", "Vegan pho option"],
-    "featuredDishIds": [
-      "saigon-street-eats-pho-brisket-deluxe",
-      "saigon-street-eats-lemongrass-tofu-banh-mi",
-      "saigon-street-eats-crispy-prawn-rolls"
-    ]
-  },
-  {
-    "slug": "sushi-house",
-    "name": "Sushi House",
-    "description": "Precision-cut sashimi, chef's omakase sets, and miso-glazed nigiri from a minimalist counter.",
-    "tags": ["Sushi", "Japanese"],
-    "rating": 4.9,
-    "eta": "30–40 min",
-    "image": "https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "location": "Tapiola, Espoo",
-    "address": "Sinihelmenkuja 4",
-    "hours": "12:00–22:00",
-    "deliveryFee": "€3.50",
-    "minOrder": "€20.00",
-    "promoTag": "Omakase at home",
-    "highlights": ["Daily fish deliveries", "House soy blend", "Gluten-free tamari"],
-    "featuredDishIds": [
-      "sushi-house-salmon-lover-set",
-      "sushi-house-truffled-tuna-temaki",
-      "sushi-house-garden-maki"
-    ]
-  },
-  {
-    "slug": "green-bowl",
-    "name": "Green Bowl",
-    "description": "Modern veggie canteen layering roasted Nordic produce with zippy dressings and ferments.",
-    "tags": ["Vegan", "Healthy"],
-    "rating": 4.7,
-    "eta": "20–30 min",
-    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60",
-    "location": "Kallio, Helsinki",
-    "address": "Fleminginkatu 12",
-    "hours": "10:00–21:30",
-    "deliveryFee": "€1.90",
-    "minOrder": "€9.00",
-    "promoTag": "Powered by plants",
-    "highlights": ["Wholegrain bases", "House pickles", "Protein add-ons"],
-    "featuredDishIds": [
-      "green-bowl-nordic-harvest-bowl",
-      "green-bowl-smoked-oat-falafel",
-      "green-bowl-birch-water-refresher"
-    ]
-  },
-  {
-    "slug": "burger-lane",
-    "name": "Burger Lane",
-    "description": "Griddle-smashed patties with caramelized edges, secret umami sauce, and double-cooked fries.",
-    "tags": ["Smash", "Comfort"],
-    "rating": 4.6,
-    "eta": "20–30 min",
-    "image": "https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?auto=format&fit=crop&w=1200&q=60",
-    "location": "Leppävaara, Espoo",
-    "address": "Selloaukio 5",
-    "hours": "11:00–01:00",
-    "deliveryFee": "€2.20",
-    "minOrder": "€11.00",
-    "promoTag": "Late-night smash",
-    "highlights": ["Aged Finnish beef", "Potato buns", "House pickles"],
-    "featuredDishIds": [
-      "burger-lane-smash-burger-duo",
-      "burger-lane-hot-honey-crunch",
-      "burger-lane-plant-powered-smash"
-    ]
-  }
-]
+{
+  "restaurants": [
+    {
+      "id": "884ed3a7-fa0b-43ff-9e19-6ba7317e2701",
+      "name": "Downtown Pizza Co.",
+      "description": "Neighborhood pizzaiolos firing naturally leavened pies in a 450°C oven with market toppings and house-made chili honey.",
+      "tags": ["Italian", "Pizza"],
+      "rating": 4.8,
+      "eta": "25–35 min",
+      "image": "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=60",
+      "location": "Kamppi, Helsinki",
+      "address": "Urho Kekkosen katu 7",
+      "hours": "10:30–23:00",
+      "deliveryFee": 2.90,
+      "minOrder": 12.00,
+      "promoTag": "Sourdough specialist",
+      "highlights": ["Organic Finnish flour", "72h fermented dough", "Local burrata add-on"],
+      "featuredDishIds": [
+        "9aa3224b-f285-4911-9ea5-ac83dc28a8a5",
+        "712b739b-038b-465d-aace-59c903ef6798",
+        "819dd838-fe06-47b0-99e4-d97683d700a0"
+      ]
+    },
+    {
+      "id": "8f8fc234-335d-4d28-9c5a-4356133a1ace",
+      "name": "Bombay Spice Kitchen",
+      "description": "Family-run spot layering smoky tandoor, creamy curries, and regionally inspired chaats from Mumbai streets.",
+      "tags": ["Indian", "Tandoor"],
+      "rating": 4.7,
+      "eta": "30–40 min",
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=60",
+      "location": "Punavuori, Helsinki",
+      "address": "Pursimiehenkatu 21",
+      "hours": "11:00–22:30",
+      "deliveryFee": 3.20,
+      "minOrder": 15.00,
+      "promoTag": "Tandoor favorite",
+      "highlights": ["Hand-ground garam masala", "Fresh naan all day", "Mango lassi add-on"],
+      "featuredDishIds": [
+        "866043ae-b759-4c39-974f-7daec4934f68",
+        "d9df5cc0-3a8a-4df5-92ad-b4291f679713",
+        "de14ea39-96d9-4861-910a-9863d5fc74cc"
+      ]
+    },
+    {
+      "id": "587dfe7b-aa3d-43fa-adae-301ebe7c19d3",
+      "name": "Saigon Street Eats",
+      "description": "Broth-obsessed crew simmering pho for 18 hours and stacking banh mi with herbs flown from Saigon markets.",
+      "tags": ["Vietnamese", "Pho"],
+      "rating": 4.6,
+      "eta": "25–35 min",
+      "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=60",
+      "location": "Kallio, Helsinki",
+      "address": "Hämeentie 22",
+      "hours": "11:00–00:00",
+      "deliveryFee": 2.50,
+      "minOrder": 10.00,
+      "promoTag": "Late-night pho",
+      "highlights": ["Herb-packed broths", "Pickled daikon in-house", "Vegan pho option"],
+      "featuredDishIds": [
+        "04753132-782f-4479-ac65-5ce699a668c8",
+        "627b95c1-f866-462e-a47d-18484a3a8e02",
+        "cffcf174-07b4-4d77-9cd2-3db293d40ccd"
+      ]
+    },
+    {
+      "id": "a1d0cfd7-5bd1-4e84-8ee8-c78a5aeb1bf4",
+      "name": "Sushi House",
+      "description": "Precision-cut sashimi, chef's omakase sets, and miso-glazed nigiri from a minimalist counter.",
+      "tags": ["Sushi", "Japanese"],
+      "rating": 4.9,
+      "eta": "30–40 min",
+      "image": "https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "location": "Tapiola, Espoo",
+      "address": "Sinihelmenkuja 4",
+      "hours": "12:00–22:00",
+      "deliveryFee": 3.50,
+      "minOrder": 20.00,
+      "promoTag": "Omakase at home",
+      "highlights": ["Daily fish deliveries", "House soy blend", "Gluten-free tamari"],
+      "featuredDishIds": [
+        "089c21a5-b77e-4848-a2f6-66e9af67b312",
+        "2e6b6f99-11d8-436c-a232-f0705458281f",
+        "6b5e7006-bd65-4cfa-b53d-ac11571fe7a5"
+      ]
+    },
+    {
+      "id": "e9a8b249-37e0-4791-90d5-96498587f687",
+      "name": "Green Bowl",
+      "description": "Modern veggie canteen layering roasted Nordic produce with zippy dressings and ferments.",
+      "tags": ["Vegan", "Healthy"],
+      "rating": 4.7,
+      "eta": "20–30 min",
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60",
+      "location": "Kallio, Helsinki",
+      "address": "Fleminginkatu 12",
+      "hours": "10:00–21:30",
+      "deliveryFee": 1.90,
+      "minOrder": 9.00,
+      "promoTag": "Powered by plants",
+      "highlights": ["Wholegrain bases", "House pickles", "Protein add-ons"],
+      "featuredDishIds": [
+        "279b199c-6a97-45f3-8609-66f678d35e1a",
+        "2889ddff-7a05-483f-96ed-a6644d608a97"
+      ]
+    },
+    {
+      "id": "2f85dc97-5e32-497c-a4aa-4adc950add6d",
+      "name": "Burger Lane",
+      "description": "Griddle-smashed patties with caramelized edges, secret umami sauce, and double-cooked fries.",
+      "tags": ["Smash", "Comfort"],
+      "rating": 4.6,
+      "eta": "20–30 min",
+      "image": "https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?auto=format&fit=crop&w=1200&q=60",
+      "location": "Leppävaara, Espoo",
+      "address": "Selloaukio 5",
+      "hours": "11:00–01:00",
+      "deliveryFee": 2.20,
+      "minOrder": 11.00,
+      "promoTag": "Late-night smash",
+      "highlights": ["Aged Finnish beef", "Potato buns", "House pickles"],
+      "featuredDishIds": [
+        "55653eaf-67ed-4b3b-bb4a-9e5bd39fee5b",
+        "42c0d8b0-4074-4a49-8ddf-d8682a2fe8ec"
+      ]
+    },
+    {
+      "id": "2362258d-1d8e-43eb-b2c3-5e238efd4534",
+      "name": "Nordic Kitchen",
+      "description": "Modern Nordic cuisine featuring charred, foraged, and fermented ingredients with bold seasonal flavors.",
+      "tags": ["Nordic", "Fine Casual"],
+      "rating": 4.8,
+      "eta": "30–45 min",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34ce?auto=format&fit=crop&w=1200&q=60",
+      "location": "Kamppi, Helsinki",
+      "address": "Kampinkuja 1",
+      "hours": "11:00–22:00",
+      "deliveryFee": 3.90,
+      "minOrder": 18.00,
+      "promoTag": "Nordic Harvest",
+      "highlights": ["Sustainable fish", "Foraged herbs", "House-fermented"],
+      "featuredDishIds": [
+        "3b078bd9-df47-4ba9-a1f3-795abec3ef84",
+        "2d4922ac-9b36-4eab-9542-3af6e8b8948f",
+        "7b36d13d-d4a9-4108-a6cd-1bbbef5ef7fa"
+      ]
+    },
+    {
+      "id": "1c94aad2-2ef8-41a1-a702-5999e6821ea4",
+      "name": "Bao Street",
+      "description": "Fluffy steamed bao stuffed with bold Asian flavors, crispy toppings, and punchy pickles.",
+      "tags": ["Bao", "Street Food", "Asian"],
+      "rating": 4.7,
+      "eta": "15–25 min",
+      "image": "https://images.unsplash.com/photo-1622881417152-7f5e86f7e9c2?auto=format&fit=crop&w=1200&q=60",
+      "location": "Kallio, Helsinki",
+      "address": "Vaasankatu 12",
+      "hours": "11:00–23:00",
+      "deliveryFee": 1.90,
+      "minOrder": 9.00,
+      "promoTag": "Bao & Fries Combo",
+      "highlights": ["House-steamed bao", "Slow-cooked fillings", "Crispy garlic crunch"],
+      "featuredDishIds": [
+        "6025e51a-3c1f-407b-8b7b-9889511078cb",
+        "d469b1ba-edbb-4431-8ff8-b78f836772b8",
+        "6abab7ef-319c-4a9e-ae0c-3346d6bfa071"
+      ]
+    }
+  ]
+}
