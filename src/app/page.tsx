@@ -110,8 +110,11 @@ export default function Home() {
             </h1>
             <p className="text-muted-foreground text-base">{hero.description}</p>
             <div className="flex flex-wrap gap-3">
+              <Button variant="default" size="lg" asChild>
+                <Link href="/image_text_order">Image or text AI order</Link>
+              </Button>
               {hero.actions.map(action => (
-                <Button key={action.label} variant={action.variant} size="lg">
+                <Button key={action.label} variant="outline" size="lg">
                   {action.label}
                 </Button>
               ))}
