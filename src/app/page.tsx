@@ -65,6 +65,9 @@ export default function Home() {
                   : null
               ))}
             </div>
+            <Button variant="secondary" size="lg" asChild>
+              <Link href="/group-order">Group order</Link>
+            </Button>
             <div className="flex items-center gap-3 text-xs text-muted-foreground md:text-sm">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               {fastestEta

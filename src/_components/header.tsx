@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDown, MapPin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { MacroSetting } from "@/components/macro-setting";
@@ -15,7 +16,8 @@ export function Header() {
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {/* Logo */}
         <Link href="/">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
+            <Image src="/pacman.png" alt="Zaglot" width={32} height={32} />
             <span className="text-xl font-bold tracking-tight">Zaglot</span>
           </div>
         </Link>

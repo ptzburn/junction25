@@ -43,3 +43,12 @@ export function useDishImageSearch() {
     },
   });
 }
+
+export function useGroupOrder() {
+  return useMutation({
+    mutationFn: async (prompt: string) => {
+      const response = await routesClient["group-order"].$post({ json: { prompt } });
+      return response.json();
+    },
+  });
+}

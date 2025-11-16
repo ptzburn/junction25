@@ -11,25 +11,26 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { CodeDashLogo } from "@/components/code-dash-logo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 const quickLinks = [
-  { label: "Image or text AI order", href: "/image-order" },
+  { label: "Image match", href: "/image-order" },
   { label: "\"I'm busy\" order", href: "/googlecalendar" },
   { label: "OnlyFood Feed", href: "/onlyfood-feed" },
   { label: "Order History", href: "/orders" },
   { label: "Categories", href: "/categories" },
   { label: "Collections", href: "/collections" },
+  { label: "Group order", href: "/group-order" },
 ];
 
 const companyLinks = [
-  { label: "About CodeDash", href: "/about" },
+  { label: "About Zaglot", href: "/about" },
   { label: "Careers", href: "/careers" },
   { label: "Press", href: "/press" },
   { label: "Blog", href: "/blog" },
@@ -73,8 +74,14 @@ export function Footer() {
             {/* Brand Column */}
             <div className="flex flex-col gap-4 lg:col-span-2">
               <div className="flex items-center gap-2">
-                <CodeDashLogo className="h-8 w-8" />
-                <span className="text-xl font-bold tracking-tight">CodeDash</span>
+                <Image
+                  src="/pacman.png"
+                  alt="Zaglot"
+                  width={32}
+                  height={32}
+                  className="object-cover"
+                />
+                <span className="text-xl font-bold tracking-tight">Zaglot</span>
               </div>
               <p className="text-sm text-muted-foreground max-w-xs">
                 AI-powered food delivery that reads your mind, your calendar, and your cravings — in Helsinki and beyond.
@@ -165,7 +172,7 @@ export function Footer() {
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-6">
-              <span>© 2025 CodeDash Oy. All rights reserved.</span>
+              <span>© 2025 Zaglot Oy. All rights reserved.</span>
               <div className="hidden sm:flex items-center gap-4">
                 <Link href="/terms" className="hover:text-foreground transition-colors">
                   Terms
@@ -183,7 +190,7 @@ export function Footer() {
               </Button>
               <Button variant="ghost" size="sm" className="gap-1.5">
                 <Mail className="h-3.5 w-3.5" />
-                hello@codedash.fi
+                hello@zaglot.cum
               </Button>
             </div>
           </div>
