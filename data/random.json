@@ -9,8 +9,7 @@
       { "label": "Cities covered", "value": "35" }
     ],
     "actions": [
-      { "label": "OnlyFood Feed", "variant": "default" },
-      { "label": "Schedule delivery", "variant": "outline" }
+      { "label": "OnlyFood Feed", "variant": "default" }
     ]
   },
   "featuredCities": [

@@ -77,7 +77,7 @@ export default function DishImageSearchPage() {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-5xl">
+    <div className="container mx-auto p-6 max-w-5xl h-screen items-center justify-center flex">
       <Card>
         <CardHeader>
           <CardTitle>Search Dish by Image</CardTitle>

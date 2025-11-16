@@ -6,11 +6,8 @@ import type { Dish } from "@/app/api/_schemas/dishes";
 
 import { DishAnalysisSchema } from "@/app/api/_schemas/orders";
 import env from "@/env";
-import z from "zod";
 
 import { searchStock } from "./stock-search";
-import orders from "../../data/orders.json" assert { type: "json" };
-import dishesFile from "../../data/dishes.json" assert { type: "json" };
 
 export const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 
@@ -201,7 +198,6 @@ export type MatchedIngredientStockItem = {
   ingredient: string;
 };
 
-
 export async function matchIngredientsToStock(
   ingredients: string[],
   options?: { topK?: number; minScore?: number },
@@ -232,4 +228,3 @@ export async function matchIngredientsToStock(
     }));
   });
 }
-
