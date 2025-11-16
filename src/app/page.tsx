@@ -89,11 +89,7 @@ export default function Home() {
                         <Link href="/onlyfood-feed">{action.label}</Link>
                       </Button>
                     )
-                  : (
-                      <Button key={action.label} variant="outline" size="lg">
-                        {action.label}
-                      </Button>
-                    )
+                  : null
               ))}
             </div>
             <div className="flex items-center gap-3 text-xs text-muted-foreground md:text-sm">
@@ -165,57 +161,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h2 className="text-xl font-semibold">Categories</h2>
-              <p className="text-sm text-muted-foreground">Explore by craving, grocery aisle, or lifestyle.</p>
-            </div>
-            <Button variant="ghost" size="sm">
-              View all
-            </Button>
-          </div>
-          <div className="flex gap-2 overflow-x-auto pb-2">
-            {randomJson.categories.map((category, index) => (
-              <Badge
-                key={category}
-                variant={index === 0 ? "default" : "outline"}
-                className="cursor-pointer px-4 py-2 text-sm"
-              >
-                {category}
-              </Badge>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-4 md:grid-cols-2">
-          {randomJson.collections.map(collection => (
-            <Card key={collection.title} className="flex flex-col overflow-hidden md:flex-row">
-              <div className="flex flex-1 flex-col gap-3 p-6">
-                <Badge variant="secondary" className="w-fit">
-                  {collection.badge}
-                </Badge>
-                <CardTitle>{collection.title}</CardTitle>
-                <CardDescription>{collection.description}</CardDescription>
-                <div className="mt-auto flex flex-wrap gap-2">
-                  <Button size="sm">Open collection</Button>
-                  <Button variant="outline" size="sm">
-                    Share
-                  </Button>
-                </div>
-              </div>
-              <div className="min-h-[180px] flex-1">
-                <div className="h-full w-full rounded-2xl overflow-hidden px-3 bg-card">
-                  <div
-                    className="min-h-[180px] w-full bg-cover bg-center rounded-lg"
-                    style={{ backgroundImage: `url(${collection.image})` }}
-                    aria-hidden
-                  />
-                </div>
-              </div>
-            </Card>
-          ))}
-        </section>
 
         <section className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -266,6 +211,58 @@ export default function Home() {
               </Link>
             ))}
           </div>
+        </section>
+        
+        <section className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-semibold">Categories</h2>
+              <p className="text-sm text-muted-foreground">Explore by craving, grocery aisle, or lifestyle.</p>
+            </div>
+            <Button variant="ghost" size="sm">
+              View all
+            </Button>
+          </div>
+          <div className="flex gap-2 overflow-x-auto pb-2">
+            {randomJson.categories.map((category, index) => (
+              <Badge
+                key={category}
+                variant={index === 0 ? "default" : "outline"}
+                className="cursor-pointer px-4 py-2 text-sm"
+              >
+                {category}
+              </Badge>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-2">
+          {randomJson.collections.map(collection => (
+            <Card key={collection.title} className="flex flex-col overflow-hidden md:flex-row">
+              <div className="flex flex-1 flex-col gap-3 p-6">
+                <Badge variant="secondary" className="w-fit">
+                  {collection.badge}
+                </Badge>
+                <CardTitle>{collection.title}</CardTitle>
+                <CardDescription>{collection.description}</CardDescription>
+                <div className="mt-auto flex flex-wrap gap-2">
+                  <Button size="sm">Open collection</Button>
+                  <Button variant="outline" size="sm">
+                    Share
+                  </Button>
+                </div>
+              </div>
+              <div className="min-h-[180px] flex-1">
+                <div className="h-full w-full rounded-2xl overflow-hidden px-3 bg-card">
+                  <div
+                    className="min-h-[180px] w-full bg-cover bg-center rounded-lg"
+                    style={{ backgroundImage: `url(${collection.image})` }}
+                    aria-hidden
+                  />
+                </div>
+              </div>
+            </Card>
+          ))}
         </section>
       </div>
     </main>
