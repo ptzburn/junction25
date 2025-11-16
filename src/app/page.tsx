@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { Header } from "@/_components/header";
 import { OrderCard } from "@/_components/order-card";
-import { MacroSetting } from "@/components/macro-setting";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +29,6 @@ export default function Home() {
   const orders = ordersData?.orders ?? [];
   const hero = randomJson.hero;
   const liveOrders = orders.filter(order => order.status !== "delivered");
-  const liveOrdersCount = liveOrders.length;
   const neighborhoods = Array.from(new Set(liveOrders.map(order => order.neighborhood)));
   const fastestEta = liveOrders.length
     ? Math.min(...liveOrders.map(order => order.etaMinutes[0]))
@@ -38,33 +36,9 @@ export default function Home() {
   const recentOrders = [...orders]
     .sort((a, b) => new Date(b.placedAt).getTime() - new Date(a.placedAt).getTime())
     .slice(0, 3);
-  const primaryCity = orders[0]?.city ?? "Helsinki";
 
   return (
     <main className="bg-background text-foreground min-h-screen">
-      <header className="border-b bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/70">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-full text-lg font-semibold">
-              J
-            </div>
-            <div>
-              <p className="text-xs uppercase text-muted-foreground">Delivering to</p>
-              <button className="text-sm font-semibold" type="button">
-                {`${primaryCity}, Finland ▾`}
-              </button>
-            </div>
-          </div>
-          <div className="hidden items-center gap-2 md:flex">
-            <Badge variant="secondary" className="rounded-md px-3">
-              {liveOrdersCount ? `Live orders · ${liveOrdersCount}` : "Create first order"}
-            </Badge>
-            <ThemeToggle />
-            <MacroSetting />
-          </div>
-        </div>
-      </header>
-
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-8">
         <section className="grid gap-8 lg:grid-cols-[3fr_2fr]">
           <div className="flex flex-col gap-5">
@@ -77,9 +51,9 @@ export default function Home() {
             <p className="text-muted-foreground text-base">{hero.description}</p>
             <div className="flex flex-wrap gap-3">
               <Button variant="default" size="lg" asChild>
-                <Link href="/image-order">Image or text AI order</Link>
+                <Link href="/image-order">Image search</Link>
               </Button>
-              <Button variant="default" size="lg" asChild>
+              <Button variant="secondary" size="lg" asChild>
                 <Link href="/googlecalendar">"I'm busy" order</Link>
               </Button>
               {hero.actions.map(action => (
