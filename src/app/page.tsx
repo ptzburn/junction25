@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { OrderCard } from "@/_components/order-card";
+import { MacroSetting } from "@/components/macro-setting";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,6 @@ import { useOrders } from "@/hooks/use-orders";
 import { useRestaurants } from "@/hooks/use-restaurants";
 
 import randomJson from "../../data/random.json";
-import { MacroSetting } from "@/components/macro-setting";
 
 export default function Home() {
   const router = useRouter();
