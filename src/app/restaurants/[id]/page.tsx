@@ -163,7 +163,8 @@ export default function RestaurantPage() {
                         if (typeof window !== "undefined") {
                           sessionStorage.setItem(`analysis:${dish.id}`, JSON.stringify(analysis));
                         }
-                      } catch {}
+                      }
+                      catch {}
                       router.push(`/placedOrder/${dish.id}`);
                     }}
                   >
@@ -224,7 +225,8 @@ export default function RestaurantPage() {
                               if (typeof window !== "undefined") {
                                 sessionStorage.setItem(`analysis:${dish.id}`, JSON.stringify(analysis));
                               }
-                            } catch {}
+                            }
+                            catch {}
                             router.push(`/placedOrder/${dish.id}`);
                           }}
                         >

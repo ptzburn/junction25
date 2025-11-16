@@ -108,7 +108,8 @@ export function OrderCard({ orderId }: { orderId: string }) {
                 if (typeof window !== "undefined") {
                   sessionStorage.setItem(`analysis:${order.id}`, JSON.stringify(analysis));
                 }
-              } catch {}
+              }
+              catch {}
               router.push(`/placedOrder/${order.id}`);
             }}
           >

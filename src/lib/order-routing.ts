@@ -1,4 +1,3 @@
-import type { Order } from "@/app/api/_schemas/orders";
 import type { Dish } from "@/types/restaurant";
 
 import ordersJson from "../../data/orders.json" assert { type: "json" };

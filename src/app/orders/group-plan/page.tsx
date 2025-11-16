@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
+import type { Dish, Restaurant } from "@/types/restaurant";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 import { getOrderIdForDish } from "@/lib/order-routing";
-import type { Dish, Restaurant } from "@/types/restaurant";
 
 type StoredGroupEntry = {
   dish: Dish;
@@ -113,9 +114,19 @@ export default function GroupPlanReviewPage() {
             <p className="text-sm text-muted-foreground">Group order</p>
             <h1 className="text-3xl font-semibold tracking-tight">Review your plan</h1>
             <p className="text-muted-foreground">
-              Serving {partySize ?? totalServings}
+              Serving
               {" "}
-              guest{(partySize ?? totalServings) === 1 ? "" : "s"} • {totalServings} portion{totalServings === 1 ? "" : "s"}
+              {partySize ?? totalServings}
+              {" "}
+              guest
+              {(partySize ?? totalServings) === 1 ? "" : "s"}
+              {" "}
+              •
+              {" "}
+              {totalServings}
+              {" "}
+              portion
+              {totalServings === 1 ? "" : "s"}
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -128,12 +139,17 @@ export default function GroupPlanReviewPage() {
 
         <Card>
           <CardHeader>
-            <Badge variant="outline">{plan.length} dish{plan.length === 1 ? "" : "es"}</Badge>
+            <Badge variant="outline">
+              {plan.length}
+              {" "}
+              dish
+              {plan.length === 1 ? "" : "es"}
+            </Badge>
             <CardTitle>Hand-picked for the group</CardTitle>
             <CardDescription>The dishes below were matched to your prompt. Adjust quantities back in the AI flow if needed.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            {plan.map((entry) => (
+            {plan.map(entry => (
               <div key={entry.dish.id} className="flex flex-col gap-4 rounded-2xl border p-4 md:flex-row">
                 <div className="relative h-32 w-full overflow-hidden rounded-xl bg-muted md:h-28 md:w-44">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -152,12 +168,18 @@ export default function GroupPlanReviewPage() {
                         {entry.restaurant?.name ?? "Restaurant info unavailable"}
                       </p>
                     </div>
-                    <Badge variant="secondary" className="shrink-0">×{entry.quantity}</Badge>
+                    <Badge variant="secondary" className="shrink-0">
+                      ×
+                      {entry.quantity}
+                    </Badge>
                   </div>
                   <p className="text-sm text-muted-foreground line-clamp-3">{entry.dish.description}</p>
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                     <span>
-                      Match confidence {Math.round(Math.min(Math.max(entry.matchScore, 0), 1) * 100)}%
+                      Match confidence
+                      {" "}
+                      {Math.round(Math.min(Math.max(entry.matchScore, 0), 1) * 100)}
+                      %
                     </span>
                     <span>•</span>
                     <span>

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { PieChart } from "lucide-react";
+import React, { useEffect, useState } from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,9 +29,11 @@ export function MacroSetting() {
       const rawChecks = localStorage.getItem(`${STORAGE_KEY}-checks`);
       if (rawChecks) {
         const parsed = JSON.parse(rawChecks);
-        if (parsed && typeof parsed === "object") setChecks(parsed);
+        if (parsed && typeof parsed === "object")
+          setChecks(parsed);
       }
-    } catch {}
+    }
+    catch {}
   }, []);
 
   // no-op: macro label is static 'Filters'
@@ -40,19 +43,23 @@ export function MacroSetting() {
       const next = { ...prev, [key]: !prev[key] };
       try {
         localStorage.setItem(`${STORAGE_KEY}-checks`, JSON.stringify(next));
-      } catch {}
+      }
+      catch {}
       return next;
     });
   }
 
   return (
     <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="cursor-pointer" aria-label={`Macro: ${macro}`} title={macro}>
-            <PieChart className="h-4 w-4" />
-            <span className="sr-only">Macro setting: {macro}</span>
-          </Button>
-        </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon" className="cursor-pointer" aria-label={`Macro: ${macro}`} title={macro}>
+          <PieChart className="h-4 w-4" />
+          <span className="sr-only">
+            Macro setting:
+            {macro}
+          </span>
+        </Button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         {[
           { key: "onlyProtein", label: "Only protein-rich food" },
@@ -61,7 +68,7 @@ export function MacroSetting() {
           { key: "peanutAllergy", label: "Peanut allergy" },
           { key: "ketoDiet", label: "Keto diet" },
           { key: "lactoseFree", label: "Lactose-free" },
-        ].map((opt) => (
+        ].map(opt => (
           <DropdownMenuItem
             key={opt.key}
             className="cursor-pointer flex items-center justify-between gap-2"
@@ -79,7 +86,7 @@ export function MacroSetting() {
                   e.stopPropagation();
                   toggleCheck(opt.key);
                 }}
-                onClick={(e) => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
                 className="h-4 w-4"
                 aria-label={`Enable ${opt.label}`}
               />

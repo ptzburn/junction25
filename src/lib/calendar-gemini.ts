@@ -1,16 +1,12 @@
-import { GoogleGenAI, HarmBlockThreshold, HarmCategory } from "@google/genai";
-import fs from "node:fs/promises"; // For local file reads
-import path from "node:path";
-
-import type { Dish } from "@/app/api/_schemas/dishes";
-
-import { DishAnalysisSchema, OrderSchema } from "@/app/api/_schemas/orders";
-import env from "@/env";
+import { GoogleGenAI } from "@google/genai";
+// For local file reads
 import z from "zod";
 
-import { searchStock } from "./stock-search";
-import orders from "../../data/orders.json" assert { type: "json" };
+import { OrderSchema } from "@/app/api/_schemas/orders";
+import env from "@/env";
+
 import dishesFile from "../../data/dishes.json" assert { type: "json" };
+import orders from "../../data/orders.json" assert { type: "json" };
 
 const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 /**
@@ -19,7 +15,7 @@ const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
  */
 export async function fetchCalendarEvents(): Promise<any[]> {
   try {
-    const base = (env as any).NEXT_PUBLIC_APP_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001";
+    const base = env.NEXT_PUBLIC_APP_URL;
     const url = `${String(base).replace(/\/$/, "")}/api/calendar?debug=1`;
     const res = await fetch(url);
     if (!res.ok) {
@@ -27,7 +23,8 @@ export async function fetchCalendarEvents(): Promise<any[]> {
       return [];
     }
     const json = await res.json().catch(() => null);
-    if (!json) return [];
+    if (!json)
+      return [];
     // The calendar endpoint returns { items, count }
     return json.items ?? [];
   }
@@ -36,7 +33,6 @@ export async function fetchCalendarEvents(): Promise<any[]> {
     return [];
   }
 }
-
 
 /**
  * Fetch today's calendar events and orders, ask Gemini to suggest
@@ -55,19 +51,23 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
   const dishesArray: any[] = Array.isArray(dishesRaw)
     ? dishesRaw
     : Array.isArray(dishesRaw.dishes)
-    ? dishesRaw.dishes
-    : Array.isArray(dishesRaw.restaurantDishes)
-    ? dishesRaw.restaurantDishes
-    : [];
+      ? dishesRaw.dishes
+      : Array.isArray(dishesRaw.restaurantDishes)
+        ? dishesRaw.restaurantDishes
+        : [];
   const dishById = new Map<string, any>();
   for (const d of dishesArray) {
-    if (d?.id) dishById.set(String(d.id), d);
+    if (d?.id)
+      dishById.set(String(d.id), d);
   }
 
   const normalizeId = (it: any) => {
-    if (typeof it === "string") return it;
-    if (it == null) return String(it);
-    if (typeof it === "object") return String(it.id ?? it.dishId ?? it.itemId ?? JSON.stringify(it));
+    if (typeof it === "string")
+      return it;
+    if (it == null)
+      return String(it);
+    if (typeof it === "object")
+      return String(it.id ?? it.dishId ?? it.itemId ?? JSON.stringify(it));
     return String(it);
   };
 
@@ -78,7 +78,8 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
     let parsedOrders: any[] = [];
     try {
       parsedOrders = z.array(OrderSchema).parse(orders as any[]);
-    } catch {
+    }
+    catch {
       parsedOrders = orders as any[];
     }
 
@@ -135,19 +136,23 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
 
     const candidate = result.candidates?.[0];
     const textPart = candidate?.content?.parts?.[0]?.text;
-    if (!textPart) throw new Error("Gemini returned no content");
+    if (!textPart)
+      throw new Error("Gemini returned no content");
 
     let parsed: any;
-    try { parsed = JSON.parse(textPart); } catch { throw new Error("Gemini returned invalid JSON"); }
+    try {
+      parsed = JSON.parse(textPart);
+    }
+    catch { throw new Error("Gemini returned invalid JSON"); }
 
     if (
-      !parsed ||
-      typeof parsed.deliveryTime !== "string" ||
-      !parsed.dish ||
-      typeof parsed.dish.name !== "string" ||
-      typeof parsed.amountOfTime !== "number" ||
-      typeof parsed.fromTime !== "string" ||
-      typeof parsed.tillTime !== "string"
+      !parsed
+      || typeof parsed.deliveryTime !== "string"
+      || !parsed.dish
+      || typeof parsed.dish.name !== "string"
+      || typeof parsed.amountOfTime !== "number"
+      || typeof parsed.fromTime !== "string"
+      || typeof parsed.tillTime !== "string"
     ) {
       throw new Error("Gemini returned unexpected shape");
     }
@@ -157,8 +162,8 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
 
     // If the model returned a dish id (rather than a human name), resolve it using dishes.json
     let resolvedDishName = parsed.dish.name;
-    let resolvedDishId: string | undefined = undefined;
-    let resolvedDishImage: string | undefined = undefined;
+    let resolvedDishId: string | undefined;
+    let resolvedDishImage: string | undefined;
     try {
       const maybeId = String(parsed.dish.name ?? "");
       if (dishById.has(maybeId)) {
@@ -167,7 +172,8 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
         resolvedDishId = String(d?.id ?? maybeId);
         resolvedDishImage = d?.image ?? undefined;
       }
-    } catch {}
+    }
+    catch {}
 
     return {
       deliveryTime: parsed.deliveryTime,
@@ -181,7 +187,8 @@ export async function suggestOrderTimeAndDishesForToday(): Promise<{
       fromTime: parsed.fromTime,
       tillTime: parsed.tillTime,
     };
-  } catch (err: any) {
+  }
+  catch (err: any) {
     console.warn("suggestOrderTimeAndDishesForToday failed:", err?.message ?? err);
     // Fallback: choose now+30min and a recent ordered item
     const fallbackFrom = new Date();

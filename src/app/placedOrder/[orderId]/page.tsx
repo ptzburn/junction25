@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import type { DeliveryBetSummary } from "@/types/delivery-bet";
+import type { Dish, Restaurant } from "@/types/restaurant";
+
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getOrderIdForDish } from "@/lib/order-routing";
 import { computeEtaWindow } from "@/lib/time-window";
-import type { Dish, Restaurant } from "@/types/restaurant";
-import type { DeliveryBetSummary } from "@/types/delivery-bet";
 
 type StoredGroupEntry = {
   dish: Dish;
@@ -41,9 +42,11 @@ export default function PlacedOrderPage() {
         const parsed = JSON.parse(raw) as any;
         // support multiple possible shapes
         const name = parsed.dishName ?? parsed.dish?.name ?? parsed.title ?? parsed.name;
-        if (typeof name === "string" && name.length > 0) setDishName(name);
+        if (typeof name === "string" && name.length > 0)
+          setDishName(name);
       }
-    } catch (e) {
+    }
+    catch (e) {
       // ignore
     }
   }, [orderId]);
@@ -129,7 +132,8 @@ export default function PlacedOrderPage() {
   };
 
   useEffect(() => {
-    if (!showSlide) return;
+    if (!showSlide)
+      return;
 
     // After 1s delay, animate progress from 0 -> 0.75 over 2 seconds (fast animation)
     const delayTimer = window.setTimeout(() => {
@@ -138,7 +142,8 @@ export default function PlacedOrderPage() {
       let startTime: number | null = null;
 
       const tick = (ts: number) => {
-        if (startTime === null) startTime = ts;
+        if (startTime === null)
+          startTime = ts;
         const elapsed = ts - startTime;
         const t = Math.min(1, elapsed / duration);
         setProgress(0.75 * t);
@@ -157,7 +162,8 @@ export default function PlacedOrderPage() {
 
       // cleanup function for animation
       const cleanup = () => {
-        if (rafId !== null) cancelAnimationFrame(rafId);
+        if (rafId !== null)
+          cancelAnimationFrame(rafId);
       };
 
       // ensure cleanup on effect re-run/unmount
@@ -189,7 +195,11 @@ export default function PlacedOrderPage() {
               <Card>
                 <CardContent className="flex items-center gap-4 py-4">
                   <div className="flex-1">
-                    <div className="font-semibold">{dishName} Ingridients</div>
+                    <div className="font-semibold">
+                      {dishName}
+                      {" "}
+                      Ingridients
+                    </div>
                     <div className="text-xs text-muted-foreground">Distance 2.7 km</div>
                   </div>
                   <div className="text-sm text-muted-foreground">📞 📍</div>
@@ -197,105 +207,110 @@ export default function PlacedOrderPage() {
               </Card>
 
               <div className="flex w-full flex-col items-center gap-6">
-              {betSummary ? (
-                <div className="w-full space-y-4 rounded-[28px] border border-primary/20 bg-primary/5 p-5 text-center">
-                  <p className="text-xs uppercase tracking-[0.3em] text-primary/80">Prediction bet locked</p>
-                  <p className="text-2xl font-semibold">{betSummary.outcomeLabel}</p>
-                  <p className="text-sm text-muted-foreground">
-                    Stake locked: €
-                    {betSummary.stake.toFixed(2)}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    We&apos;ll notify you once the courier arrives so you know whether the bet hits.
-                  </p>
-                  <Button
-                    className="w-full py-4 text-base font-semibold"
-                    variant="secondary"
-                    onClick={handleReturnHome}
-                  >
-                    Return to main page
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  <div className="w-full space-y-4">
-                    <div className="flex flex-col gap-3">
-                      <Button
-                        className="w-full py-5 text-base font-semibold"
-                        variant="secondary"
-                        onClick={handleRevealEta}
-                        disabled={showEta}
-                      >
-                        {showEta ? "Arrival window revealed" : "Reveal estimated arrival time"}
-                      </Button>
-                      {!showEta && (
+                {betSummary
+                  ? (
+                      <div className="w-full space-y-4 rounded-[28px] border border-primary/20 bg-primary/5 p-5 text-center">
+                        <p className="text-xs uppercase tracking-[0.3em] text-primary/80">Prediction bet locked</p>
+                        <p className="text-2xl font-semibold">{betSummary.outcomeLabel}</p>
+                        <p className="text-sm text-muted-foreground">
+                          Stake locked: €
+                          {betSummary.stake.toFixed(2)}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          We&apos;ll notify you once the courier arrives so you know whether the bet hits.
+                        </p>
                         <Button
-                          className="w-full py-5 text-base font-semibold bg-gradient-to-r from-orange-400 via-pink-500 to-fuchsia-500 text-white shadow-lg hover:opacity-90"
-                          variant="default"
-                          onClick={handleOpenMinigame}
+                          className="w-full py-4 text-base font-semibold"
+                          variant="secondary"
+                          onClick={handleReturnHome}
                         >
-                          Guess delivery time
+                          Return to main page
                         </Button>
-                      )}
-                    </div>
-                    {!showEta && (
-                      <p className="text-center text-xs text-muted-foreground">
-                        Choose reveal to check the official window or guess to place a prediction bet.
-                      </p>
-                    )}
-                  </div>
-
-                  {showEta && (
-                    <>
-                      <div className="relative mb-4 h-56 w-56">
-                        <svg className="h-full w-full" viewBox="0 0 220 220">
-                          <defs>
-                            <linearGradient id="g1" x1="0" x2="1">
-                              <stop offset="0%" stopColor="#34d399" />
-                              <stop offset="100%" stopColor="#10b981" />
-                            </linearGradient>
-                          </defs>
-                          <g transform="translate(110,110)">
-                            <circle r="88" fill="none" stroke="var(--muted)" strokeWidth="12" strokeOpacity="1" />
-                            <circle
-                              r="88"
-                              fill="none"
-                              stroke="url(#g1)"
-                              strokeWidth="12"
-                              strokeLinecap="round"
-                              strokeDasharray={`${dash} ${circumference - dash}`}
-                              strokeDashoffset={0}
-                              transform="rotate(-90)"
-                            />
-                            <circle r="70" fill="var(--background)" />
-                          </g>
-                        </svg>
-
-                        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-                          <div className="text-lg font-semibold">{etaText}</div>
-                          <div className="text-xs text-muted-foreground">Estimated delivery time</div>
+                      </div>
+                    )
+                  : (
+                      <>
+                        <div className="w-full space-y-4">
+                          <div className="flex flex-col gap-3">
+                            <Button
+                              className="w-full py-5 text-base font-semibold"
+                              variant="secondary"
+                              onClick={handleRevealEta}
+                              disabled={showEta}
+                            >
+                              {showEta ? "Arrival window revealed" : "Reveal estimated arrival time"}
+                            </Button>
+                            {!showEta && (
+                              <Button
+                                className="w-full py-5 text-base font-semibold bg-gradient-to-r from-orange-400 via-pink-500 to-fuchsia-500 text-white shadow-lg hover:opacity-90"
+                                variant="default"
+                                onClick={handleOpenMinigame}
+                              >
+                                Guess delivery time
+                              </Button>
+                            )}
+                          </div>
+                          {!showEta && (
+                            <p className="text-center text-xs text-muted-foreground">
+                              Choose reveal to check the official window or guess to place a prediction bet.
+                            </p>
+                          )}
                         </div>
-                      </div>
 
-                      <div className="mb-2 text-center">
-                        <div className="font-semibold">Your order will be delivered soon</div>
-                        <div className="mt-2 text-sm text-muted-foreground">Order in progress! Your order is being prepared now.</div>
-                        <div className="mt-1 text-sm text-muted-foreground">Estimated delivery window: {etaText}.</div>
-                      </div>
+                        {showEta && (
+                          <>
+                            <div className="relative mb-4 h-56 w-56">
+                              <svg className="h-full w-full" viewBox="0 0 220 220">
+                                <defs>
+                                  <linearGradient id="g1" x1="0" x2="1">
+                                    <stop offset="0%" stopColor="#34d399" />
+                                    <stop offset="100%" stopColor="#10b981" />
+                                  </linearGradient>
+                                </defs>
+                                <g transform="translate(110,110)">
+                                  <circle r="88" fill="none" stroke="var(--muted)" strokeWidth="12" strokeOpacity="1" />
+                                  <circle
+                                    r="88"
+                                    fill="none"
+                                    stroke="url(#g1)"
+                                    strokeWidth="12"
+                                    strokeLinecap="round"
+                                    strokeDasharray={`${dash} ${circumference - dash}`}
+                                    strokeDashoffset={0}
+                                    transform="rotate(-90)"
+                                  />
+                                  <circle r="70" fill="var(--background)" />
+                                </g>
+                              </svg>
 
-                     
-                    </>
-                  )}
+                              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                                <div className="text-lg font-semibold">{etaText}</div>
+                                <div className="text-xs text-muted-foreground">Estimated delivery time</div>
+                              </div>
+                            </div>
 
-                  <Button
-                    className="w-full py-5 text-base font-semibold"
-                    variant="ghost"
-                    onClick={handleReturnHome}
-                  >
-                    Return to main page
-                  </Button>
-                </>
-              )}
+                            <div className="mb-2 text-center">
+                              <div className="font-semibold">Your order will be delivered soon</div>
+                              <div className="mt-2 text-sm text-muted-foreground">Order in progress! Your order is being prepared now.</div>
+                              <div className="mt-1 text-sm text-muted-foreground">
+                                Estimated delivery window:
+                                {etaText}
+                                .
+                              </div>
+                            </div>
+
+                          </>
+                        )}
+
+                        <Button
+                          className="w-full py-5 text-base font-semibold"
+                          variant="ghost"
+                          onClick={handleReturnHome}
+                        >
+                          Return to main page
+                        </Button>
+                      </>
+                    )}
               </div>
             </CardContent>
           </Card>
@@ -311,10 +326,12 @@ export default function PlacedOrderPage() {
                 {" "}
                 {guestEstimate}
                 {" "}
-                guest{guestEstimate === 1 ? "" : "s"}
+                guest
+                {guestEstimate === 1 ? "" : "s"}
                 {totalServings > 0 && (
                   <>
-                    {" "}·
+                    {" "}
+                    ·
                     {" "}
                     {totalServings}
                     {" "}
@@ -325,7 +342,7 @@ export default function PlacedOrderPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {groupPlan.map((entry) => (
+              {groupPlan.map(entry => (
                 <div
                   key={entry.dish.id}
                   className="rounded-2xl border p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
@@ -333,7 +350,10 @@ export default function PlacedOrderPage() {
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="text-lg font-semibold leading-tight">{entry.dish.name}</h3>
-                      <Badge variant="secondary">×{entry.quantity}</Badge>
+                      <Badge variant="secondary">
+                        ×
+                        {entry.quantity}
+                      </Badge>
                     </div>
                     <p className="text-sm text-muted-foreground">
                       {entry.restaurant?.name ?? "Restaurant info unavailable"}
@@ -341,7 +361,8 @@ export default function PlacedOrderPage() {
                     <p className="text-xs text-muted-foreground">
                       Match confidence
                       {" "}
-                      {Math.round(Math.min(Math.max(entry.matchScore, 0), 1) * 100)}%
+                      {Math.round(Math.min(Math.max(entry.matchScore, 0), 1) * 100)}
+                      %
                     </p>
                     <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{entry.dish.description}</p>
                   </div>

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { Header } from "@/_components/header";
 import { OrderCard } from "@/_components/order-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -135,7 +134,6 @@ export default function Home() {
           </div>
         </section>
 
-
         <section className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -186,7 +184,7 @@ export default function Home() {
             ))}
           </div>
         </section>
-        
+
         <section className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>

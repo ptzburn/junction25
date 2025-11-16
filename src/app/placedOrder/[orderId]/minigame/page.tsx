@@ -74,7 +74,6 @@ export default function MinigamePage() {
     }
 
     setSubmitting(true);
-    
 
     window.setTimeout(() => {
       router.push(orderViewPath);

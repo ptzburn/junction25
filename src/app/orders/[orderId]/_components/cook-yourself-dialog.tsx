@@ -1,8 +1,8 @@
 "use client";
 
 import { ChefHat, ChevronRight, Loader2, Package } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import type { Dish } from "@/app/api/_schemas/dishes";
 
@@ -147,7 +147,8 @@ export function CookYourselfDialog({ dish }: { dish: Dish }) {
                   quantities,
                 };
                 sessionStorage.setItem(`analysis:${orderId}`, JSON.stringify(payload));
-              } catch (e) {
+              }
+              catch (e) {
                 // ignore storage errors
               }
               // navigate to placed order page for the generated id
