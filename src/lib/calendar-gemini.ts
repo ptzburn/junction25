@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-explicit-any */
 import { GoogleGenAI } from "@google/genai";
 // For local file reads
 import z from "zod";

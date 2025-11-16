@@ -18,7 +18,7 @@ export default function MinigamePage() {
   const search = useSearchParams();
   const timeOfDeliveryParam = search?.get("timeOfDelivery");
 
-  const { hasDeliveryParam, minutesUntilDelivery, bucket } = computeEtaWindow(timeOfDeliveryParam);
+  const { minutesUntilDelivery, bucket } = computeEtaWindow(timeOfDeliveryParam);
   const [selectedOutcome, setSelectedOutcome] = useState<DeliveryBucket | null>(null);
   const [stake, setStake] = useState("25");
   const [error, setError] = useState<string | null>(null);

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable ts/no-explicit-any */
 "use client";
 
 import Image from "next/image";
@@ -197,7 +199,6 @@ export default function GoogleCalendarPage() {
                         <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
                           <div className="flex items-center gap-4">
                             {(() => {
-                              const deliveryTime = suggestion.deliveryTime ?? suggestion.bestOrderTimeISO ?? null;
                               const dishName = suggestion.dish?.name ?? null;
                               const allDishes: any[] = (() => {
                                 if (Array.isArray(dishesData?.restaurantDishes))
@@ -222,7 +223,6 @@ export default function GoogleCalendarPage() {
                                 matched = allDishes.find((d: any) => String(d?.name ?? "").toLowerCase() === String(dishName).toLowerCase());
                               const image = matched?.image ?? matched?.img ?? matched?.picture ?? matched?.imgUrl ?? null;
                               const priceFromMatch = matched?.price ?? matched?.cost ?? matched?.amount ?? matched?.priceCents ?? null;
-                              const formattedTime = deliveryTime ? new Date(deliveryTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : null;
 
                               return (
                                 <>
@@ -292,7 +292,7 @@ export default function GoogleCalendarPage() {
                       matched2 = allDishes.find((d: any) => String(d?.name ?? "").toLowerCase() === String(suggestedName).toLowerCase());
                     price = matched2?.price ?? matched2?.cost ?? matched2?.amount ?? matched2?.priceCents ?? null;
                   }
-                  catch (e) {
+                  catch {
                     price = null;
                   }
                   const toStore = { ...suggestion, price };

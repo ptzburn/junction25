@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-explicit-any */
 import { Hono } from "hono";
 
 import { suggestOrderTimeAndDishesForToday } from "@/lib/calendar-gemini";

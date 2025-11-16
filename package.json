@@ -5,6 +5,8 @@
     "dev": "next dev -p 3001 --turbopack",
     "build": "next build",
     "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "embed:stock": "tsx ./src/scripts/generate-stock-embeddings.ts",
     "embed:dish-image": "tsx ./src/scripts/generate-dish-image-embeddings.ts"

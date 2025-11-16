@@ -152,7 +152,6 @@ export default function GroupPlanReviewPage() {
             {plan.map(entry => (
               <div key={entry.dish.id} className="flex flex-col gap-4 rounded-2xl border p-4 md:flex-row">
                 <div className="relative h-32 w-full overflow-hidden rounded-xl bg-muted md:h-28 md:w-44">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={entry.dish.image}
                     alt={entry.dish.name}

@@ -148,7 +148,7 @@ export function CookYourselfDialog({ dish }: { dish: Dish }) {
                 };
                 sessionStorage.setItem(`analysis:${orderId}`, JSON.stringify(payload));
               }
-              catch (e) {
+              catch {
                 // ignore storage errors
               }
               // navigate to placed order page for the generated id

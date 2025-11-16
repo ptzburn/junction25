@@ -1,6 +1,9 @@
+/* eslint-disable ts/no-explicit-any */
 import { google } from "googleapis";
 import { Hono } from "hono";
 import { Buffer } from "node:buffer";
+
+import env from "@/env";
 
 export const calendarRoute = new Hono().get("/calendar", async (c) => {
   // Accept an optional `calendarId` query param, default to 'primary'.
@@ -13,11 +16,11 @@ export const calendarRoute = new Hono().get("/calendar", async (c) => {
     try {
       return JSON.parse(txt);
     }
-    catch (_) {
+    catch {
       try {
         return JSON.parse(txt.replace(/\\n/g, "\n"));
       }
-      catch (_) {
+      catch {
         return null;
       }
     }
@@ -25,25 +28,20 @@ export const calendarRoute = new Hono().get("/calendar", async (c) => {
 
   let serviceAccount: any = null;
   try {
-    const raw = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+    const raw = env.GOOGLE_SERVICE_ACCOUNT_KEY;
     if (raw) {
       serviceAccount = tryParseJson(raw) ?? ((): any => {
         try {
           return tryParseJson(Buffer.from(raw, "base64").toString("utf8"));
         }
-        catch (_) {
+        catch {
           return null;
         }
       })();
     }
-
-    if (!serviceAccount && process.env.GOOGLE_SERVICE_ACCOUNT_KEY_BASE64) {
-      const decoded = Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_KEY_BASE64, "base64").toString("utf8");
-      serviceAccount = tryParseJson(decoded);
-    }
   }
-  catch (err) {
-    console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT_KEY:", err);
+  catch {
+    console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT_KEY:");
   }
 
   if (!serviceAccount) {

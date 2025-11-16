@@ -1,3 +1,5 @@
+/* eslint-disable ts/no-explicit-any */
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useParams, useRouter, useSearchParams } from "next/navigation";
@@ -46,7 +48,7 @@ export default function PlacedOrderPage() {
           setDishName(name);
       }
     }
-    catch (e) {
+    catch {
       // ignore
     }
   }, [orderId]);
@@ -85,7 +87,7 @@ export default function PlacedOrderPage() {
 
   // Slide-in time card state
   const [showSlide, setShowSlide] = useState(false);
-  const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [_currentTime, setCurrentTime] = useState<Date>(new Date());
   const [displayTime, setDisplayTime] = useState<Date>(new Date());
   const baseTimeRef = useRef<Date | null>(null);
 
