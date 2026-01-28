@@ -42,7 +42,7 @@ Use descriptive, lowercase names with hyphens:
 - ✅ `onlyfood-feed.gif`
 - ✅ `image-search-results.png`
 - ✅ `calendar-integration.png`
-- ❌ `Screenshot 2026-01-28.png`
+- ❌ `Screenshot 2024-01-28.png`
 - ❌ `IMG_1234.png`
 
 ## Updating README

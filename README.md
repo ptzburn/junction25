@@ -13,7 +13,7 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-412991?style=flat&logo=openai)](https://openai.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-[Live Demo](#) • [Architecture](./docs/ARCHITECTURE.md) • [Data Model](./docs/DATA_MODEL.md)
+[Architecture](./docs/ARCHITECTURE.md) • [Data Model](./docs/DATA_MODEL.md) • [Screenshots Guide](./docs/screenshots/README.md)
 
 </div>
 
@@ -45,10 +45,11 @@ Built for [Junction 2025](https://junction2025.com/) hackathon, extending Wolt's
 -->
 
 **To add screenshots:**
-1. Create a `docs/screenshots/` folder
+1. Place screenshots in the `docs/screenshots/` folder (already created)
 2. Take screenshots of key features (feed, search, calendar, cart)
 3. Use tools like [LICEcap](https://www.cockos.com/licecap/) or [ScreenToGif](https://www.screentogif.com/) for GIF recordings
-4. Uncomment the image tags above and update paths
+4. See the [screenshots guide](./docs/screenshots/README.md) for detailed instructions
+5. Uncomment the image tags above and update paths
 
 ------------------------------------------------------------------------
 
